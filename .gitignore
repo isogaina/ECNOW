@@ -1,0 +1,9 @@
+venv/
+.env
+config/credentials/
+data/
+__pycache__/
+*.pyc
+
+# SSH接続先が書かれているため除外（wp-cli.yml.example を参照）
+wp-cli.yml

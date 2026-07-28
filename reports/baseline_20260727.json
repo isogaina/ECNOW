@@ -1,0 +1,57 @@
+{
+  "recorded_at": "2026-07-27",
+  "gsc_period": "2026-06-26 ~ 2026-07-24",
+  "ga4_period": "2026-06-28 ~ 2026-07-26",
+  "pages": {
+    "/advanced/2766/": {
+      "impressions": 3136,
+      "clicks": 2,
+      "ctr_pct": 0.064,
+      "weighted_position": 10.3,
+      "query_count": 227,
+      "pageviews": 20,
+      "bounce_rate": 52.6,
+      "avg_session_duration": 40.8
+    },
+    "/beginner/3012/": {
+      "impressions": 1173,
+      "clicks": 0,
+      "ctr_pct": 0.0,
+      "weighted_position": 10.8,
+      "query_count": 31,
+      "pageviews": 11,
+      "bounce_rate": 54.5,
+      "avg_session_duration": 57.6
+    },
+    "/beginner/328/": {
+      "impressions": 232,
+      "clicks": 0,
+      "ctr_pct": 0.0,
+      "weighted_position": 18.0,
+      "query_count": 52,
+      "pageviews": 2,
+      "bounce_rate": 0.0,
+      "avg_session_duration": 194.2
+    },
+    "/beginner/1055/": {
+      "impressions": 179,
+      "clicks": 0,
+      "ctr_pct": 0.0,
+      "weighted_position": 29.4,
+      "query_count": 25,
+      "pageviews": null,
+      "bounce_rate": null,
+      "avg_session_duration": null
+    },
+    "/beginner/2708/": {
+      "impressions": 243,
+      "clicks": 3,
+      "ctr_pct": 1.235,
+      "weighted_position": 21.0,
+      "query_count": 31,
+      "pageviews": 5,
+      "bounce_rate": 40.0,
+      "avg_session_duration": 55.5
+    }
+  }
+}
