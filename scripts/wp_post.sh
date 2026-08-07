@@ -52,7 +52,7 @@ if [ -n "${WP_SSH:-}" ]; then
 
     cleanup_remote_tmp() {
         if [ -s "$STAGE_LOG" ]; then
-            ssh -p "$SSH_PORT" "$SSH_HOST" "rm -f $(tr '\n' ' ' < "$STAGE_LOG")" 2>/dev/null || true
+            ssh -p "$SSH_PORT" "$SSH_HOST" "rm -rf $(tr '\n' ' ' < "$STAGE_LOG")" 2>/dev/null || true
         fi
         rm -f "$STAGE_LOG"
     }
@@ -69,12 +69,16 @@ stage_file() {
         echo "Error: file not found: $local_path" >&2
         exit 1
     fi
-    local remote_path="/tmp/wp_post_$$_$(basename "$local_path")"
+    # media import はアップロード先のファイル名に転送元のファイル名をそのまま使うため、
+    # 一意化は「ディレクトリ名」側で行い、ファイル名自体は元のまま保つ。
+    local remote_dir="/tmp/wp_post_$$"
+    local remote_path="$remote_dir/$(basename "$local_path")"
+    ssh -p "$SSH_PORT" "$SSH_HOST" "mkdir -p $remote_dir" 2>/dev/null
     scp -P "$SSH_PORT" -q "$local_path" "$SSH_HOST:$remote_path" || {
         echo "Error: failed to copy $local_path to server" >&2
         exit 1
     }
-    echo "$remote_path" >> "$STAGE_LOG"
+    echo "$remote_dir" >> "$STAGE_LOG"
     echo "$remote_path"
 }
 
@@ -119,7 +123,51 @@ case "${1:-help}" in
         post_id="$2"
         wp_cmd post meta list "$post_id" --format=table
         ;;
+    media)
+        # ローカル画像をメディアライブラリに登録し、添付ID を返す
+        media_file="$(stage_file "$2")"
+        alt_text="${3:-}"
+        attach_id="$(wp_cmd media import "$media_file" --title="$(basename "${2%.*}")" --porcelain)"
+        if [ -n "$alt_text" ]; then
+            wp_cmd post meta update "$attach_id" _wp_attachment_image_alt "$alt_text" >/dev/null
+        fi
+        echo "$attach_id"
+        ;;
+    media-url)
+        wp_cmd post get "$2" --field=guid
+        ;;
+    set-desc)
+        # メタディスクリプションは All in One SEO の wp_aioseo_posts.description で管理されている。
+        # wp db query はシェル/SSH を経由する間に日本語が欠落するため、
+        # PHP ファイルごと転送して eval-file で $wpdb->update() を実行する。
+        post_id="$2"
+        desc_file="$3"
+        [ -f "$desc_file" ] || { echo "Error: file not found: $desc_file" >&2; exit 1; }
+        php_local="$(mktemp -t setdesc).php"
+        {
+            echo '<?php'
+            echo 'global $wpdb;'
+            echo "\$post_id = $post_id;"
+            printf '$desc = <<<\047EOT\047\n'
+            cat "$desc_file"
+            printf '\nEOT;\n'
+            cat <<'PHPEOF'
+$desc = trim($desc);
+$table = $wpdb->prefix . 'aioseo_posts';
+$exists = $wpdb->get_var($wpdb->prepare("SELECT id FROM $table WHERE post_id = %d", $post_id));
+if ($exists) {
+    $wpdb->update($table, ['description' => $desc, 'updated' => current_time('mysql')], ['post_id' => $post_id]);
+} else {
+    $wpdb->insert($table, ['post_id' => $post_id, 'description' => $desc, 'created' => current_time('mysql'), 'updated' => current_time('mysql')]);
+}
+echo $wpdb->get_var($wpdb->prepare("SELECT description FROM $table WHERE post_id = %d", $post_id)) . "\n";
+PHPEOF
+        } > "$php_local"
+        php_remote="$(stage_file "$php_local")"
+        wp_cmd eval-file "$php_remote"
+        rm -f "$php_local"
+        ;;
     help|*)
-        echo "Usage: wp_post.sh {get|list|create|update|publish|search|get-content|get-meta} [args]"
+        echo "Usage: wp_post.sh {get|list|create|update|publish|search|get-content|get-meta|media|media-url|set-desc} [args]"
         ;;
 esac

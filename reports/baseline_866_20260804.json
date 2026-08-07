@@ -1,0 +1,164 @@
+{
+  "post_id": 866,
+  "url": "https://ecnow.jp/advanced/866/",
+  "recorded_at": "2026-08-04",
+  "gsc_period": "2026-07-04 ~ 2026-08-01",
+  "ga4_period": "2026-07-06 ~ 2026-08-03",
+  "impressions": 1007,
+  "clicks": 1,
+  "ctr": 0.1,
+  "avg_position": 47.5,
+  "best_position": 11,
+  "query_count": 51,
+  "ga4": {
+    "path": "/advanced/866/",
+    "title": "EC（ネットショップ）にもオウンドメディアを。成功事例5選やポイントを解説 - ECNOW",
+    "pageviews": 3,
+    "avg_session_duration": 13.1,
+    "bounce_rate": 33.3,
+    "engaged_sessions": 2,
+    "users": 3
+  },
+  "top_queries": [
+    {
+      "query": "ec オウンドメディア",
+      "clicks": 0,
+      "impressions": 233,
+      "ctr": 0,
+      "position": 11.8
+    },
+    {
+      "query": "オウンドメディア ec",
+      "clicks": 1,
+      "impressions": 123,
+      "ctr": 0.81,
+      "position": 11.8
+    },
+    {
+      "query": "オウンドメディア 中小企業",
+      "clicks": 0,
+      "impressions": 66,
+      "ctr": 0,
+      "position": 92.9
+    },
+    {
+      "query": "オウンドメディア 成功 事例",
+      "clicks": 0,
+      "impressions": 56,
+      "ctr": 0,
+      "position": 81.1
+    },
+    {
+      "query": "オウンドメディア 集客 webデザイン",
+      "clicks": 0,
+      "impressions": 44,
+      "ctr": 0,
+      "position": 93.6
+    },
+    {
+      "query": "オウンドメディア 事例",
+      "clicks": 0,
+      "impressions": 34,
+      "ctr": 0,
+      "position": 90.5
+    },
+    {
+      "query": "オウンドメディア 集客 中小企業",
+      "clicks": 0,
+      "impressions": 33,
+      "ctr": 0,
+      "position": 91.7
+    },
+    {
+      "query": "オウンドメディア 立ち上げ",
+      "clicks": 0,
+      "impressions": 31,
+      "ctr": 0,
+      "position": 56.5
+    },
+    {
+      "query": "ec サイト オウン ド メディア",
+      "clicks": 0,
+      "impressions": 30,
+      "ctr": 0,
+      "position": 12.5
+    },
+    {
+      "query": "オウン ド メディア ec",
+      "clicks": 0,
+      "impressions": 30,
+      "ctr": 0,
+      "position": 11.1
+    },
+    {
+      "query": "オウン ド メディア 事例",
+      "clicks": 0,
+      "impressions": 30,
+      "ctr": 0,
+      "position": 89.5
+    },
+    {
+      "query": "中小企業 オウンドメディア",
+      "clicks": 0,
+      "impressions": 29,
+      "ctr": 0,
+      "position": 97.2
+    },
+    {
+      "query": "ecサイト オウンドメディア",
+      "clicks": 0,
+      "impressions": 27,
+      "ctr": 0,
+      "position": 15.6
+    },
+    {
+      "query": "オウン ド メディア 人気",
+      "clicks": 0,
+      "impressions": 20,
+      "ctr": 0,
+      "position": 96.3
+    },
+    {
+      "query": "メディア ec",
+      "clicks": 0,
+      "impressions": 20,
+      "ctr": 0,
+      "position": 35.4
+    },
+    {
+      "query": "オウンドメディア 集客 マネタイズ",
+      "clicks": 0,
+      "impressions": 19,
+      "ctr": 0,
+      "position": 57.4
+    },
+    {
+      "query": "オウンドメディア 成功事例",
+      "clicks": 0,
+      "impressions": 15,
+      "ctr": 0,
+      "position": 76.7
+    },
+    {
+      "query": "オウン ド メディア 中小 企業",
+      "clicks": 0,
+      "impressions": 13,
+      "ctr": 0,
+      "position": 92.8
+    },
+    {
+      "query": "オウン ド メディア 立ち 上げ",
+      "clicks": 0,
+      "impressions": 13,
+      "ctr": 0,
+      "position": 56.8
+    },
+    {
+      "query": "ecとオウンドメディア、どちらに投資すべきか？",
+      "clicks": 0,
+      "impressions": 12,
+      "ctr": 0,
+      "position": 71.8
+    }
+  ]
+}

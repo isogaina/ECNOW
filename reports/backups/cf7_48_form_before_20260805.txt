@@ -1,0 +1,19 @@
+
+<dl class="cf7">
+
+<dt><i class="fas fa-user"></i>お名前<span class="rqd">必須</span></dt>
+<dd>[text* your-name akismet:author]</dd>
+
+<dt><i class="fas fa-envelope"></i>メールアドレス<span class="rqd">必須</span></dt>
+<dd>[email*  your-email akismet:author_email]</dd>
+
+<dt><i class="fas fa-phone"></i>お電話番号</dt>
+<dd>[tel your-tel]</dd>
+<dt><i class="fas fa-question-circle-o"></i>お問い合わせ項目<span class="rqd">必須</span></dt>
+<dd>[select* menu-934 include_blank "構築・制作に関するお問い合わせ" "コンサルに関するお問い合わせ" "ご取材・メディア掲載に関するお問い合わせ" "アライアンスに関するお問い合わせ" "その他"]</dd>
+<dt><i class="fas fa-edit"></i>お問い合わせ内容<span class="rqd">必須</span></dt>
+<dd>[textarea* your-message]</dd>
+
+</dl>
+
+<div class="btn_cf7">[submit "この内容で送信する"][multistep multistep-01 first_step send_email "https://ecnow.jp/thanks_contact/"]</div>
