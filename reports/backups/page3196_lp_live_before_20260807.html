@@ -1,0 +1,562 @@
+
+<!-- wp:html -->
+<div class="ecl">
+<style>
+/* --------------------------------------------------------------
+   ECNOW 相談LP
+   SWELL は .post_content h2 / p / ul / li（詳細度 0,1,1）で
+   見出しの背景バーや余白を当ててくる。クラス1つだけの指定では負けて
+   margin:auto が無効化され中央寄せが崩れるため、
+   すべて「.ecl section 〜」（0,1,2 以上）で書いて上書きしている。
+   -------------------------------------------------------------- */
+.ecl{
+  --ink:#1f3b5f; --ink-2:#525f70; --ink-3:#8a94a6;
+  --accent:#2f6fed; --accent-2:#1f57cc; --accent-soft:#eef3fe;
+  --bg-soft:#f4f7fb; --border:#e2e8f2;
+  --radius:8px; --accent-mint:#4fd1c5;
+  color:var(--ink); line-height:1.85; max-width:none;
+  font-feature-settings:"palt";
+}
+.ecl *{box-sizing:border-box; min-width:0;}
+.ecl{overflow-wrap:anywhere;}
+
+/* ---- SWELL のリセット ---- */
+.ecl section h1,.ecl section h2,.ecl section h3{
+  background:none; border:none; padding:0; margin:0;
+  color:var(--ink); font-family:inherit; line-height:1.45;
+}
+.ecl section h1::before,.ecl section h1::after,
+.ecl section h2::before,.ecl section h2::after,
+.ecl section h3::before,.ecl section h3::after{content:none; display:none;}
+.ecl section p{margin:0 0 1.2em; line-height:1.85;}
+.ecl section ul,.ecl section ol{margin:0; padding:0; list-style:none;}
+.ecl section li{margin:0; padding:0; line-height:1.7;}
+.ecl section li::before,.ecl section li::after{content:none; display:none;}
+.ecl section a{color:var(--accent);}
+
+/* ---- レイアウト ---- */
+.ecl section.ecl__sec{padding:clamp(56px,8vw,104px) clamp(18px,4vw,40px); background:#fff;}
+.ecl section.ecl__sec--soft{background:var(--bg-soft);}
+.ecl section .ecl__inner{max-width:920px; margin-left:auto; margin-right:auto;}
+.ecl section .ecl__inner--narrow{max-width:720px;}
+
+/* ---- 見出し ---- */
+.ecl section .ecl__h2{
+  font-size:clamp(23px,3.2vw,36px); font-weight:800; line-height:1.45;
+  text-align:center; margin:0 auto .5em; letter-spacing:.01em;
+}
+.ecl section .ecl__h2::after{
+  content:""; display:block; width:min(520px,80%); height:1px;
+  background:var(--border); margin:.7em auto 0;
+}
+.ecl section .ecl__lead{
+  text-align:center; color:var(--ink-2);
+  font-size:clamp(15px,1.2vw,17px);
+  max-width:680px; margin:0 auto 2.6em;
+}
+.ecl section .ecl__eyebrow{
+  display:block; text-align:center; color:var(--accent);
+  font-size:13px; font-weight:800; letter-spacing:.16em; margin:0 0 1em;
+}
+
+/* ---- ファーストビュー ---- */
+.ecl section.ecl__fv{
+  padding:clamp(60px,8vw,110px) clamp(18px,4vw,40px);
+  background:#fff; text-align:center;
+}
+.ecl section.ecl__fv .ecl__fv-title{
+  font-size:clamp(25px,3.9vw,42px); font-weight:800; line-height:1.5;
+  margin:0 auto .7em; max-width:820px; letter-spacing:.01em;
+}
+.ecl section.ecl__fv .ecl__fv-title em{font-style:normal; color:var(--accent);}
+.ecl section.ecl__fv .ecl__fv-sub{
+  color:var(--ink-2); font-size:clamp(15px,1.2vw,17px);
+  max-width:920px; margin:0 auto 2.4em;
+}
+/* PC幅のときだけ改行を入れて2行に収める。SPでは自然折り返しに任せる */
+.ecl section .ecl__br-pc{display:none;}
+@media (min-width:1000px){
+  .ecl section .ecl__br-pc{display:inline;}
+}
+.ecl section.ecl__fv .ecl__stats{
+  display:flex; flex-wrap:wrap; justify-content:center; gap:clamp(20px,4vw,52px);
+  margin:0 auto 2.6em; max-width:760px;
+}
+.ecl section.ecl__fv .ecl__stats li{text-align:center;}
+.ecl section.ecl__fv .ecl__stats b{
+  display:block; font-size:clamp(26px,3.2vw,36px); font-weight:800;
+  color:var(--accent); line-height:1.2;
+}
+.ecl section.ecl__fv .ecl__stats small{font-size:.62em; margin-left:.1em;}
+.ecl section.ecl__fv .ecl__stats span{font-size:13px; color:var(--ink-2);}
+
+/* ---- ボタン ---- */
+.ecl section .ecl__btns{
+  display:flex; flex-wrap:wrap; justify-content:center; gap:14px; margin:0;
+}
+.ecl section a.ecl__btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.5em;
+  min-width:min(340px,100%); padding:1em 2em;
+  border:3px solid var(--accent); border-radius:999px;
+  background:#fff; color:var(--accent);
+  font-weight:700; font-size:clamp(15px,1.2vw,17px); text-decoration:none;
+  transition:background .2s,color .2s,border-color .2s;
+}
+.ecl section a.ecl__btn:hover{background:var(--accent); color:#fff;}
+.ecl section a.ecl__btn--fill{background:var(--accent); color:#fff;}
+.ecl section a.ecl__btn--fill:hover{background:var(--accent-2); border-color:var(--accent-2); color:#fff;}
+.ecl section .ecl__btn-note{
+  text-align:center; font-size:12.5px; color:var(--ink-3);
+  max-width:620px; margin:1.2em auto 0; line-height:1.7;
+}
+
+/* ---- お悩みチェックリスト ---- */
+.ecl section .ecl__checks{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr));
+  gap:0 clamp(24px,4vw,52px);
+}
+.ecl section .ecl__checks li{
+  display:flex; align-items:flex-start; gap:.9em;
+  padding:1.15em .2em; border-bottom:1px solid var(--border);
+  font-size:clamp(14.5px,1.05vw,16px); line-height:1.7;
+}
+.ecl section .ecl__checks li::before{
+  content:"✓"; display:flex; flex:0 0 auto;
+  width:1.6em; height:1.6em; margin-top:.05em;
+  align-items:center; justify-content:center;
+  border:1.5px solid var(--ink); border-radius:4px;
+  font-size:.85em; font-weight:700; line-height:1;
+}
+.ecl section .ecl__checks strong{color:var(--accent); font-weight:700;}
+.ecl section .ecl__after-checks{
+  text-align:center; font-size:clamp(16px,1.35vw,19px); font-weight:700;
+  max-width:680px; margin:3em auto 0; line-height:1.7;
+}
+
+/* ---- POINT カード ---- */
+.ecl section .ecl__points{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(min(270px,100%),1fr));
+  gap:clamp(18px,2.4vw,26px);
+}
+.ecl section .ecl__point{
+  background:#fff; border:1px solid var(--border); border-radius:var(--radius);
+  padding:clamp(24px,3vw,32px); display:block;
+}
+.ecl section .ecl__point-no{
+  display:block; color:var(--accent); font-size:12px; font-weight:800;
+  letter-spacing:.14em; margin-bottom:.9em;
+}
+.ecl section .ecl__point h3{
+  font-size:clamp(16.5px,1.4vw,19px); font-weight:800; line-height:1.55;
+  margin:0 0 .8em;
+}
+.ecl section .ecl__point p{font-size:14.5px; color:var(--ink-2); margin:0;}
+
+/* ---- サービス一覧 ---- */
+.ecl section .ecl__services{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));
+  gap:1px; background:var(--border);
+  border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;
+}
+.ecl section .ecl__services li{background:#fff; padding:clamp(22px,2.6vw,28px); display:block;}
+.ecl section .ecl__services h3{
+  font-size:15.5px; font-weight:800; margin:0 0 .7em;
+  padding-left:.9em; position:relative; line-height:1.55;
+}
+.ecl section .ecl__services h3::before{
+  content:""; display:block; position:absolute; left:0; top:.55em;
+  width:6px; height:6px; border-radius:50%; background:var(--accent-mint);
+}
+.ecl section .ecl__services p{font-size:14px; color:var(--ink-2); margin:0;}
+
+/* ---- 実績 ---- */
+.ecl section .ecl__case{
+  background:#fff; border:1px solid var(--border); border-radius:var(--radius);
+  padding:clamp(24px,3.2vw,36px); margin-bottom:clamp(18px,2.4vw,24px);
+}
+.ecl section .ecl__case:last-child{margin-bottom:0;}
+.ecl section .ecl__case-tag{
+  display:inline-block; background:var(--accent-soft); color:var(--accent);
+  font-size:12px; font-weight:700; letter-spacing:.08em;
+  padding:.35em 1em; border-radius:999px; margin-bottom:1em;
+}
+.ecl section .ecl__case h3{font-size:clamp(17px,1.5vw,20px); font-weight:800; margin:0 0 .5em;}
+.ecl section .ecl__case h3 a{
+  color:var(--ink); text-decoration:underline;
+  text-decoration-color:var(--border); text-underline-offset:.24em;
+}
+.ecl section .ecl__case h3 a:hover{text-decoration-color:var(--accent);}
+.ecl section .ecl__case-result{
+  display:block; font-size:clamp(19px,2vw,26px); font-weight:800;
+  color:var(--accent); line-height:1.45; margin:.2em 0 .9em;
+}
+.ecl section .ecl__case ul{
+  margin:1.4em 0 0; padding:1.4em 0 0; border-top:1px solid var(--border);
+}
+.ecl section .ecl__case ul li{
+  font-size:14px; color:var(--ink-2); padding-left:1.4em;
+  position:relative; margin-bottom:.55em;
+}
+.ecl section .ecl__case ul li:last-child{margin-bottom:0;}
+.ecl section .ecl__case ul li::before{
+  content:"✓"; display:block; position:absolute; left:0; top:0;
+  color:var(--accent); font-weight:700;
+}
+
+/* ---- STEP ---- */
+.ecl section .ecl__step{
+  display:flex; gap:clamp(16px,2.4vw,26px); align-items:flex-start;
+  padding:clamp(20px,2.6vw,26px) 0; border-bottom:1px solid var(--border);
+}
+.ecl section .ecl__step:last-child{border-bottom:0;}
+.ecl section .ecl__step-no{
+  flex:0 0 auto; width:clamp(46px,4.6vw,54px); height:clamp(46px,4.6vw,54px);
+  display:flex; align-items:center; justify-content:center;
+  border:2px solid var(--accent); border-radius:50%;
+  color:var(--accent); font-weight:800; font-size:15px;
+}
+.ecl section .ecl__step h3{font-size:clamp(16px,1.35vw,18px); font-weight:800; margin:.35em 0 .45em;}
+.ecl section .ecl__step p{font-size:14.5px; color:var(--ink-2); margin:0;}
+
+/* ---- FAQ ---- */
+.ecl section .ecl__faq{border-top:1px solid var(--border);}
+.ecl section .ecl__faq details{border-bottom:1px solid var(--border); margin:0;}
+.ecl section .ecl__faq summary{
+  cursor:pointer; list-style:none; display:block;
+  padding:1.3em 2.4em 1.3em 1.9em;
+  font-weight:700; font-size:clamp(15px,1.15vw,16.5px);
+  position:relative; line-height:1.65;
+}
+.ecl section .ecl__faq summary::-webkit-details-marker{display:none;}
+.ecl section .ecl__faq summary::before{
+  content:"Q"; display:block; position:absolute; left:0; top:1.25em;
+  color:var(--accent); font-weight:800; font-size:15px;
+}
+.ecl section .ecl__faq summary::after{
+  content:""; display:block; position:absolute; right:.5em; top:1.7em;
+  width:9px; height:9px;
+  border-right:2px solid var(--accent); border-bottom:2px solid var(--accent);
+  transform:rotate(45deg); transition:transform .2s;
+}
+.ecl section .ecl__faq details[open] summary::after{transform:rotate(-135deg);}
+.ecl section .ecl__faq-a{padding:0 1em 1.7em 1.9em; font-size:14.5px; color:var(--ink-2);}
+.ecl section .ecl__faq-a p{margin:0;}
+
+/* ---- 帯CTA ---- */
+.ecl section .ecl__cta-band{
+  background:var(--accent-soft); border-radius:var(--radius);
+  padding:clamp(28px,4vw,42px) clamp(20px,3vw,34px); text-align:center;
+}
+.ecl section .ecl__cta-band p{
+  font-size:clamp(16px,1.4vw,19px); font-weight:700;
+  max-width:620px; margin:0 auto 1.5em; line-height:1.7;
+}
+
+/* ---- フォーム ---- */
+.ecl section .ecl__form{max-width:640px; margin:0 auto;}
+.ecl section .ecl__form .cf7{margin:0;}
+.ecl section .ecl__form .cf7 dt{
+  font-weight:700; font-size:14.5px; margin:0 0 .6em;
+  display:flex; align-items:center; gap:.45em;
+}
+.ecl section .ecl__form .cf7 dd{margin:0 0 1.5em;}
+.ecl section .ecl__form .cf7 .rqd{
+  background:var(--accent); color:#fff; font-size:11px; font-weight:700;
+  padding:.3em .8em; border-radius:3px; letter-spacing:.05em;
+  margin-left:.9em; /* ラベル文字とバッジが近すぎるので、ここだけ離す */
+  flex:0 0 auto; line-height:1.5;
+}
+.ecl section .ecl__form input[type=text],
+.ecl section .ecl__form input[type=email],
+.ecl section .ecl__form input[type=tel],
+.ecl section .ecl__form select,
+.ecl section .ecl__form textarea{
+  width:100%; padding:.85em 1em; font-size:16px;
+  border:1px solid var(--border); border-radius:6px;
+  background:#fff; color:var(--ink);
+}
+.ecl section .ecl__form textarea{min-height:170px;}
+.ecl section .ecl__form .btn_cf7{text-align:center; margin-top:2em;}
+.ecl section .ecl__form .btn_cf7 input[type=submit],
+.ecl section .ecl__form .btn_cf7 button{
+  min-width:min(340px,100%); padding:1em 2em; cursor:pointer;
+  border:3px solid var(--accent); border-radius:999px;
+  background:var(--accent); color:#fff; font-weight:700; font-size:16px;
+  transition:background .2s,border-color .2s;
+}
+.ecl section .ecl__form .btn_cf7 input[type=submit]:hover{background:var(--accent-2); border-color:var(--accent-2);}
+.ecl section .ecl__form .recaptcha{font-size:12px; color:var(--ink-3); text-align:center; margin:1.4em 0 0;}
+
+@media (max-width:600px){
+  .ecl section .ecl__checks li{padding:.95em .2em;}
+  .ecl section a.ecl__btn{width:100%;}
+  .ecl section .ecl__step{gap:14px;}
+}
+</style>
+
+<!-- ===== ファーストビュー ===== -->
+<section class="ecl__fv">
+  <div class="ecl__inner">
+    <h1 class="ecl__fv-title">ECサイトは<em>作って終わりではありません</em><br>公開したあとの売上づくりまでご相談ください</h1>
+    <p class="ecl__fv-sub">ECNOWを運営するJPholic株式会社は、30社を超えるECコンサルティング実績と、<br class="ecl__br-pc">自社でECを運営してきた経験をもとに、サイト制作から集客・改善までをまとめてお手伝いしています。</p>
+    <ul class="ecl__stats">
+      <li><b>30<small>社超</small></b><span>ECコンサルティング実績</span></li>
+      <li><b>月商500<small>万円</small></b><span>支援サイトの到達実績</span></li>
+      <li><b>0<small>円</small></b><span>ご相談・お見積り</span></li>
+    </ul>
+    <div class="ecl__btns">
+      <a class="ecl__btn ecl__btn--fill" href="#ecl-contact">無料で相談してみる &#x25b6;</a>
+    </div>
+    <p class="ecl__btn-note">相談だけ・見積りだけのご利用も歓迎です。しつこい営業はいたしません。</p>
+  </div>
+</section>
+
+<!-- ===== お悩み ===== -->
+<section class="ecl__sec ecl__sec--soft">
+  <div class="ecl__inner">
+    <h2 class="ecl__h2">こんなお悩みはありませんか？</h2>
+    <p class="ecl__lead">ECNOWの記事をご覧いただいている方から、実際によくいただくご相談です。</p>
+    <ul class="ecl__checks">
+      <li>ECサイトについて、<strong>社内に相談できる人がいない</strong></li>
+      <li>サイトは作ったが、<strong>効果的な売り方がわからない</strong></li>
+      <li>既存業務が忙しく、<strong>ECまで手が回らない</strong></li>
+      <li>記事を書いてみたが、<strong>アクセスも売上も増えない</strong></li>
+      <li>カートの選定で迷い、<strong>そこから先に進めていない</strong></li>
+      <li>広告を止めると、<strong>注文がぱたりと止まってしまう</strong></li>
+      <li>制作会社に頼んだが、<strong>公開後は何もしてもらえない</strong></li>
+      <li>施策の費用対効果を、<strong>数字で社内に説明できない</strong></li>
+    </ul>
+    <p class="ecl__after-checks">ひとつでも当てはまるなら、まずは状況をお聞かせください。</p>
+  </div>
+</section>
+
+<!-- ===== 解決 ===== -->
+<section class="ecl__sec">
+  <div class="ecl__inner">
+    <span class="ecl__eyebrow">WHY JPHOLIC</span>
+    <h2 class="ecl__h2">そのお悩みはJPholicが解決します</h2>
+    <p class="ecl__lead">JPholicは、分析・戦略立案からクリエイティブ制作、広告運用・SEOまでを<br class="ecl__br-pc">自社で手がけるデジタルマーケティング会社です。</p>
+    <ul class="ecl__points">
+      <li class="ecl__point">
+        <span class="ecl__point-no">POINT 01</span>
+        <h3>30社をこえる<br>ECコンサルティング実績</h3>
+        <p>サイト設計、SEO対策、デザイン、運営戦略までを一貫して担当します。業種によって売れ方が違うため、これまでの支援先で得た結果をもとにご提案します。</p>
+      </li>
+      <li class="ecl__point">
+        <span class="ecl__point-no">POINT 02</span>
+        <h3>自社でECを運営しているから<br>事業者目線で設計できる</h3>
+        <p>私たち自身がECを運営しています。日々の受注、在庫管理、問い合わせ対応まで実際に手を動かしているため、運用の手間まで含めた設計ができます。</p>
+      </li>
+      <li class="ecl__point">
+        <span class="ecl__point-no">POINT 03</span>
+        <h3>公開したあとの<br>改善まで担当する</h3>
+        <p>SEO、コンテンツマーケティング、ABテストによる購入率改善まで対応します。公開後もアクセスと売上の数字を見ながら改善を続けます。</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 提供できること ===== -->
+<section class="ecl__sec ecl__sec--soft">
+  <div class="ecl__inner">
+    <span class="ecl__eyebrow">SERVICE</span>
+    <h2 class="ecl__h2">JPholicが提供できること</h2>
+    <p class="ecl__lead">ECに携わるすべての工程をワンストップで提供できる体制があります。<br class="ecl__br-pc">必要な工程だけのご依頼も可能です。</p>
+    <ul class="ecl__services">
+      <li>
+        <h3>目的・目標確認と戦略設計</h3>
+        <p>制作の目的と達成したい目標をうかがい、そのKPIに基づいてECサイトの戦略を設計します。</p>
+      </li>
+      <li>
+        <h3>ディレクション</h3>
+        <p>目標達成のためのサイト企画・構成を行います。サイトマップとワイヤーフレームをご提出します。</p>
+      </li>
+      <li>
+        <h3>デザイン・コーディング</h3>
+        <p>購入までの導線を設計したうえで、オーダーメイドのECサイトを制作します。</p>
+      </li>
+      <li>
+        <h3>カートの初期設定</h3>
+        <p>わかりづらいASPカートの初期設定（特商法表記、利用規約、送料設定など）も代行します。</p>
+      </li>
+      <li>
+        <h3>アクセス分析支援</h3>
+        <p>GA4、サーチコンソール、Microsoft Clarityなど外部ツールとの連携を標準サービスで提供します。</p>
+      </li>
+      <li>
+        <h3>集客支援</h3>
+        <p>オウンドメディアの立ち上げ、SEO、SNS広告まで、集客の実行支援まで担当します。</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 実績 ===== -->
+<section class="ecl__sec">
+  <div class="ecl__inner">
+    <span class="ecl__eyebrow">WORKS</span>
+    <h2 class="ecl__h2">実際に結果が出たECサイト</h2>
+    <p class="ecl__lead">支援先と、自社で運営しているECサイトの例をご紹介します。</p>
+
+    <div class="ecl__case">
+      <span class="ecl__case-tag">EC制作</span>
+      <h3><a href="https://garage1st.com/" target="_blank" rel="noopener">Garage 1st</a> 様</h3>
+      <strong class="ecl__case-result">月商500万円を達成</strong>
+      <p>車のカスタムパーツを販売するECサイトです。商材との相性の良さに加え、SNSとSEOの活用、商品ページの改善による購入率アップ、オーダーメイド機能の実装などを行いました。</p>
+      <ul>
+        <li>SNS＋SEOを活用し、集客を強化</li>
+        <li>商品ページを最適化し、購入率がアップ</li>
+        <li>オーダーメイド機能を導入し、幅広いニーズに対応</li>
+      </ul>
+    </div>
+
+    <div class="ecl__case">
+      <span class="ecl__case-tag">EC運営（自社）</span>
+      <h3><a href="https://www.hotlobster.jp/" target="_blank" rel="noopener">ホットロブスター</a></h3>
+      <strong class="ecl__case-result">日本最大のロブスター販売ECへ</strong>
+      <p>自社で運営しているECサイトです。「ロブスター 伊勢海老 違い」のように購入前に気になる疑問へ答えるコンテンツを作り、検索上位を獲得しました。サイト全体の評価が上がり、購入率も向上しています。</p>
+      <ul>
+        <li>ユーザーの疑問に答えるコンテンツで、検索上位を実現</li>
+        <li>季節キャンペーンとメルマガ配信で、リピーターを獲得</li>
+        <li>口コミ獲得施策で認知度アップ</li>
+      </ul>
+    </div>
+
+    <div class="ecl__case">
+      <span class="ecl__case-tag">EC制作・運用</span>
+      <h3>呼子朝市様（唐津市）</h3>
+      <strong class="ecl__case-result">売上が前年比6.8倍</strong>
+      <p>地域物販のECサイトを、Shopifyでの新規構築から継続運用まで担当しました。公開して終わりにせず運用を続けた結果、1年で売上が前年比約6.8倍、セッション数が約6倍に伸びています。</p>
+      <ul>
+        <li>Shopifyで新規構築し、公開後の運用まで継続</li>
+        <li>セッション数が約6倍に増加</li>
+        <li>地域物販でも成果が出せることを実証</li>
+      </ul>
+    </div>
+
+    <div class="ecl__case">
+      <span class="ecl__case-tag">モール運用代行</span>
+      <h3>佐賀マルシェ様（佐賀市）</h3>
+      <strong class="ecl__case-result">楽天市場の広告ROASを約2倍に改善</strong>
+      <p>楽天市場店とYahoo!ショッピング店の運用代行です。商品ページの整備、販促企画、インフルエンサーを使ったPR、広告運用までを一貫して担当しました。</p>
+      <ul>
+        <li>商品ページの整備と販促企画を実施</li>
+        <li>インフルエンサーを使ったPRを展開</li>
+        <li>自社ECだけでなくモール運用にも対応</li>
+      </ul>
+    </div>
+
+    <div class="ecl__case">
+      <span class="ecl__case-tag">EC改善</span>
+      <h3><a href="https://jpholic.jp/works/sagatamaya-ec/" target="_blank" rel="noopener">株式会社佐賀玉屋様（佐賀市）</a></h3>
+      <strong class="ecl__case-result">老舗百貨店の自社ECをUIから立て直した</strong>
+      <p>カート、検索ボックス、トップページのコンテンツといった基本のUIを見直したうえで、特集ページやお中元・お歳暮のページを拡充し、売上向上につなげています。</p>
+      <ul>
+        <li>カート・検索・トップページの基本UIを全面的に見直し</li>
+        <li>特集ページとお中元・お歳暮のページを拡充</li>
+      </ul>
+    </div>
+
+    <p class="ecl__btn-note">その他の制作事例は<a href="https://jpholic.jp/works" target="_blank" rel="noopener">JPholicの制作事例一覧（WORKS）</a>にまとめています。</p>
+  </div>
+</section>
+
+<!-- ===== 帯CTA ===== -->
+<section class="ecl__sec">
+  <div class="ecl__inner ecl__inner--narrow">
+    <div class="ecl__cta-band">
+      <p>「うちの商材だと何から始めるべきか」だけでも、お答えします。</p>
+      <div class="ecl__btns">
+        <a class="ecl__btn ecl__btn--fill" href="#ecl-contact">無料で相談してみる &#x25b6;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ご相談の流れ ===== -->
+<section class="ecl__sec ecl__sec--soft">
+  <div class="ecl__inner ecl__inner--narrow">
+    <span class="ecl__eyebrow">FLOW</span>
+    <h2 class="ecl__h2">ご相談の流れ</h2>
+    <p class="ecl__lead">お問い合わせから制作開始までの進み方です。ご相談の段階で費用は発生しません。</p>
+    <ol class="ecl__steps">
+      <li class="ecl__step">
+        <span class="ecl__step-no">01</span>
+        <div>
+          <h3>お問い合わせ</h3>
+          <p>下のフォームからご連絡ください。決まっていないことだらけの状態でも大丈夫です。</p>
+        </div>
+      </li>
+      <li class="ecl__step">
+        <span class="ecl__step-no">02</span>
+        <div>
+          <h3>ヒアリング（無料）</h3>
+          <p>商材、現在の課題、目標とする数字などをうかがいます。オンラインでの実施も可能です。</p>
+        </div>
+      </li>
+      <li class="ecl__step">
+        <span class="ecl__step-no">03</span>
+        <div>
+          <h3>ご提案・お見積り</h3>
+          <p>うかがった内容をもとに、進め方と費用をご提案します。内訳もあわせてお出しします。</p>
+        </div>
+      </li>
+      <li class="ecl__step">
+        <span class="ecl__step-no">04</span>
+        <div>
+          <h3>制作・運用開始</h3>
+          <p>ご納得いただけたら着手します。公開後も、分析と改善を継続して担当します。</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="ecl__sec">
+  <div class="ecl__inner ecl__inner--narrow">
+    <span class="ecl__eyebrow">FAQ</span>
+    <h2 class="ecl__h2">よくあるご質問</h2>
+    <div class="ecl__faq">
+      <details>
+        <summary>まだ何も決まっていないのですが、相談してもいいですか？</summary>
+        <div class="ecl__faq-a"><p>もちろんです。「何から手をつけるべきか」を整理するところからご一緒するケースがいちばん多いです。商材と現状をうかがったうえで、優先順位をご提案します。</p></div>
+      </details>
+      <details>
+        <summary>相談や見積りに費用はかかりますか？</summary>
+        <div class="ecl__faq-a"><p>かかりません。ヒアリングとお見積りまでは無料です。見積りのみのご利用も歓迎しています。</p></div>
+      </details>
+      <details>
+        <summary>すでにECサイトがあるのですが、改善だけの依頼もできますか？</summary>
+        <div class="ecl__faq-a"><p>可能です。既存サイトの分析、商品ページの改善、SEO、オウンドメディアの立ち上げなど、必要な工程だけをお引き受けしています。</p></div>
+      </details>
+      <details>
+        <summary>使っているカートが決まっているのですが、対応できますか？</summary>
+        <div class="ecl__faq-a"><p>Shopify、makeshop、futureshop、BASE、カラーミーショップなど主要なASPカートに対応しています。これから選ぶ段階であれば、商材と体制に合ったカートの選定からご相談ください。</p></div>
+      </details>
+      <details>
+        <summary>公開したあとのサポートはありますか？</summary>
+        <div class="ecl__faq-a"><p>あります。アクセス分析、SEO、コンテンツ制作、ABテストによる購入率改善まで、継続してご支援できます。</p></div>
+      </details>
+      <details>
+        <summary>どのくらいの期間で進みますか？</summary>
+        <div class="ecl__faq-a"><p>規模によりますが、ヒアリングからご提案までは通常1〜2週間程度です。制作期間は要件によって変わりますので、お見積りとあわせてご案内します。</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== お問い合わせ ===== -->
+<section class="ecl__sec ecl__sec--soft" id="ecl-contact">
+  <div class="ecl__inner ecl__inner--narrow">
+    <span class="ecl__eyebrow">CONTACT</span>
+    <h2 class="ecl__h2">無料ご相談はこちらから</h2>
+    <p class="ecl__lead">相談とお見積りは無料です。<br>まだ何も決まっていない段階でもご連絡ください。</p>
+    <div class="ecl__form">
+      [contact-form-7 id="63ff9bd" title="CONTACT"]
+    </div>
+  </div>
+</section>
+</div>
+<!-- /wp:html -->
+
