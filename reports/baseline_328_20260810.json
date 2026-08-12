@@ -1,0 +1,27 @@
+{
+  "recorded_at": "2026-08-10",
+  "gsc_period": "2026-07-07 ~ 2026-08-04",
+  "ga4_period": "2026-07-09 ~ 2026-08-06",
+  "post_id": 328,
+  "path": "/beginner/328/",
+  "title_before": "ネットショップを始めるなら知っておきたい配送方法の種類と特徴",
+  "title_after": "ネットショップの配送方法まとめ｜業者3社の料金とサイズを比較【2026年最新】",
+  "impressions": 222,
+  "clicks": 0,
+  "ctr_pct": 0.0,
+  "weighted_avg_position": 20.4,
+  "pageviews": 0,
+  "users": 0,
+  "bounce_rate": null,
+  "avg_session_duration": null,
+  "note": "GA4データに該当パスの行なし（対象期間中セッションほぼ0）",
+  "top_queries": [
+    {"query": "ネットショップ 配送", "clicks": 0, "impressions": 51, "ctr": 0, "position": 22.2},
+    {"query": "ネットショップ 配送 方法", "clicks": 0, "impressions": 43, "ctr": 0, "position": 24.5},
+    {"query": "ネットショップ 発送", "clicks": 0, "impressions": 42, "ctr": 0, "position": 18.7},
+    {"query": "ecサイト 配送", "clicks": 0, "impressions": 13, "ctr": 0, "position": 53.5},
+    {"query": "ネットショップ 配送方法", "clicks": 0, "impressions": 12, "ctr": 0, "position": 25.4},
+    {"query": "ネットショップ 運営 発送方法", "clicks": 0, "impressions": 9, "ctr": 0, "position": 15.9}
+  ],
+  "measure_after": "2026-09-07 以降（4〜8週間後）"
+}
