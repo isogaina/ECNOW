@@ -1,0 +1,26 @@
+{
+  "recorded_at": "2026-08-12",
+  "gsc_period": "2026-07-12 ~ 2026-08-09",
+  "ga4_period": "2026-07-14 ~ 2026-08-11",
+  "post_id": 1055,
+  "path": "/beginner/1055/",
+  "title_before": "MakeShop・BASE・Shopifyを徹底比較｜ASPの選び方は？",
+  "title_after": "MakeShop・BASE・Shopifyを徹底比較｜料金・手数料・機能の違い【2026年最新】",
+  "impressions": 138,
+  "clicks": 0,
+  "ctr_pct": 0.0,
+  "weighted_avg_position": 26.5,
+  "pageviews": 1,
+  "users": 1,
+  "bounce_rate": 0.0,
+  "avg_session_duration": 52.6,
+  "top_queries": [
+    {"query": "base makeshop 比較", "clicks": 0, "impressions": 20, "ctr": 0, "position": 15},
+    {"query": "base makeshop", "clicks": 0, "impressions": 17, "ctr": 0, "position": 11.9},
+    {"query": "makeshop base", "clicks": 0, "impressions": 17, "ctr": 0, "position": 10.6},
+    {"query": "makeshop base 比較", "clicks": 0, "impressions": 17, "ctr": 0, "position": 13},
+    {"query": "shopify makeshop 比較", "clicks": 0, "impressions": 16, "ctr": 0, "position": 33.3},
+    {"query": "makeshop shopify 比較", "clicks": 0, "impressions": 13, "ctr": 0, "position": 29}
+  ],
+  "measure_after": "2026-09-09 以降（4〜8週間後）"
+}
