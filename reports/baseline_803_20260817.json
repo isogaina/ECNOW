@@ -1,0 +1,26 @@
+{
+  "recorded_at": "2026-08-17",
+  "gsc_period": "2026-07-17 ~ 2026-08-14",
+  "ga4_period": "2026-07-19 ~ 2026-08-16",
+  "post_id": 803,
+  "path": "/beginner/803/",
+  "title_before": "ネットショップを始める前に読んでおきたいおすすめの本7選",
+  "title_after": "ネットショップの開業・運営に役立つおすすめ本7選【2026年最新】",
+  "impressions": 730,
+  "clicks": 1,
+  "ctr_pct": 0.14,
+  "weighted_avg_position": 29.9,
+  "pageviews": 10,
+  "users": 10,
+  "bounce_rate": 30.0,
+  "avg_session_duration": 33.0,
+  "top_queries": [
+    {"query": "通販 初心者", "clicks": 0, "impressions": 69, "ctr": 0, "position": 39.7},
+    {"query": "ネット販売 おすすめ", "clicks": 0, "impressions": 49, "ctr": 0, "position": 28.6},
+    {"query": "ネット販売 個人 おすすめ", "clicks": 0, "impressions": 49, "ctr": 0, "position": 36.5},
+    {"query": "ネットショップ 本", "clicks": 1, "impressions": 47, "ctr": 2.13, "position": 4.1},
+    {"query": "ネットショップ ノウハウ", "clicks": 0, "impressions": 47, "ctr": 0, "position": 43.1},
+    {"query": "ネットショップ 開業 本", "clicks": 0, "impressions": 37, "ctr": 0, "position": 5.6}
+  ],
+  "measure_after": "2026-09-14 以降（4〜8週間後）"
+}
