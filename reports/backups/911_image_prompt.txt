@@ -1,28 +1,32 @@
-【日本語版：デザイナー向け発注メモ】
+【改訂版：GOODを洗練させたバージョン】
 
-ECサイトのセールバナーを「良い例」と「NG例」で左右に並べた比較画像。
+日本語版（デザイナー向け発注メモ）
 
-左側：良い例
-・商品写真とキャッチコピー「50%OFF」の文字がはっきり分離して見える
-・余白が十分にあり、伝えたい情報（割引率・商品名）が1つに絞られている
-・配色はサイトの基調色と対比する差し色を使い、目立っている
-・文字サイズにメリハリがあり、数字「50%」が一番大きい
+ECサイトのセールバナーを「良い例」と「NG例」で左右に並べた比較画像。今回はGOOD側のデザイン性を高め、情報量は増やさずに見た目の質を上げる。
 
-右側：NG例
-・写真の上に文字が重なって読みにくい
+左側：良い例（洗練版）
+・背景はやわらかいグラデーション（ミントグリーン→オフホワイト、または生成りベージュ系）
+・商品写真（白いマグカップ）に自然な影を落として立体感を出す
+・「50%OFF」の文字は太めの上質なサンセリフ体で大きく配置し、色は背景と対比する濃いグリーンか黒
+・アクセントとして細いリング状の図形か一本の斜めラインなど、控えめな装飾を1つだけ加える（紙吹雪や複数アイコンは使わない）
+・訴求は「全品対象 50%OFF」の1点のみに絞り、余白はしっかり残す
+・使用する色は背景・文字・アクセントの3色以内に抑える
+
+右側：NG例（変更なし）
 ・「50%OFF」「本日限定」「送料無料」「会員様限定」など情報を詰め込みすぎている
+・写真の上に文字が重なって読みにくい
 ・余白がなくごちゃごちゃしている
 ・文字と背景の色が近く、視認性が低い
 
 全体に「GOOD」「NG」のラベルを左上に配置。バナーのサイズは横長（例:1024×300px程度のECサイト向けバナー比率）。実在の商品名・ブランド名は使わず、架空の商品（例:マグカップ）で構成。
 
 
-【English prompt：AI画像生成ツール向け】
+English Prompt（AI画像生成ツール向け）
 
-A side-by-side comparison graphic for an e-commerce blog article, split into two banner mockups labeled "GOOD" (left) and "NG" (right) in the top corner of each half.
+A side-by-side comparison graphic for an e-commerce blog article, split into two banner mockups labeled "GOOD" (left) and "NG" (right) in the top corner of each half. This time, elevate the visual polish of the GOOD side without adding more information.
 
-GOOD banner: clean minimal sale banner for an online shop, product photo of a plain white mug, clear large text "50% OFF" in bold sans-serif font with strong color contrast against the background, generous whitespace, single focused message, flat design style.
+GOOD banner (refined): premium minimal sale banner for an online shop, soft gradient background (mint green to off-white, or warm cream tones), product photo of a plain white mug with a soft natural drop shadow for depth, clear large text "50% OFF" in a bold refined sans-serif font, deep green or black color for strong but tasteful contrast, one subtle decorative accent only (a thin ring shape or a single diagonal line, no confetti or icons), generous whitespace, single focused message "全品対象 50%OFF", restrained palette of 3 colors max, elegant premium aesthetic.
 
-NG banner: cluttered sale banner for an online shop, same mug photo but with text overlapping the image, too many competing messages ("50%OFF", "本日限定", "送料無料", "会員様限定" shown as generic placeholder text blocks), low contrast text color blending into background, no whitespace, visually busy and hard to read.
+NG banner (unchanged): cluttered sale banner for an online shop, same mug photo but with text overlapping the image, too many competing messages ("50%OFF", "本日限定", "送料無料", "会員様限定" shown as generic placeholder text blocks), low contrast text color blending into background, no whitespace, visually busy and hard to read.
 
-Flat vector illustration style, wide banner aspect ratio (roughly 1024x300px), clean UI mockup aesthetic, no real brand names or logos.
+Flat/soft-shadow illustration style, wide banner aspect ratio (roughly 1024x300px), clean premium UI mockup aesthetic, no real brand names or logos.
