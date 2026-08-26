@@ -1,0 +1,42 @@
+{
+  "measured_at": "2026-08-26",
+  "target": "リライト1本目",
+  "path": "/advanced/2766/",
+  "rewritten_on": "2026-07-27",
+  "before": {
+    "gsc_period": "2026-06-26 ~ 2026-07-24",
+    "ga4_period": "2026-06-28 ~ 2026-07-26",
+    "impressions": 3136,
+    "clicks": 2,
+    "ctr_pct": 0.064,
+    "weighted_position": 10.3,
+    "query_count": 227,
+    "pageviews": 20,
+    "bounce_rate": 52.6,
+    "avg_session_duration": 40.8
+  },
+  "after": {
+    "gsc_period": "2026-07-26 ~ 2026-08-23",
+    "ga4_period": "2026-07-28 ~ 2026-08-25",
+    "impressions": 3042,
+    "clicks": 7,
+    "ctr_pct": 0.23,
+    "weighted_position": 10.8,
+    "query_count": 284,
+    "pageviews": 33,
+    "users": 25,
+    "bounce_rate": 43.3,
+    "avg_session_duration": 115.7
+  },
+  "delta": {
+    "impressions": -94,
+    "clicks": 5,
+    "ctr_pct": 0.166,
+    "weighted_position": 0.5,
+    "query_count": 57,
+    "pageviews": 13,
+    "bounce_rate": -9.3,
+    "avg_session_duration": 74.9
+  },
+  "note": "掲載順位はほぼ横ばい（10.3→10.8）。クリックとCTRが3.5倍、滞在時間が2.8倍、直帰率が9.3pt改善。表示回数は微減だがクエリ数は227→284に増加。"
+}
