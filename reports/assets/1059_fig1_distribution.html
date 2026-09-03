@@ -1,0 +1,144 @@
+<meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    width:1600px; height:900px;
+    background:#fff;
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+    color:#1f2430;
+    display:flex; flex-direction:column;
+    padding:56px 64px 40px;
+  }
+  h1 {
+    font-size:40px; font-weight:700; text-align:center; letter-spacing:.01em;
+    margin-bottom:12px;
+  }
+  .sub { text-align:center; font-size:21px; color:#7a8496; margin-bottom:20px; }
+
+  .rows { display:flex; flex-direction:column; flex:1; justify-content:space-evenly; }
+  .row {
+    display:grid;
+    grid-template-columns:264px 1fr 360px;
+    align-items:center;
+    gap:26px;
+  }
+  .rowlabel {
+    font-size:23px; font-weight:700; line-height:1.35;
+  }
+  .rowlabel .tag {
+    display:inline-block; font-size:15px; font-weight:700; color:#fff;
+    background:#aab3c2; border-radius:5px; padding:3px 10px; margin-bottom:8px;
+  }
+  .row.d2c .rowlabel .tag { background:#2f6fed; }
+
+  .chain {
+    display:flex; align-items:center;
+    background:#f5f7fb; border-radius:14px;
+    padding:22px 24px; height:142px;
+  }
+  .row.d2c .chain { background:#eef3fe; }
+
+  .box {
+    flex:0 0 auto;
+    min-width:150px; padding:16px 14px;
+    border-radius:10px; text-align:center;
+    font-size:21px; font-weight:700; line-height:1.3;
+    border:2px solid;
+  }
+  .box .note { display:block; font-size:14px; font-weight:400; color:#6b7688; margin-top:4px; }
+  .maker    { background:#dfe9fd; border-color:#2f6fed; color:#173a7d; }
+  .mid      { background:#fff;    border-color:#c3cad6; color:#5b6577; }
+  .consumer { background:#fde8d8; border-color:#e8762a; color:#8a3f08; }
+
+  .arrow { flex:1 1 auto; position:relative; height:22px; min-width:34px; }
+  .arrow::before {
+    content:""; position:absolute; left:6px; right:14px; top:50%;
+    height:3px; background:#b3bccb; transform:translateY(-50%);
+  }
+  .arrow::after {
+    content:""; position:absolute; right:4px; top:50%;
+    width:0; height:0; transform:translateY(-50%);
+    border-top:9px solid transparent; border-bottom:9px solid transparent;
+    border-left:13px solid #b3bccb;
+  }
+  .arrow.strong::before { background:#2f6fed; height:4px; }
+  .arrow.strong::after  { border-left-color:#2f6fed; }
+  .arrow .cap {
+    position:absolute; left:0; right:0; top:-30px; text-align:center;
+    font-size:18px; font-weight:700; color:#2f6fed;
+  }
+
+  .result {
+    border-radius:12px; padding:18px 22px; height:142px;
+    display:flex; flex-direction:column; justify-content:center;
+    border:2px solid #dde2ea; background:#fafbfd;
+  }
+  .result .cap2 { font-size:15px; color:#8a94a6; font-weight:700; margin-bottom:7px; }
+  .result .val  { font-size:24px; font-weight:700; line-height:1.35; color:#5b6577; }
+  .result .val small { display:block; font-size:15px; font-weight:400; color:#8a94a6; margin-top:5px; }
+  .row.d2c .result { border-color:#2f6fed; background:#eef3fe; }
+  .row.d2c .result .cap2 { color:#2f6fed; }
+  .row.d2c .result .val { color:#173a7d; }
+  .row.d2c .result .val small { color:#4a6ba8; }
+
+  .foot {
+    margin-top:26px; text-align:center;
+    font-size:22px; font-weight:700; color:#1f2430;
+    background:#f5f7fb; border-radius:10px; padding:18px;
+  }
+  .foot em { font-style:normal; color:#2f6fed; }
+</style>
+
+<h1>誰を経由して売るかで 購入者の情報の残り先が変わる</h1>
+<p class="sub">同じ商品を売っても 流通のかたちによってメーカーの手元に残るものが違う</p>
+
+<div class="rows">
+
+  <div class="row">
+    <div class="rowlabel"><span class="tag">従来</span><br>卸・小売経由</div>
+    <div class="chain">
+      <div class="box maker">メーカー</div>
+      <div class="arrow"></div>
+      <div class="box mid">卸<span class="note">在庫を引き受ける</span></div>
+      <div class="arrow"></div>
+      <div class="box mid">小売店<span class="note">棚に並べて売る</span></div>
+      <div class="arrow"></div>
+      <div class="box consumer">消費者</div>
+    </div>
+    <div class="result">
+      <div class="cap2">購入者の情報</div>
+      <div class="val">小売店側に残る<small>メーカーには誰が使っているか届かない</small></div>
+    </div>
+  </div>
+
+  <div class="row d2c">
+    <div class="rowlabel"><span class="tag">D2C</span><br>自社ECで直販</div>
+    <div class="chain">
+      <div class="box maker">メーカー</div>
+      <div class="arrow strong"><span class="cap">注文・入金・問い合わせを直接受ける</span></div>
+      <div class="box consumer">消費者</div>
+    </div>
+    <div class="result">
+      <div class="cap2">購入者の情報</div>
+      <div class="val">自社に残る<small>連絡先も購入履歴も自社の資産になる</small></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="rowlabel"><span class="tag">モール</span><br>Amazon・楽天など</div>
+    <div class="chain">
+      <div class="box maker">メーカー</div>
+      <div class="arrow"></div>
+      <div class="box mid">ECモール<span class="note">集客を借りて手数料を払う</span></div>
+      <div class="arrow"></div>
+      <div class="box consumer">消費者</div>
+    </div>
+    <div class="result">
+      <div class="cap2">購入者の情報</div>
+      <div class="val">原則モール側が保有<small>メールアドレスは自社に渡らない</small></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="foot">D2Cで効いてくるのは経路が短いことより <em>買った人の情報が自社に残ること</em></div>

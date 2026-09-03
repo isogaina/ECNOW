@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<rect width="1600" height="900" fill="#ffffff"/>
+<text x="800.0" y="92.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="42" font-weight="700" fill="#1f2430" text-anchor="middle">ベースフードの売上は自社ECが約3分の2</text>
+<text x="800.0" y="146.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="42" font-weight="700" fill="#1f2430" text-anchor="middle">残りの3分の1は卸と他社ECが占めている</text>
+<text x="800.0" y="196.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="22" font-weight="400" fill="#7a8496" text-anchor="middle">2026年2月期 チャネル別売上高（合計 151.3億円）</text>
+<path d="M 130.0 316 L 130.0 330 L 1018.3 330 L 1018.3 316" fill="none" stroke="#2f6fed" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="574.2" y="274.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="34" font-weight="700" fill="#2f6fed" text-anchor="middle">約3分の2（66%）</text>
+<text x="574.2" y="304.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="19" font-weight="400" fill="#7a8496" text-anchor="middle">自社ECの直販</text>
+<path d="M 1018.3 316 L 1018.3 330 L 1470.0 330 L 1470.0 316" fill="none" stroke="#e8762a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1244.2" y="274.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="34" font-weight="700" fill="#e8762a" text-anchor="middle">約3分の1（34%）</text>
+<text x="1244.2" y="304.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="19" font-weight="400" fill="#7a8496" text-anchor="middle">卸・他社EC・海外</text>
+<clipPath id="barclip"><rect x="130" y="372" width="1340" height="132" rx="10"/></clipPath>
+<g clip-path="url(#barclip)">
+<rect x="130.00" y="372" width="888.31" height="132" fill="#2f6fed"/>
+<rect x="1018.31" y="372" width="348.95" height="132" fill="#e8762a"/>
+<rect x="1367.26" y="372" width="84.14" height="132" fill="#7fa8f2"/>
+<rect x="1451.40" y="372" width="18.60" height="132" fill="#f2b56b"/>
+</g>
+<line x1="1018.31" y1="372" x2="1018.31" y2="504" stroke="#ffffff" stroke-width="3"/>
+<line x1="1367.26" y1="372" x2="1367.26" y2="504" stroke="#ffffff" stroke-width="3"/>
+<line x1="1451.40" y1="372" x2="1451.40" y2="504" stroke="#ffffff" stroke-width="3"/>
+<text x="574.2" y="420.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="28" font-weight="700" fill="#ffffff" text-anchor="middle">自社EC</text>
+<text x="574.2" y="458.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="30" font-weight="700" fill="#ffffff" text-anchor="middle">100.3億円</text>
+<text x="574.2" y="488.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="20" font-weight="400" fill="#ffffff" text-anchor="middle" opacity="0.85">66.3%</text>
+<text x="1192.8" y="420.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="28" font-weight="700" fill="#ffffff" text-anchor="middle">卸売</text>
+<text x="1192.8" y="458.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="30" font-weight="700" fill="#ffffff" text-anchor="middle">39.4億円</text>
+<text x="1192.8" y="488.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="20" font-weight="400" fill="#ffffff" text-anchor="middle" opacity="0.85">26.0%</text>
+<path d="M 1460.7 504 L 1460.7 562.0 L 1430.0 562.0" fill="none" stroke="#f2b56b" stroke-width="2"/>
+<circle cx="1430.0" cy="562.0" r="4" fill="#f2b56b"/>
+<text x="1430.0" y="598.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="25" font-weight="700" fill="#1f2430" text-anchor="middle">海外</text>
+<text x="1430.0" y="632.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="21" font-weight="400" fill="#5b6577" text-anchor="middle">2.1億円（1.4%）</text>
+<path d="M 1409.3 504 L 1409.3 562.0 L 1180.0 562.0" fill="none" stroke="#7fa8f2" stroke-width="2"/>
+<circle cx="1180.0" cy="562.0" r="4" fill="#7fa8f2"/>
+<text x="1180.0" y="598.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="25" font-weight="700" fill="#1f2430" text-anchor="middle">他社EC</text>
+<text x="1180.0" y="632.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="21" font-weight="400" fill="#5b6577" text-anchor="middle">9.5億円（6.3%）</text>
+<text x="130.0" y="726.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="20" font-weight="700" fill="#7a8496" text-anchor="start">前期比</text>
+<rect x="240.0" y="700" width="14" height="14" rx="3" fill="#2f6fed"/>
+<text x="266.0" y="713.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="21" font-weight="700" fill="#1f2430" text-anchor="start">自社EC</text>
+<text x="266.0" y="745.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="25" font-weight="700" fill="#2f9e5e" text-anchor="start">+3.2%</text>
+<rect x="540.0" y="700" width="14" height="14" rx="3" fill="#e8762a"/>
+<text x="566.0" y="713.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="21" font-weight="700" fill="#1f2430" text-anchor="start">卸売</text>
+<text x="566.0" y="745.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="25" font-weight="700" fill="#d84c3f" text-anchor="start">-11.6%</text>
+<rect x="840.0" y="700" width="14" height="14" rx="3" fill="#7fa8f2"/>
+<text x="866.0" y="713.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="21" font-weight="700" fill="#1f2430" text-anchor="start">他社EC</text>
+<text x="866.0" y="745.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="25" font-weight="700" fill="#2f9e5e" text-anchor="start">+12.1%</text>
+<rect x="1140.0" y="700" width="14" height="14" rx="3" fill="#f2b56b"/>
+<text x="1166.0" y="713.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="21" font-weight="700" fill="#1f2430" text-anchor="start">海外</text>
+<text x="1166.0" y="745.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="25" font-weight="700" fill="#2f9e5e" text-anchor="start">+18.8%</text>
+<text x="130.0" y="818.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="18" font-weight="400" fill="#98a1b0" text-anchor="start">構成比は4チャネルの合計151.3億円を100%として算出（全社売上高は151億9,188万円）</text>
+<text x="130.0" y="848.0" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Noto Sans JP, sans-serif" font-size="18" font-weight="400" fill="#98a1b0" text-anchor="start">出典：ベースフード 2026年2月期 決算説明会</text>
+</svg>
