@@ -1,0 +1,176 @@
+<meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    width:1600px; height:1180px; background:#fff;
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+    color:#1f2430;
+    display:flex; flex-direction:column;
+    padding:38px 60px 28px;
+  }
+  h1 { font-size:39px; font-weight:700; text-align:center; }
+  .sub { text-align:center; font-size:20px; color:#7a8496; margin-top:9px; }
+
+  .flow { flex:1; display:flex; flex-direction:column; justify-content:space-between; margin-top:22px; }
+
+  .row { display:grid; grid-template-columns:1fr 40px 1fr; align-items:stretch; gap:0; }
+
+  .card {
+    border:3px solid #2f6fed; background:#eef3fe; border-radius:12px;
+    padding:13px 22px;
+  }
+  .card .num { font-size:15px; font-weight:700; color:#2f6fed; letter-spacing:.1em; }
+  .card .txt { font-size:27px; font-weight:700; line-height:1.28; margin-top:2px; }
+  .card .ex  { font-size:16px; color:#5b6577; margin-top:4px; line-height:1.4; }
+
+  .card.plain { border-color:#c3cad6; background:#fafbfd; }
+  .card.plain .num { color:#8a94a6; }
+
+  .arrow { position:relative; }
+  .arrow::before {
+    content:""; position:absolute; left:50%; top:8px; bottom:20px;
+    width:3px; background:#c3cad6; transform:translateX(-50%);
+  }
+  .arrow::after {
+    content:""; position:absolute; left:50%; bottom:4px;
+    width:0; height:0; transform:translateX(-50%);
+    border-left:9px solid transparent; border-right:9px solid transparent;
+    border-top:13px solid #c3cad6;
+  }
+
+  .side {
+    grid-column:3; display:flex; align-items:center; padding-left:26px;
+  }
+  .side .note {
+    border-left:5px solid #dde2ea; padding:6px 0 6px 18px;
+    font-size:19px; line-height:1.5; color:#5b6577;
+  }
+  .side .note b { color:#1f2430; }
+
+  .split { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  .split .box {
+    border:3px solid #dde2ea; border-radius:12px; padding:12px 20px; background:#fff;
+  }
+  .split .box .head { font-size:21px; font-weight:700; color:#5b6577; }
+  .split .box .term { font-size:29px; font-weight:700; margin-top:2px; }
+  .split .box .why { font-size:16px; color:#8a94a6; margin-top:3px; }
+  .split .box.a { border-color:#2fae6b; }
+  .split .box.a .head, .split .box.a .term { color:#1f7a4a; }
+  .split .box.b { border-color:#e8762a; }
+  .split .box.b .head, .split .box.b .term { color:#a3520f; }
+
+  .goal {
+    border:3px solid #2fae6b; background:#eaf7f0; border-radius:12px;
+    padding:15px 26px; display:flex; align-items:center; gap:20px;
+  }
+  .goal .badge {
+    flex:0 0 auto; background:#2fae6b; color:#fff; border-radius:8px;
+    padding:8px 15px; font-size:19px; font-weight:700;
+  }
+  .goal .main { font-size:28px; font-weight:700; color:#1f7a4a; line-height:1.25; }
+
+  .foot {
+    margin-top:16px; background:#f5f7fb; border-radius:10px; padding:13px 22px;
+    font-size:18px; line-height:1.55; color:#5b6577;
+  }
+  .foot b { color:#1f2430; }
+</style>
+
+<h1>ネットショップの開業は7ステップで進む</h1>
+<p class="sub">上から順に決めていくと 後から決め直す作業が発生しない</p>
+
+<div class="flow">
+
+  <div class="row">
+    <div class="card">
+      <div class="num">STEP 1</div>
+      <div class="txt">売る商品と仕入れ先を決める</div>
+      <div class="ex">1件あたりいくら残るかをここで計算する</div>
+    </div>
+    <div class="arrow"></div>
+    <div class="side"><div class="note">商品が決まらないと <b>必要な許認可も 送料も 販売先も決められない</b></div></div>
+  </div>
+
+  <div class="row">
+    <div class="card">
+      <div class="num">STEP 2</div>
+      <div class="txt">販売する場所を決める</div>
+      <div class="ex">自社EC（BASE・Shopifyなど）かモール（楽天・Amazonなど）か</div>
+    </div>
+    <div class="arrow"></div>
+    <div class="side">
+      <div class="split" style="width:100%">
+        <div class="box a">
+          <div class="head">自社EC</div>
+          <div class="term">最短で数日</div>
+          <div class="why">固定費が小さい／集客はゼロから</div>
+        </div>
+        <div class="box b">
+          <div class="head">モール</div>
+          <div class="term">1か月半〜2か月</div>
+          <div class="why">集客はある／準備中も固定費</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="card">
+      <div class="num">STEP 3</div>
+      <div class="txt">屋号とドメインを決める</div>
+      <div class="ex">ドメインの空き・SNSのアカウント名・商標を先に確認する</div>
+    </div>
+    <div class="arrow"></div>
+    <div class="side"><div class="note">開業届と青色申告承認申請書は <b>このあたりで提出しておく</b>（モール出店には控えが要る）</div></div>
+  </div>
+
+  <div class="row">
+    <div class="card">
+      <div class="num">STEP 4</div>
+      <div class="txt">サービスを申し込んで審査を通す</div>
+      <div class="ex">申込は10分でも 決済の審査に日数がかかる</div>
+    </div>
+    <div class="arrow"></div>
+    <div class="side"><div class="note">中古品・食品・酒を扱うなら <b>許可証の写しを求められる</b></div></div>
+  </div>
+
+  <div class="row">
+    <div class="card">
+      <div class="num">STEP 5</div>
+      <div class="txt">商品ページを作る</div>
+      <div class="ex">商品名・画像・価格・送料・在庫・仕様の6点をそろえる</div>
+    </div>
+    <div class="arrow"></div>
+    <div class="side"><div class="note">商品名は <b>検索される言葉</b>で書く（例：マイクロファイバー ブランケット シングル 洗える）</div></div>
+  </div>
+
+  <div class="row">
+    <div class="card">
+      <div class="num">STEP 6</div>
+      <div class="txt">送料と発送方法を決める</div>
+      <div class="ex">実物を梱包して 厚さと重さを測ってから設定する</div>
+    </div>
+    <div class="arrow"></div>
+    <div class="side"><div class="note">厚さ3cmを超えると <b>送料が数百円変わる</b></div></div>
+  </div>
+
+  <div class="row">
+    <div class="card">
+      <div class="num">STEP 7</div>
+      <div class="txt">特定商取引法に基づく表記を置く</div>
+      <div class="ex">返品の可否・引渡時期・事業者情報など11項目</div>
+    </div>
+    <div class="arrow"></div>
+    <div class="side"><div class="note">返品条件を書かないと <b>引渡しから8日間は返品を断れない</b>（特商法15条の3）</div></div>
+  </div>
+
+  <div class="goal">
+    <div class="badge">公開</div>
+    <div class="main">最初の3か月はアクセス数と購入率の2つだけ見る</div>
+  </div>
+
+</div>
+
+<div class="foot">
+  順番を入れ替えると手戻りが出る。<b>ショップ名より先にドメインを取る／実物を測る前に送料を設定する／商品を決める前に販売先を選ぶ</b>のが典型的な失敗。
+</div>

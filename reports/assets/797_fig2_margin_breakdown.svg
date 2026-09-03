@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="700" viewBox="0 0 1600 700">
+<rect width="1600" height="700" fill="#ffffff"/>
+<style>text{font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;fill:#1f2430}.h1{font-size:40px;font-weight:700}.sub{font-size:21px;fill:#7a8496}.seg{font-size:30px;font-weight:700;fill:#ffffff}.segname{font-size:21px;font-weight:700;fill:#ffffff;opacity:.9}.lb{font-size:24px;font-weight:700}.lv{font-size:30px;font-weight:700}.ln{font-size:17px;fill:#8a94a6}.foot{font-size:19px;fill:#5b6577}.axis{font-size:19px;fill:#8a94a6}</style>
+<text class="h1" x="800.0" y="78" text-anchor="middle">3,000円の商品が1件売れて手元に残るのは732円</text>
+<text class="sub" x="800.0" y="122" text-anchor="middle">BASEのスタンダードプランで送料込み3,000円の商品を1件売った場合の内訳</text>
+<line x1="64.00" y1="266" x2="64.00" y2="290" stroke="#dde2ea" stroke-width="2"/>
+<text class="axis" x="64.00" y="254" text-anchor="middle">0円</text>
+<line x1="309.33" y1="266" x2="309.33" y2="290" stroke="#dde2ea" stroke-width="2"/>
+<text class="axis" x="309.33" y="254" text-anchor="middle">500円</text>
+<line x1="554.67" y1="266" x2="554.67" y2="290" stroke="#dde2ea" stroke-width="2"/>
+<text class="axis" x="554.67" y="254" text-anchor="middle">1,000円</text>
+<line x1="800.00" y1="266" x2="800.00" y2="290" stroke="#dde2ea" stroke-width="2"/>
+<text class="axis" x="800.00" y="254" text-anchor="middle">1,500円</text>
+<line x1="1045.33" y1="266" x2="1045.33" y2="290" stroke="#dde2ea" stroke-width="2"/>
+<text class="axis" x="1045.33" y="254" text-anchor="middle">2,000円</text>
+<line x1="1290.67" y1="266" x2="1290.67" y2="290" stroke="#dde2ea" stroke-width="2"/>
+<text class="axis" x="1290.67" y="254" text-anchor="middle">2,500円</text>
+<line x1="1536.00" y1="266" x2="1536.00" y2="290" stroke="#dde2ea" stroke-width="2"/>
+<text class="axis" x="1536.00" y="254" text-anchor="middle">3,000円</text>
+<rect x="64.00" y="300" width="736.00" height="116" fill="#6b7787"/>
+<text class="segname" x="432.00" y="344.00" text-anchor="middle">仕入れ値</text>
+<text class="seg" x="432.00" y="388.00" text-anchor="middle">1,500円</text>
+<rect x="800.00" y="300" width="72.62" height="116" fill="#e8762a"/>
+<rect x="872.62" y="300" width="44.16" height="116" fill="#f2a65a"/>
+<rect x="916.78" y="300" width="210.99" height="116" fill="#4f8ff7"/>
+<text class="segname" x="1022.27" y="344.00" text-anchor="middle">送料</text>
+<text class="seg" x="1022.27" y="388.00" text-anchor="middle">430円</text>
+<rect x="1127.77" y="300" width="49.07" height="116" fill="#9dbdf5"/>
+<rect x="1176.83" y="300" width="359.17" height="116" fill="#2fae6b"/>
+<text class="segname" x="1356.42" y="344.00" text-anchor="middle">手元に残る</text>
+<text class="seg" x="1356.42" y="388.00" text-anchor="middle">732円</text>
+<rect x="64" y="300" width="1472" height="116" fill="none" stroke="#ffffff" stroke-width="2"/>
+<path d="M 836.31 416 L 836.31 450 L 677.10 446.00 L 677.10 462.00" fill="none" stroke="#e8762a" stroke-width="3"/>
+<rect x="552.10" y="462.00" width="250" height="92" rx="10" fill="#ffffff" stroke="#e8762a" stroke-width="3"/>
+<text class="lb" x="677.10" y="494.00" text-anchor="middle" fill="#e8762a">決済手数料</text>
+<text class="lv" x="677.10" y="528.00" text-anchor="middle">148円</text>
+<text class="ln" x="677.10" y="550.00" text-anchor="middle">3.6%＋40円</text>
+<path d="M 894.70 416 L 894.70 450 L 961.10 446.00 L 961.10 462.00" fill="none" stroke="#f2a65a" stroke-width="3"/>
+<rect x="836.10" y="462.00" width="250" height="92" rx="10" fill="#ffffff" stroke="#f2a65a" stroke-width="3"/>
+<text class="lb" x="961.10" y="494.00" text-anchor="middle" fill="#f2a65a">サービス利用料</text>
+<text class="lv" x="961.10" y="528.00" text-anchor="middle">90円</text>
+<text class="ln" x="961.10" y="550.00" text-anchor="middle">3%</text>
+<path d="M 1152.30 416 L 1152.30 450 L 1245.10 446.00 L 1245.10 462.00" fill="none" stroke="#9dbdf5" stroke-width="3"/>
+<rect x="1120.10" y="462.00" width="250" height="92" rx="10" fill="#ffffff" stroke="#9dbdf5" stroke-width="3"/>
+<text class="lb" x="1245.10" y="494.00" text-anchor="middle" fill="#9dbdf5">梱包資材</text>
+<text class="lv" x="1245.10" y="528.00" text-anchor="middle">100円</text>
+<text class="ln" x="1245.10" y="550.00" text-anchor="middle">箱・緩衝材など</text>
+<rect x="64" y="608" width="1472" height="66" rx="10" fill="#f5f7fb"/>
+<text class="foot" x="90" y="648">決済手数料とサービス利用料はBASEスタンダードプランの料率。仕入れ値・送料・梱包資材費は例として置いた金額で 商品によって変わります</text>
+</svg>

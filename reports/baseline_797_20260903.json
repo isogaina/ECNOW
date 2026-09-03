@@ -1,0 +1,110 @@
+{
+  "recorded_at": "2026-09-03",
+  "gsc_period": "2026-08-03 ~ 2026-08-31",
+  "ga4_period": "2026-08-05 ~ 2026-09-02",
+  "post_id": 797,
+  "path": "/beginner/797/",
+  "title_before": "ネットショップ（EC）開業前に準備しておきたいこと",
+  "impressions": 777,
+  "clicks": 0,
+  "ctr_pct": 0.0,
+  "weighted_avg_position": 42.2,
+  "query_count": 41,
+  "pageviews": 0,
+  "users": 0,
+  "bounce_rate": 0,
+  "avg_session_duration": 0,
+  "top_queries": [
+    {
+      "query": "ネットショップ 何からはじめる",
+      "clicks": 0,
+      "impressions": 72,
+      "position": 35.1
+    },
+    {
+      "query": "ネットショップ開業準備",
+      "clicks": 0,
+      "impressions": 64,
+      "position": 41.1
+    },
+    {
+      "query": "ec 初心者",
+      "clicks": 0,
+      "impressions": 63,
+      "position": 41.8
+    },
+    {
+      "query": "ec 始め方",
+      "clicks": 0,
+      "impressions": 62,
+      "position": 44.0
+    },
+    {
+      "query": "ec 開業",
+      "clicks": 0,
+      "impressions": 60,
+      "position": 32.0
+    },
+    {
+      "query": "ecサイト 開業",
+      "clicks": 0,
+      "impressions": 60,
+      "position": 43.0
+    },
+    {
+      "query": "ネットショップ 初心者 開業",
+      "clicks": 0,
+      "impressions": 57,
+      "position": 42.7
+    },
+    {
+      "query": "ネットショップ 開業 初心者",
+      "clicks": 0,
+      "impressions": 51,
+      "position": 45.9
+    },
+    {
+      "query": "ネットショップ 開業 準備",
+      "clicks": 0,
+      "impressions": 36,
+      "position": 40.9
+    },
+    {
+      "query": "ecサイト はじめる",
+      "clicks": 0,
+      "impressions": 35,
+      "position": 45.1
+    },
+    {
+      "query": "ec 開店",
+      "clicks": 0,
+      "impressions": 33,
+      "position": 38.4
+    },
+    {
+      "query": "ネットショップ 初心者",
+      "clicks": 0,
+      "impressions": 32,
+      "position": 45.9
+    },
+    {
+      "query": "ネット ショップ 初心者",
+      "clicks": 0,
+      "impressions": 19,
+      "position": 46.1
+    },
+    {
+      "query": "ネットショップ 開業",
+      "clicks": 0,
+      "impressions": 14,
+      "position": 51
+    },
+    {
+      "query": "ネットショップ 始めるには",
+      "clicks": 0,
+      "impressions": 13,
+      "position": 49.1
+    }
+  ],
+  "measure_after": "2026-10-01 以降（4〜8週間後）"
+}
