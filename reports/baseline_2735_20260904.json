@@ -1,0 +1,110 @@
+{
+  "recorded_at": "2026-09-04",
+  "gsc_period": "2026-08-04 ~ 2026-09-01",
+  "ga4_period": "2026-08-06 ~ 2026-09-03",
+  "post_id": 2735,
+  "path": "/advanced/2735/",
+  "title_before": "ECマーケティングの戦略と施策一覧｜集客・購入・リピートの手法を体系的に解説",
+  "impressions": 397,
+  "clicks": 0,
+  "ctr_pct": 0.0,
+  "weighted_avg_position": 36.5,
+  "query_count": 24,
+  "pageviews": 1,
+  "users": 1,
+  "bounce_rate": 100.0,
+  "avg_session_duration": 0.0,
+  "top_queries": [
+    {
+      "query": "ec マーケティング 戦略",
+      "clicks": 0,
+      "impressions": 88,
+      "position": 25.6
+    },
+    {
+      "query": "ec マーケティング",
+      "clicks": 0,
+      "impressions": 84,
+      "position": 49.5
+    },
+    {
+      "query": "ec 戦略",
+      "clicks": 0,
+      "impressions": 67,
+      "position": 35.0
+    },
+    {
+      "query": "ec 施策",
+      "clicks": 0,
+      "impressions": 25,
+      "position": 41.5
+    },
+    {
+      "query": "ec戦略",
+      "clicks": 0,
+      "impressions": 18,
+      "position": 38.6
+    },
+    {
+      "query": "ecサイト マーケティング",
+      "clicks": 0,
+      "impressions": 16,
+      "position": 33.2
+    },
+    {
+      "query": "マーケティング ec",
+      "clicks": 0,
+      "impressions": 13,
+      "position": 31
+    },
+    {
+      "query": "ec サイト マーケティング",
+      "clicks": 0,
+      "impressions": 11,
+      "position": 33.2
+    },
+    {
+      "query": "ecマーケティング",
+      "clicks": 0,
+      "impressions": 11,
+      "position": 45.1
+    },
+    {
+      "query": "ec サイト 広告 戦略",
+      "clicks": 0,
+      "impressions": 9,
+      "position": 28.8
+    },
+    {
+      "query": "ec サイト 戦略",
+      "clicks": 0,
+      "impressions": 9,
+      "position": 25.3
+    },
+    {
+      "query": "ec 広告",
+      "clicks": 0,
+      "impressions": 9,
+      "position": 47.7
+    },
+    {
+      "query": "ecサイト 戦略",
+      "clicks": 0,
+      "impressions": 9,
+      "position": 23.8
+    },
+    {
+      "query": "ec リスティング",
+      "clicks": 0,
+      "impressions": 8,
+      "position": 28.2
+    },
+    {
+      "query": "ecサイト マーケティング戦略",
+      "clicks": 0,
+      "impressions": 5,
+      "position": 28.6
+    }
+  ],
+  "measure_after": "2026-10-02 以降（4〜8週間後）"
+}
