@@ -1,0 +1,119 @@
+<meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    width:1600px; height:800px; background:#fff;
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+    color:#1f2430;
+    display:flex; flex-direction:column;
+    padding:38px 60px 28px;
+  }
+  h1 { font-size:39px; font-weight:700; text-align:center; }
+  .sub { text-align:center; font-size:20px; color:#7a8496; margin-top:9px; }
+
+  .wrap {
+    flex:1; margin-top:26px;
+    display:grid; grid-template-columns:74px 1fr; grid-template-rows:1fr 74px;
+  }
+
+  .yaxis {
+    grid-row:1; grid-column:1; position:relative;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .yaxis .t {
+    writing-mode:vertical-rl;
+    font-size:22px; font-weight:700; color:#5b6577; letter-spacing:.08em;
+  }
+  .yaxis .hi, .yaxis .lo {
+    position:absolute; left:2px; font-size:16px; color:#8a94a6;
+    writing-mode:vertical-rl;
+  }
+  .yaxis .hi { top:6px; }
+  .yaxis .lo { bottom:6px; }
+
+  .xaxis {
+    grid-row:2; grid-column:2; position:relative;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .xaxis .t { font-size:22px; font-weight:700; color:#5b6577; letter-spacing:.08em; }
+  .xaxis .lo { position:absolute; left:6px; font-size:16px; color:#8a94a6; }
+  .xaxis .hi { position:absolute; right:6px; font-size:16px; color:#8a94a6; }
+
+  .quads {
+    grid-row:1; grid-column:2;
+    display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:20px;
+  }
+
+  .q { border:3px solid #dde2ea; border-radius:14px; padding:20px 26px; background:#fff;
+       display:flex; flex-direction:column; }
+  .q .cond { font-size:17px; font-weight:700; color:#8a94a6; letter-spacing:.04em; }
+  .q .act  { font-size:32px; font-weight:700; line-height:1.24; margin-top:5px; }
+  .q .why  { font-size:18px; color:#5b6577; line-height:1.5; margin-top:9px; }
+  .q .why b { color:#1f2430; }
+
+  .q.green { border-color:#2fae6b; background:#eaf7f0; }
+  .q.green .cond, .q.green .act { color:#1f7a4a; }
+  .q.blue { border-color:#2f6fed; background:#eef3fe; }
+  .q.blue .cond, .q.blue .act { color:#1d4fb0; }
+  .q.orange { border-color:#e8762a; background:#fdf0e4; }
+  .q.orange .cond, .q.orange .act { color:#a3520f; }
+  .q.gray { border-color:#c3cad6; background:#f5f7fb; }
+  .q.gray .cond, .q.gray .act { color:#5b6577; }
+
+  .foot {
+    margin-top:22px; background:#f5f7fb; border-radius:10px; padding:15px 24px;
+    font-size:18px; line-height:1.6; color:#5b6577;
+  }
+  .foot b { color:#1f2430; }
+</style>
+
+<h1>売れないときはアクセス数と購入率のどちらが原因かで手を分ける</h1>
+<p class="sub">切り分けずに手を打つと 直す必要のないところを直し続けることになる</p>
+
+<div class="wrap">
+
+  <div class="yaxis">
+    <span class="hi">高い</span>
+    <span class="t">購入率</span>
+    <span class="lo">低い</span>
+  </div>
+
+  <div class="quads">
+
+    <div class="q blue">
+      <div class="cond">アクセスは少ない ／ 買った人はいる</div>
+      <div class="act">集客だけ増やす</div>
+      <div class="why">売れる形はもうできている。<b>商品ページには手を入れない</b>で、入口を増やすことに時間を使う。</div>
+    </div>
+
+    <div class="q green">
+      <div class="cond">アクセスも購入率も足りている</div>
+      <div class="act">在庫と発送を先に整える</div>
+      <div class="why">この状態で品切れや遅配を出すと評価が落ちる。<b>売る手を広げるのはその後</b>。</div>
+    </div>
+
+    <div class="q gray">
+      <div class="cond">アクセスが月に数十件 ／ 購入0件</div>
+      <div class="act">まず集客を増やす</div>
+      <div class="why">母数が小さいうちは購入率の数字が当てにならない。<b>ページの良し悪しはまだ判断できない</b>。</div>
+    </div>
+
+    <div class="q orange">
+      <div class="cond">アクセスは数百件ある ／ 購入0件に近い</div>
+      <div class="act">価格・送料・写真・説明を見直す</div>
+      <div class="why">見には来ているのに買われていない。<b>送料と価格の合計</b>がいくらに見えているかから確認する。</div>
+    </div>
+
+  </div>
+
+  <div class="xaxis">
+    <span class="lo">少ない</span>
+    <span class="t">アクセス数</span>
+    <span class="hi">多い</span>
+  </div>
+
+</div>
+
+<div class="foot">
+  開業直後に見る数字はこの2つで足りる。<b>数字を見る前に改善案を考えない</b>——先に案を思いつくと、原因と関係のない場所を直してしまう。
+</div>
