@@ -1,0 +1,140 @@
+<meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    width:1600px; height:720px; background:#fff;
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+    color:#1f2430;
+    display:flex; flex-direction:column;
+    padding:38px 60px 28px;
+  }
+  h1 { font-size:39px; font-weight:700; text-align:center; }
+  .sub { text-align:center; font-size:20px; color:#7a8496; margin-top:9px; }
+
+  .cols { flex:1; margin-top:26px; display:grid; grid-template-columns:1fr 1fr; gap:0 34px; }
+  .panel { display:flex; flex-direction:column; border-radius:12px; padding:16px 22px 18px; }
+  .panel.a { background:#fdf6ee; border:3px solid #e8762a; }
+  .panel.b { background:#eef3fe; border:3px solid #2f6fed; }
+
+  .kind { text-align:center; font-size:18px; font-weight:700; letter-spacing:.06em; }
+  .panel.a .kind { color:#8a5a2a; }
+  .panel.b .kind { color:#4a6da8; }
+  .ptitle { text-align:center; font-size:30px; font-weight:700; line-height:1.2; margin-top:2px; }
+  .panel.a .ptitle { color:#a3520f; }
+  .panel.b .ptitle { color:#1f4fae; }
+  .svc { text-align:center; font-size:16px; margin-top:4px; }
+  .panel.a .svc { color:#8a5a2a; }
+  .panel.b .svc { color:#4a6da8; }
+
+  .stage { flex:1; margin-top:16px; display:flex; flex-direction:column; justify-content:center; gap:12px; }
+
+  /* テナント型：店ごとに商品ページを持つ */
+  .shop {
+    background:#fff; border:2px solid #e2c4a6; border-radius:10px; padding:9px 14px;
+    display:flex; align-items:center; gap:12px;
+  }
+  .shop .nm { font-size:19px; font-weight:700; color:#a3520f; width:96px; flex:none; }
+  .shop .pg {
+    flex:1; background:#fdf0e4; border:2px solid #f0b788; border-radius:7px;
+    padding:7px 12px; font-size:17px; font-weight:700; color:#8a5a2a; text-align:center;
+  }
+  .shop .cart {
+    flex:none; background:#e8762a; color:#fff; border-radius:7px;
+    padding:8px 14px; font-size:16px; font-weight:700;
+  }
+
+  /* マーケットプレイス型：1ページを共有する */
+  .onepage { background:#fff; border:3px solid #2f6fed; border-radius:10px; padding:12px 14px; }
+  .onepage .hd {
+    font-size:19px; font-weight:700; color:#1f4fae; text-align:center; padding-bottom:9px;
+    border-bottom:2px dashed #b9cdf6; margin-bottom:10px;
+  }
+  .seller {
+    display:flex; align-items:center; gap:12px; padding:7px 10px; border-radius:7px;
+    font-size:18px; font-weight:700; color:#5b6577;
+  }
+  .seller .nm { width:96px; flex:none; }
+  .seller .st { flex:1; font-size:16px; font-weight:400; color:#8a94a6; }
+  .seller.win { background:#e4ecfd; color:#1f4fae; }
+  .seller.win .st { color:#1f4fae; font-weight:700; }
+  .seller .cart {
+    flex:none; background:#2f6fed; color:#fff; border-radius:7px;
+    padding:8px 14px; font-size:16px; font-weight:700;
+  }
+  .seller .nocart {
+    flex:none; background:#eef1f6; color:#a4adbb; border:2px solid #dde2ea; border-radius:7px;
+    padding:6px 14px; font-size:15px; font-weight:700;
+  }
+
+  .pfoot { margin-top:14px; font-size:19px; line-height:1.5; font-weight:700; text-align:center; }
+  .panel.a .pfoot { color:#a3520f; }
+  .panel.b .pfoot { color:#1f4fae; }
+
+  .foot {
+    margin-top:22px; background:#f5f7fb; border-radius:10px; padding:15px 24px;
+    font-size:18px; line-height:1.6; color:#5b6577;
+  }
+  .foot b { color:#1f2430; }
+</style>
+
+<h1>楽天は店ごとにページを持ち Amazonは1ページを共有する</h1>
+<p class="sub">同じ商品を3社が売っている場面で比べると 競争の起きかたが違う</p>
+
+<div class="cols">
+
+  <div class="panel a">
+    <div class="kind">テナント型</div>
+    <div class="ptitle">楽天市場・Yahoo!ショッピング</div>
+    <div class="svc">モールの中に自分の店ページを作る</div>
+    <div class="stage">
+      <div class="shop">
+        <div class="nm">A店</div>
+        <div class="pg">A店の商品ページ</div>
+        <div class="cart">購入</div>
+      </div>
+      <div class="shop">
+        <div class="nm">B店</div>
+        <div class="pg">B店の商品ページ</div>
+        <div class="cart">購入</div>
+      </div>
+      <div class="shop">
+        <div class="nm">C店</div>
+        <div class="pg">C店の商品ページ</div>
+        <div class="cart">購入</div>
+      </div>
+    </div>
+    <div class="pfoot">写真・説明文・店のデザインで<br>差をつけられる</div>
+  </div>
+
+  <div class="panel b">
+    <div class="kind">マーケットプレイス型</div>
+    <div class="ptitle">Amazon</div>
+    <div class="svc">1商品につき商品ページは原則1つ</div>
+    <div class="stage">
+      <div class="onepage">
+        <div class="hd">商品ページ（写真・説明文は共通）</div>
+        <div class="seller win">
+          <div class="nm">A社</div>
+          <div class="st">おすすめ出品</div>
+          <div class="cart">カートに入れる</div>
+        </div>
+        <div class="seller">
+          <div class="nm">B社</div>
+          <div class="st">「他の出品者を見る」の中</div>
+          <div class="nocart">表示されない</div>
+        </div>
+        <div class="seller">
+          <div class="nm">C社</div>
+          <div class="st">「他の出品者を見る」の中</div>
+          <div class="nocart">表示されない</div>
+        </div>
+      </div>
+    </div>
+    <div class="pfoot">比べられるのは価格・在庫<br>お届け日・出品者評価の4点だけ</div>
+  </div>
+
+</div>
+
+<div class="foot">
+  <b>Amazonでの売上は出品したかどうかではなく「おすすめ出品」を取れたかどうかで決まる</b>——参加できるのは大口出品アカウントだけで さらに出荷と評価のパフォーマンス基準を満たす必要がある
+</div>

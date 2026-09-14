@@ -1,0 +1,115 @@
+<meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    width:1600px; height:700px; background:#fff;
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+    color:#1f2430;
+    display:flex; flex-direction:column;
+    padding:38px 60px 28px;
+  }
+  h1 { font-size:39px; font-weight:700; text-align:center; }
+  .sub { text-align:center; font-size:20px; color:#7a8496; margin-top:9px; }
+
+  .legend {
+    display:flex; justify-content:center; gap:26px; margin-top:22px;
+    font-size:17px; color:#5b6577;
+  }
+  .legend span { display:flex; align-items:center; gap:8px; }
+  .legend i { width:19px; height:19px; border-radius:4px; display:block; }
+
+  .rows { flex:1; margin-top:24px; display:flex; flex-direction:column; justify-content:center; gap:46px; }
+  .row { display:grid; grid-template-columns:360px 1080px; gap:0 20px; align-items:start; }
+
+  .side { padding-top:2px; }
+  .side .nm { font-size:24px; font-weight:700; color:#1f2430; line-height:1.3; }
+  .side .sb { font-size:17px; color:#7a8496; margin-top:3px; }
+  .side .rv { font-size:19px; font-weight:700; color:#5b6577; margin-top:7px; }
+
+  .track { position:relative; }
+  .bar {
+    display:flex; height:52px; border-radius:8px; overflow:hidden;
+    outline:2px solid #c3cad6;
+  }
+  .seg { height:100%; flex:none; }
+  .seg.plan { background:#5b6577; }
+  .seg.sales { background:#e8762a; }
+  .seg.fba { background:#2f6fed; }
+  .seg.rest { background:#dde2ea; }
+
+  /* 引き出し線は帯の上で止める。帯を横切らせるとデータの上に線が乗る */
+  .mark { position:absolute; top:-30px; height:30px; }
+  .mark::before {
+    content:""; position:absolute; left:0; top:8px; width:3px; height:22px;
+    background:#1f2430; transform:translateX(-50%);
+  }
+  .mark .pct {
+    position:absolute; left:0; top:-4px; transform:translateX(-50%);
+    font-size:19px; font-weight:700; color:#1f2430; white-space:nowrap;
+    background:#fff; padding:0 10px;
+  }
+  .items { margin-top:11px; font-size:17px; color:#5b6577; }
+
+  .foot {
+    margin-top:20px; background:#f5f7fb; border-radius:10px; padding:15px 24px;
+    font-size:18px; line-height:1.6; color:#5b6577;
+  }
+  .foot b { color:#1f2430; }
+  .foot .src { display:block; margin-top:6px; font-size:15px; color:#8a94a6; }
+</style>
+
+<h1>FBAを使うと手数料は売上の13.7%から22.6%に上がる</h1>
+<p class="sub">単価3,000円のビューティー商品（販売手数料10.4%）で計算した場合</p>
+
+<div class="legend">
+  <span><i style="background:#5b6577"></i>プラン料金</span>
+  <span><i style="background:#e8762a"></i>販売手数料</span>
+  <span><i style="background:#2f6fed"></i>配送代行手数料</span>
+  <span><i style="background:#dde2ea"></i>手元に残る（原価・送料・利益）</span>
+</div>
+
+<div class="rows">
+  <div class="row">
+    <div class="side">
+      <div class="nm">ケースA　小口出品＋自己発送</div>
+      <div class="sb">月30個 売れた場合</div>
+      <div class="rv">売上 90,000円</div>
+    </div>
+    <div class="track">
+      <div class="bar">
+        <div class="seg plan" style="width:36.000px"></div>
+        <div class="seg sales" style="width:112.320px"></div>
+        <div class="seg rest" style="width:931.680px"></div>
+      </div>
+      <div class="mark" style="left:148.320px">
+        <div class="pct">手数料 12,360円（売上の13.7%）</div>
+      </div>
+      <div class="items">基本成約料 3,000円　／　販売手数料 9,360円</div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="side">
+      <div class="nm">ケースB　大口出品＋FBA</div>
+      <div class="sb">月100個 売れた場合</div>
+      <div class="rv">売上 300,000円</div>
+    </div>
+    <div class="track">
+      <div class="bar">
+        <div class="seg plan" style="width:17.640px"></div>
+        <div class="seg sales" style="width:112.320px"></div>
+        <div class="seg fba" style="width:114.480px"></div>
+        <div class="seg rest" style="width:835.560px"></div>
+      </div>
+      <div class="mark" style="left:244.440px">
+        <div class="pct">手数料 67,900円（売上の22.6%）</div>
+      </div>
+      <div class="items">月額登録料 4,900円　／　販売手数料 31,200円　／　配送代行手数料 31,800円</div>
+    </div>
+  </div>
+</div>
+
+<div class="foot">
+  <b>ケースAの13.7%には送料も梱包費も人件費も入っていない</b>——自己発送の1件あたりコストが318円を超えるならFBAのほうが安くなる ケースBには在庫保管手数料が別途かかる
+  <span class="src">販売手数料はカテゴリーで5〜15.4%（メディアを除き最低30円）。配送代行手数料は標準サイズの下限318円で計算。2026年9月14日時点の<a href="https://sell.amazon.co.jp/pricing">Amazon出品サービスの料金プラン</a>より</span>
+</div>
