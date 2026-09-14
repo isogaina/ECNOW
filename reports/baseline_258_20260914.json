@@ -1,0 +1,141 @@
+{
+  "recorded_at": "2026-09-14",
+  "gsc_period": "2026-08-14 ~ 2026-09-11",
+  "ga4_period": "2026-08-16 ~ 2026-09-13",
+  "post_id": 258,
+  "path": "/beginner/258/",
+  "title_before": "Amazonで出店するメリットとは？出品までの流れや費用、デメリットを解説",
+  "impressions": 152,
+  "clicks": 0,
+  "ctr_pct": 0.0,
+  "weighted_avg_position": 37.0,
+  "query_count": 21,
+  "pageviews": 0,
+  "users": 0,
+  "bounce_rate": null,
+  "avg_session_duration": null,
+  "ga4_note": "GA4に該当パスの行なし（期間中のPVが計測下限）",
+  "top_queries": [
+    {
+      "query": "amazon ネット ショップ 出店",
+      "clicks": 0,
+      "impressions": 63,
+      "position": 40.5
+    },
+    {
+      "query": "amazon出店 デメリット",
+      "clicks": 0,
+      "impressions": 30,
+      "position": 27.8
+    },
+    {
+      "query": "amazon出店",
+      "clicks": 0,
+      "impressions": 16,
+      "position": 36.2
+    },
+    {
+      "query": "amazon ショップ 開設",
+      "clicks": 0,
+      "impressions": 10,
+      "position": 32.2
+    },
+    {
+      "query": "amazon 出店",
+      "clicks": 0,
+      "impressions": 8,
+      "position": 34.5
+    },
+    {
+      "query": "amazon 特徴",
+      "clicks": 0,
+      "impressions": 3,
+      "position": 59
+    },
+    {
+      "query": "ネットショップ 出店",
+      "clicks": 0,
+      "impressions": 3,
+      "position": 97.3
+    },
+    {
+      "query": "amazon 出品の手順",
+      "clicks": 0,
+      "impressions": 2,
+      "position": 7.5
+    },
+    {
+      "query": "amazon 出品費用",
+      "clicks": 0,
+      "impressions": 2,
+      "position": 21
+    },
+    {
+      "query": "amazon 出店 初期費用",
+      "clicks": 0,
+      "impressions": 2,
+      "position": 37
+    },
+    {
+      "query": "amazon 出店手数料",
+      "clicks": 0,
+      "impressions": 2,
+      "position": 7
+    },
+    {
+      "query": "ネット ショップ 出店",
+      "clicks": 0,
+      "impressions": 2,
+      "position": 98.5
+    },
+    {
+      "query": "amazon ショップ開設",
+      "clicks": 0,
+      "impressions": 1,
+      "position": 24
+    },
+    {
+      "query": "amazon ビジネス",
+      "clicks": 0,
+      "impressions": 1,
+      "position": 2
+    },
+    {
+      "query": "amazon 出品 方法",
+      "clicks": 0,
+      "impressions": 1,
+      "position": 11
+    },
+    {
+      "query": "amazon 出店 手数料",
+      "clicks": 0,
+      "impressions": 1,
+      "position": 11
+    },
+    {
+      "query": "amazon 出店 方法",
+      "clicks": 0,
+      "impressions": 1,
+      "position": 60
+    },
+    {
+      "query": "amazon出店方法",
+      "clicks": 0,
+      "impressions": 1,
+      "position": 61
+    },
+    {
+      "query": "amazon出店費用",
+      "clicks": 0,
+      "impressions": 1,
+      "position": 19
+    },
+    {
+      "query": "アマゾン 出店",
+      "clicks": 0,
+      "impressions": 1,
+      "position": 36
+    }
+  ],
+  "measure_after": "2026-10-12 以降（4〜8週間後）"
+}
