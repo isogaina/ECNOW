@@ -1,86 +1,120 @@
 #!/usr/bin/env python3
-"""797 図3の検算：出力PNGから軸と3つのマーカー位置を実測し、日付に逆変換して照合する。
+"""797 図3(v2) の検算。
 
-目視では数日〜数週間のずれに気づけないため、必ずこれを通す。
+出力画像をピクセル計測し、帯の端が本当にその日付の位置にあるかを確かめる。
+目視では数pxのずれに気づけないため、必ずこれを通す。
+
+検証する内容:
+  1. 2本の帯の左端が一致し、その位置が 2026-06-01 であること
+  2. オレンジの帯の右端が 2026-08-01 であること
+  3. 青い帯の右端が 2027-03-15 であること
+  4. 帯の長さの比が 287/61 = 4.70倍 であること
 """
-from datetime import date, timedelta
+import sys
+from datetime import date
 from pathlib import Path
 
+import numpy as np
 from PIL import Image
 
-AXIS_START = date(2026, 4, 1)
-AXIS_END = date(2027, 4, 30)
-SPAN = (AXIS_END - AXIS_START).days
+sys.path.insert(0, str(Path(__file__).parent))
+import importlib.util
 
-EXPECTED = [
-    ("開業日", date(2026, 6, 1), (0x5B, 0x65, 0x77)),
-    ("青色期限", date(2026, 8, 1), (0xE8, 0x76, 0x2A)),
-    ("確申期限", date(2027, 3, 15), (0x2F, 0x6F, 0xED)),
-]
+spec = importlib.util.spec_from_file_location(
+    "fig3", Path(__file__).with_name("797_fig3_deadlines.py")
+)
+# 生成スクリプトは import 時に HTML を書き出すが、値の定義を借りるだけなので許容する
+fig3 = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(fig3)
 
-AXIS_RGB = (0xC3, 0xCA, 0xD6)
-TOL = 24
+SCALE = 2                       # --force-device-scale-factor=2 で撮影した前提
+PAGE_PAD_L = 60                 # body の padding-left
+CHART_MARGIN_L = (1600 - PAGE_PAD_L * 2 - fig3.CHART_W) / 2   # margin:auto の左余白
+ORIGIN = (PAGE_PAD_L + CHART_MARGIN_L) * SCALE                # チャート x=0 の実ピクセル
 
-img = Image.open(Path(__file__).with_name("797-deadlines@2x.png")).convert("RGB")
-W, H = img.size
-px = img.load()
+ORANGE = (232, 118, 42)         # #e8762a
+BLUE = (47, 111, 237)           # #2f6fed
+AXIS_GRAY = (195, 202, 214)     # #c3cad6
+TOL = 26
 
 
-def near(c, target, tol=TOL):
-    return all(abs(c[i] - target[i]) <= tol for i in range(3))
+def band_extent(arr, y0, y1, rgb):
+    """y0..y1 の帯の中から指定色の境界線を探し、左端・右端の実ピクセルを返す。"""
+    sub = arr[int(y0):int(y1)]
+    m = (np.abs(sub.astype(int) - np.array(rgb)) <= TOL).all(axis=2)
+    cols = np.where(m.any(axis=0))[0]
+    if len(cols) == 0:
+        raise SystemExit("色 %s が見つからない（y=%d..%d）" % (rgb, y0, y1))
+    return cols.min(), cols.max()
 
 
-# 1) 軸（薄いグレーの横線）が最も長く走る行を探し、そこから軸の左端・右端を得る
-best = (0, None)
-for y in range(H):
-    run = sum(1 for x in range(W) if near(px[x, y], AXIS_RGB))
-    if run > best[0]:
-        best = (run, y)
-axis_y = best[1]
-xs = [x for x in range(W) if near(px[x, axis_y], AXIS_RGB)]
-axis_x0, axis_x1 = min(xs), max(xs)
-axis_w = axis_x1 - axis_x0
-print("axis row y=%d  x=%d..%d  width=%dpx" % (axis_y, axis_x0, axis_x1, axis_w))
+def px_to_date(px):
+    """実ピクセルを軸上の日付に戻す。"""
+    chart_x = (px - ORIGIN) / SCALE
+    days = chart_x / fig3.CHART_W * fig3.SPAN
+    return fig3.AXIS_START + __import__("datetime").timedelta(days=round(days)), days
 
-# 2) 各マーカーの丸（軸上に置かれた色付きの円）の中心を実測する
-#    丸は軸線より上下に張り出すので、軸y近傍の数行で色の連なりが最も広い行を採る
-ok = True
-for name, expect_date, rgb in EXPECTED:
-    best_run = None
-    for y in range(axis_y - 14, axis_y + 15):
-        if y < 0 or y >= H:
-            continue
-        runs, cur = [], None
-        for x in range(W):
-            if near(px[x, y], rgb):
-                cur = [x, x] if cur is None else [cur[0], x]
-            elif cur is not None:
-                runs.append(cur)
-                cur = None
-        if cur is not None:
-            runs.append(cur)
-        # 縦線(3px*2=6px)や「2か月」バンドの枠線(帯の全幅)を拾わないよう
-        # 丸(19px*2=38px)の幅に収まる連なりだけを候補にする
-        for r in runs:
-            w = r[1] - r[0] + 1
-            if 20 <= w <= 50 and (best_run is None or w > best_run[1] - best_run[0] + 1):
-                best_run = r
-    if best_run is None:
-        print("  %-6s 丸を検出できず" % name)
+
+def main(path):
+    arr = np.array(Image.open(path).convert("RGB"))
+    print("画像 %s  %dx%d" % (path, arr.shape[1], arr.shape[0]))
+    print("チャート原点 x=%.1fpx（実ピクセル）／1日あたり %.4fpx"
+          % (ORIGIN, fig3.CHART_W / fig3.SPAN * SCALE))
+
+    # チャートの縦位置は h1/sub の実高に依存するため、軸そのものを探して基準にする。
+    # 軸は #c3cad6 がチャート全幅(1400px*2)にわたって並ぶ唯一の行なので一意に決まる。
+    axm = (np.abs(arr.astype(int) - np.array(AXIS_GRAY)) <= TOL).all(axis=2)
+    axis_rows = np.where(axm.sum(axis=1) > fig3.CHART_W * SCALE * 0.9)[0]
+    if len(axis_rows) == 0:
+        raise SystemExit("軸が見つからない")
+    chart_y0 = axis_rows.min() - fig3.AXIS_TOP * SCALE
+    print("軸の実測y=%d → チャート原点 y=%.1fpx" % (axis_rows.min(), chart_y0))
+
+    # 帯の縦中央だけを見る（引き出し線は帯の上下にあり ここには入らない）
+    y1 = chart_y0 + (fig3.BAR1_TOP + fig3.BAR_H / 2) * SCALE
+    y2 = chart_y0 + (fig3.BAR2_TOP + fig3.BAR_H / 2) * SCALE
+
+    o_l, o_r = band_extent(arr, y1 - 6, y1 + 6, ORANGE)
+    b_l, b_r = band_extent(arr, y2 - 6, y2 + 6, BLUE)
+
+    ok = True
+    checks = [
+        ("オレンジ帯 左端", o_l, fig3.OPEN),
+        ("オレンジ帯 右端", o_r, fig3.BLUE_DEADLINE),
+        ("青帯 左端", b_l, fig3.OPEN),
+        ("青帯 右端", b_r, fig3.TAX_DEADLINE),
+    ]
+    print()
+    for name, px, want in checks:
+        got, days = px_to_date(px)
+        want_px = ORIGIN + fig3.x(want) * SCALE
+        diff = px - want_px
+        mark = "OK " if abs(diff) <= 4 else "NG "
+        if abs(diff) > 4:
+            ok = False
+        print("  %s%-16s 実測 x=%6.1fpx → %s ／ 期待 %s (x=%6.1fpx) ／ ずれ %+.1fpx (%+.1f日)"
+              % (mark, name, px, got, want, want_px, diff,
+                 diff / SCALE / fig3.CHART_W * fig3.SPAN))
+
+    # 左端の一致
+    d = abs(o_l - b_l)
+    mark = "OK " if d <= 4 else "NG "
+    if d > 4:
         ok = False
-        continue
+    print("\n  %s2本の帯の左端の差 %.1fpx（起点が揃っていること）" % (mark, d))
 
-    cx = (best_run[0] + best_run[1]) / 2
-    frac = (cx - axis_x0) / axis_w
-    measured = AXIS_START + timedelta(days=round(frac * SPAN))
-    diff_days = (measured - expect_date).days
-    exp_cx = axis_x0 + axis_w * ((expect_date - AXIS_START).days / SPAN)
-    status = "OK" if abs(diff_days) <= 2 else "NG"
-    if status == "NG":
+    # 長さの比
+    ratio = (b_r - b_l) / (o_r - o_l)
+    want_ratio = fig3.D_TAX / fig3.D_BLUE
+    mark = "OK " if abs(ratio - want_ratio) < 0.06 else "NG "
+    if abs(ratio - want_ratio) >= 0.06:
         ok = False
-    print(
-        "  %-6s 実測x=%.1f (期待%.1f / 差%.1fpx)  → %s（期待 %s / 差 %+d日）  %s"
-        % (name, cx, exp_cx, cx - exp_cx, measured, expect_date, diff_days, status)
-    )
+    print("  %s帯の長さの比 実測 %.3f倍 ／ 期待 %d/%d=%.3f倍"
+          % (mark, ratio, fig3.D_TAX, fig3.D_BLUE, want_ratio))
 
-print("\n結果:", "全マーカーが期待日と一致" if ok else "ずれあり")
+    print("\n判定:", "全て一致" if ok else "ずれあり")
+    return 0 if ok else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1]))

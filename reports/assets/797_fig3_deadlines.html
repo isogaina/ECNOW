@@ -2,7 +2,7 @@
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   body {
-    width:1600px; height:730px; background:#fff;
+    width:1600px; height:760px; background:#fff;
     font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
     color:#1f2430;
     display:flex; flex-direction:column;
@@ -11,58 +11,83 @@
   h1 { font-size:39px; font-weight:700; text-align:center; }
   .sub { text-align:center; font-size:20px; color:#7a8496; margin-top:9px; }
 
-  .chart { position:relative; height:400px; margin:66px 40px 0; }
+  .chart { position:relative; width:1400px; height:432px; margin:34px auto 0; }
 
+  /* --- 軸と目盛り --- */
   .axis {
-    position:absolute; left:0; right:0; top:330px; height:5px;
+    position:absolute; left:0; width:1400px; top:294px; height:5px;
     background:#c3cad6; border-radius:3px;
   }
-  .tick { position:absolute; top:335px; }
+  .tick { position:absolute; top:299px; }
   .tick::before {
-    content:""; position:absolute; left:0; top:-9px; width:2px; height:13px; background:#c3cad6;
+    content:""; position:absolute; left:0; top:-10px; width:2px; height:14px; background:#c3cad6;
   }
-  .tick.year::before { height:19px; top:-15px; width:3px; background:#8a94a6; }
+  .tick.year::before { height:20px; top:-16px; width:3px; background:#8a94a6; }
   .tick span {
-    position:absolute; left:0; top:12px; transform:translateX(-50%);
-    font-size:16px; color:#8a94a6; white-space:nowrap; text-align:center; line-height:1.25;
+    position:absolute; left:0; top:11px; transform:translateX(-50%);
+    font-size:16px; color:#8a94a6; white-space:nowrap; text-align:center; line-height:1.3;
+    display:flex; flex-direction:column; align-items:center;
   }
-  .tick.year span { color:#5b6577; font-weight:700; }
+  .tick b { font-weight:400; }
+  .tick i { font-style:normal; font-size:14px; color:#aab3c0; }
+  .tick.year b { color:#5b6577; font-weight:700; }
+  .tick.year i { color:#5b6577; font-weight:700; }
 
-  .band {
-    position:absolute; top:268px; height:56px;
-    background:#fdf0e4; border:3px solid #e8762a; border-radius:10px;
+  /* --- 起点からの日数を示す帯 --- */
+  .bar { position:absolute; height:46px; border-radius:8px; display:flex; align-items:center; }
+  .bar .lb {
+    font-size:20px; font-weight:700; white-space:nowrap;
+    position:absolute; left:50%; transform:translateX(-50%);
   }
-  .band .label {
-    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
-    font-size:21px; font-weight:700; color:#a3520f; white-space:nowrap;
+  .bar.warn { background:#fbe0c8; border:3px solid #e8762a; }
+  .bar.warn .lb { color:#a3520f; }
+  .bar.calm { background:#e4ecfd; border:3px solid #2f6fed; }
+  .bar.calm .lb { color:#1f4fae; }
+
+  /* --- 期限カード --- */
+  .card {
+    position:absolute; width:470px; height:150px; top:0;
+    border-radius:12px; padding:13px 20px; border:3px solid;
+  }
+  .card .date { font-size:17px; font-weight:700; letter-spacing:.03em; }
+  .card .txt { font-size:29px; font-weight:700; line-height:1.22; margin-top:3px; }
+  .card .ex { font-size:16px; color:#5b6577; margin-top:6px; line-height:1.45; }
+  .card.warn { border-color:#e8762a; background:#fdf0e4; }
+  .card.warn .date, .card.warn .txt { color:#a3520f; }
+  .card.calm { border-color:#2f6fed; background:#eef3fe; }
+  .card.calm .date, .card.calm .txt { color:#1f4fae; }
+  .card .flag {
+    position:absolute; top:-17px; left:18px;
+    font-size:15px; font-weight:700; color:#fff; background:#e8762a;
+    padding:4px 13px; border-radius:999px; letter-spacing:.04em;
   }
 
-  .mark { position:absolute; top:0; height:330px; }
-  .mark::before {
-    content:""; position:absolute; left:0; bottom:0; width:3px; height:330px;
-    background:#2f6fed; transform:translateX(-50%);
-  }
-  .mark::after {
-    content:""; position:absolute; left:0; bottom:-9px; width:19px; height:19px;
-    border-radius:50%; background:#2f6fed; border:4px solid #fff;
-    transform:translate(-50%,50%);
-  }
-  .mark .box {
-    position:absolute; bottom:112px; width:400px;
-    border:3px solid #2f6fed; background:#eef3fe; border-radius:12px; padding:12px 20px;
-  }
-  .mark .box .date { font-size:17px; font-weight:700; color:#2f6fed; letter-spacing:.04em; }
-  .mark .box .txt { font-size:28px; font-weight:700; line-height:1.25; margin-top:2px; }
-  .mark .box .ex { font-size:16px; color:#5b6577; margin-top:5px; line-height:1.45; }
+  /* --- カードと帯をつなぐ線／帯と軸をつなぐ線 --- */
+  .lead { position:absolute; width:3px; transform:translateX(-50%); }
+  .lead.warn { background:#e8762a; }
+  .lead.calm { background:#2f6fed; }
+  .lead.start { background:#8a94a6; }
 
-  .mark.start::before, .mark.start::after { background:#5b6577; }
-  .mark.start .box { border-color:#5b6577; background:#f5f7fb; }
-  .mark.start .box .date { color:#5b6577; }
+  .dot {
+    position:absolute; width:19px; height:19px; border-radius:50%;
+    border:4px solid #fff; transform:translate(-50%,-50%); top:296px;
+  }
+  .dot.warn { background:#e8762a; }
+  .dot.calm { background:#2f6fed; }
+  .dot.start { background:#5b6577; }
 
-  .mark.warn::before, .mark.warn::after { background:#e8762a; }
-  .mark.warn .box { border-color:#e8762a; background:#fdf0e4; }
-  .mark.warn .box .date { color:#a3520f; }
-  .mark.warn .box .txt { color:#a3520f; }
+  /* --- 開業日のピン --- */
+  .pin {
+    position:absolute; top:360px; transform:translateX(-50%);
+    background:#eef1f6; border:3px solid #8a94a6; border-radius:10px;
+    padding:7px 16px; text-align:center; white-space:nowrap;
+  }
+  .pin .d { font-size:15px; font-weight:700; color:#5b6577; }
+  .pin .t { font-size:22px; font-weight:700; color:#1f2430; margin-top:1px; }
+  .pinline {
+    position:absolute; width:3px; background:#8a94a6; transform:translateX(-50%);
+    top:299px; height:61px;
+  }
 
   .foot {
     margin-top:auto; background:#f5f7fb; border-radius:10px; padding:15px 24px;
@@ -73,54 +98,66 @@
 </style>
 
 <h1>開業届と青色申告承認申請書は期限が違う</h1>
-<p class="sub">2026年6月1日に開業した場合　急ぐのは青色申告承認申請書のほう</p>
+<p class="sub">2026年6月1日に開業した場合　先に来るのは青色申告承認申請書のほう</p>
 
 <div class="chart">
   <div class="axis"></div>
-  <div class="tick" style="left:0.0000%"><span>2026年<br>4月</span></div>
-  <div class="tick" style="left:7.6142%"><span>5月</span></div>
-  <div class="tick" style="left:15.4822%"><span>6月</span></div>
-  <div class="tick" style="left:23.0964%"><span>7月</span></div>
-  <div class="tick" style="left:30.9645%"><span>8月</span></div>
-  <div class="tick" style="left:38.8325%"><span>9月</span></div>
-  <div class="tick" style="left:46.4467%"><span>10月</span></div>
-  <div class="tick" style="left:54.3147%"><span>11月</span></div>
-  <div class="tick" style="left:61.9289%"><span>12月</span></div>
-  <div class="tick year" style="left:69.7970%"><span>2027年<br>1月</span></div>
-  <div class="tick" style="left:77.6650%"><span>2月</span></div>
-  <div class="tick" style="left:84.7716%"><span>3月</span></div>
-  <div class="tick" style="left:92.6396%"><span>2027年<br>4月</span></div>
+  <div class="tick year" style="left:0.00px"><span><b>4月</b><i>2026年</i></span></div>
+  <div class="tick" style="left:106.60px"><span><b>5月</b><i>&nbsp;</i></span></div>
+  <div class="tick" style="left:216.75px"><span><b>6月</b><i>&nbsp;</i></span></div>
+  <div class="tick" style="left:323.35px"><span><b>7月</b><i>&nbsp;</i></span></div>
+  <div class="tick" style="left:433.50px"><span><b>8月</b><i>&nbsp;</i></span></div>
+  <div class="tick" style="left:543.65px"><span><b>9月</b><i>&nbsp;</i></span></div>
+  <div class="tick" style="left:650.25px"><span><b>10月</b><i>&nbsp;</i></span></div>
+  <div class="tick" style="left:760.41px"><span><b>11月</b><i>&nbsp;</i></span></div>
+  <div class="tick" style="left:867.01px"><span><b>12月</b><i>&nbsp;</i></span></div>
+  <div class="tick year" style="left:977.16px"><span><b>1月</b><i>2027年</i></span></div>
+  <div class="tick" style="left:1087.31px"><span><b>2月</b><i>&nbsp;</i></span></div>
+  <div class="tick" style="left:1186.80px"><span><b>3月</b><i>&nbsp;</i></span></div>
+  <div class="tick" style="left:1296.95px"><span><b>4月</b><i>&nbsp;</i></span></div>
 
-  <div class="band" style="left:15.4822%; width:15.4822%">
-    <div class="label">2か月</div>
+  <!-- 期限カード（下端を揃えて同じ高さに置く） -->
+  <div class="card warn" style="left:198.50px">
+    <div class="flag">先に来る</div>
+    <div class="date">2026年8月1日／開業日から2か月以内</div>
+    <div class="txt">青色申告承認申請書の期限</div>
+    <div class="ex">過ぎると初年度は白色申告になり 65万円控除も赤字の3年繰越も使えない</div>
+  </div>
+  <div class="card calm" style="left:930.00px">
+    <div class="date">2027年3月15日／確定申告期限</div>
+    <div class="txt">開業届の期限</div>
+    <div class="ex">「開業から1か月以内」ではない（国税庁の手続案内）</div>
   </div>
 
-  <div class="mark start" style="left:15.4822%">
-    <div class="box" style="left:-30px">
-      <div class="date">2026年6月1日</div>
-      <div class="txt">開業日</div>
-      <div class="ex">売り始めた日を自分で決めて届出書に書く</div>
-    </div>
+  <!-- カード下端から帯の右端へ落とす線 -->
+  <div class="lead warn" style="left:433.50px; top:150px; height:28px"></div>
+  <div class="lead calm" style="left:1236.55px; top:150px; height:82px"></div>
+
+  <!-- 開業日を起点にした2本の帯（長さがそのまま余裕の差） -->
+  <div class="bar warn" style="left:216.75px; width:216.75px; top:178px">
+    <div class="lb">2か月（61日）</div>
+  </div>
+  <div class="bar calm" style="left:216.75px; width:1019.80px; top:232px">
+    <div class="lb">9か月半（287日）</div>
   </div>
 
-  <div class="mark warn" style="left:30.9645%">
-    <div class="box" style="left:30px; bottom:236px">
-      <div class="date">2026年8月1日／開業日から2か月以内</div>
-      <div class="txt">青色申告承認申請書の期限</div>
-      <div class="ex">過ぎると初年度は白色申告になり 65万円控除も赤字の3年繰越も使えない</div>
-    </div>
-  </div>
+  <!-- 帯の端から軸へ落とす線 -->
+  <div class="lead start" style="left:216.75px; top:178px; height:116px"></div>
+  <div class="lead warn" style="left:433.50px; top:224px; height:70px"></div>
+  <div class="lead calm" style="left:1236.55px; top:278px; height:16px"></div>
 
-  <div class="mark" style="left:88.3249%">
-    <div class="box" style="right:-30px">
-      <div class="date">2027年3月15日／確定申告期限</div>
-      <div class="txt">開業届の期限</div>
-      <div class="ex">「開業から1か月以内」ではない（国税庁の手続案内）</div>
-    </div>
+  <div class="dot start" style="left:216.75px"></div>
+  <div class="dot warn" style="left:433.50px"></div>
+  <div class="dot calm" style="left:1236.55px"></div>
+
+  <div class="pinline" style="left:216.75px"></div>
+  <div class="pin" style="left:216.75px">
+    <div class="d">2026年6月1日</div>
+    <div class="t">開業日</div>
   </div>
 </div>
 
 <div class="foot">
-  <div class="row">青色申告承認申請書は<b>その年の3月15日まで</b>。1月16日以後に開業した場合だけ<b>開業日から2か月以内</b>になる。</div>
+  <div class="row">青色申告承認申請書は<b>その年の3月15日まで</b>。1月16日以後に開業した場合だけ<b>開業日から2か月以内</b>になる。開業日は売り始めた日を自分で決めて届出書に書く。</div>
   <div class="row">期限は先でも、<b>楽天市場などのモールは出店の申込時点で開業届の控えを求める</b>ため、モールを考えているなら先に出しておく。</div>
 </div>
