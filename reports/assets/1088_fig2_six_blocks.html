@@ -1,0 +1,130 @@
+<meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    width:1600px; height:1080px; background:#fff;
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+    color:#1f2430;
+    display:flex; flex-direction:column;
+    padding:38px 60px 28px;
+  }
+  h1 { font-size:39px; font-weight:700; text-align:center; }
+  .sub { text-align:center; font-size:20px; color:#7a8496; margin-top:9px; }
+
+  .grid {
+    flex:1; margin-top:24px;
+    display:grid;
+    grid-template-columns:56px 360px 1fr 1fr;
+    grid-template-rows:auto repeat(6, 1fr);
+    gap:0 20px;
+  }
+
+  .hcell { display:flex; align-items:flex-end; padding-bottom:9px; font-size:19px; font-weight:700; color:#5b6577; }
+  .hcell.ng { color:#c0392b; }
+
+  .scroll {
+    grid-column:1; grid-row:2 / span 6;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    color:#8a94a6;
+  }
+  .scroll .bar { flex:1; width:6px; background:#dde2ea; border-radius:3px; }
+  .scroll .txt {
+    writing-mode:vertical-rl; font-size:17px; font-weight:700; letter-spacing:.18em;
+    padding:12px 0; color:#8a94a6;
+  }
+  .scroll .tip { font-size:24px; line-height:1; color:#b6bfcd; }
+
+  .band {
+    grid-column:2;
+    background:#f4f8ff; border-left:3px solid #2f6fed; border-right:3px solid #2f6fed;
+    border-bottom:2px solid #dbe6fb;
+    display:flex; align-items:center; gap:16px; padding:0 22px;
+  }
+  .band.first { border-top:3px solid #2f6fed; border-radius:10px 10px 0 0; }
+  .band.last  { border-bottom:3px solid #2f6fed; border-radius:0 0 10px 10px; }
+  .band .num {
+    width:46px; height:46px; flex:none; border-radius:50%;
+    background:#2f6fed; color:#fff; font-size:24px; font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .band .nm { font-size:27px; font-weight:700; color:#1f3b5f; line-height:1.25; }
+  .band .role { font-size:16px; color:#7a8496; margin-top:3px; }
+
+  .cell {
+    display:flex; flex-direction:column; justify-content:center;
+    font-size:20px; line-height:1.55; border-bottom:2px solid #eef1f6; padding:12px 4px;
+  }
+  .cell.ng { color:#a33025; }
+  .cell b { font-weight:700; }
+  .cell.lastrow { border-bottom:none; }
+
+  .foot {
+    margin-top:20px; background:#fff5f3; border:2px solid #f0c2b8; border-radius:10px;
+    padding:15px 24px; font-size:18px; line-height:1.6; color:#8a3b30;
+  }
+  .foot b { color:#a33025; }
+</style>
+
+<h1>通販LPは6つのブロックで組み立てる</h1>
+<p class="sub">上から「読む理由」→「買う理由」→「今申し込む理由」の順に役割が変わる</p>
+
+<div class="grid">
+
+  <div class="hcell" style="grid-column:2">ブロック</div>
+  <div class="hcell">ここに書くこと</div>
+  <div class="hcell ng">ありがちな失敗</div>
+
+  <div class="scroll">
+    <div class="bar"></div>
+    <div class="txt">スクロール</div>
+    <div class="bar"></div>
+    <div class="tip">&#9660;</div>
+  </div>
+
+  <div class="band first">
+    <div class="num">&#9312;</div>
+    <div><div class="nm">ファーストビュー</div><div class="role">読む理由をつくる</div></div>
+  </div>
+  <div class="cell">誰の どの状態を どう変えるかの3点<br>広告文と同じ言葉をそのまま置く</div>
+  <div class="cell ng">商品名と「新発売」だけで<br>誰に向けたページか分からない</div>
+
+  <div class="band">
+    <div class="num">&#9313;</div>
+    <div><div class="nm">問題提起</div><div class="role">読む理由をつくる</div></div>
+  </div>
+  <div class="cell">感情ではなく具体的な場面を書く<br>（朝 布団から出るまでに15分かかる）</div>
+  <div class="cell ng">「毎日がつらい」など<br>どの読者にも当てはまる書き方</div>
+
+  <div class="band">
+    <div class="num">&#9314;</div>
+    <div><div class="nm">商品説明</div><div class="role">買う理由をつくる</div></div>
+  </div>
+  <div class="cell">成分や素材を書いたら<br>生活のどこがどう変わるかまで続ける</div>
+  <div class="cell ng">特徴の羅列で止まる<br>薬機法で使えない効能表現を入れる</div>
+
+  <div class="band">
+    <div class="num">&#9315;</div>
+    <div><div class="nm">根拠</div><div class="role">買う理由をつくる</div></div>
+  </div>
+  <div class="cell">試験結果・販売実績・レビュー<br><b>母数と期間をセットで書く</b></div>
+  <div class="cell ng">「満足度98%」だけを出す<br>何人に聞いたのか分からない</div>
+
+  <div class="band">
+    <div class="num">&#9316;</div>
+    <div><div class="nm">オファー</div><div class="role">今申し込む理由をつくる</div></div>
+  </div>
+  <div class="cell"><b>初回価格と 2回目以降の価格・回数条件を<br>同じ大きさで隣に並べる</b></div>
+  <div class="cell ng">条件を小さい注記や<br>ページ下部の「※1」に飛ばす</div>
+
+  <div class="band last">
+    <div class="num">&#9317;</div>
+    <div><div class="nm">入力フォーム</div><div class="role">今申し込む理由をつくる</div></div>
+  </div>
+  <div class="cell lastrow">注文に必要な最小限の項目だけ<br>LP内に置いてページ遷移をなくす</div>
+  <div class="cell ng lastrow">生年月日・性別・職業など<br>使う予定のない項目を残す</div>
+
+</div>
+
+<div class="foot">
+  <b>&#9316;と&#9317;は法令がかかる箇所</b>——定期購入を申し込ませる場合 注文の最終確認画面には特定商取引法 第12条の6で6項目の表示が義務づけられている 条件の書き方を間違えると消費者が契約を取り消せる
+</div>

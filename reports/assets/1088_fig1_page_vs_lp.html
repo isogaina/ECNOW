@@ -1,0 +1,123 @@
+<meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    width:1600px; height:900px; background:#fff;
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+    color:#1f2430;
+    display:flex; flex-direction:column;
+    padding:38px 60px 28px;
+  }
+  h1 { font-size:39px; font-weight:700; text-align:center; }
+  .sub { text-align:center; font-size:20px; color:#7a8496; margin-top:9px; }
+
+  .cols { flex:1; margin-top:26px; display:grid; grid-template-columns:1fr 1fr; gap:0 34px; }
+
+  .panel { display:flex; flex-direction:column; border-radius:12px; padding:16px 22px 18px; }
+  .panel.a { background:#fdf6ee; border:3px solid #e8762a; }
+  .panel.b { background:#eefaf3; border:3px solid #2fae6b; }
+
+  .ptitle { text-align:center; font-size:30px; font-weight:700; line-height:1.2; }
+  .panel.a .ptitle { color:#a3520f; }
+  .panel.b .ptitle { color:#1f7a4a; }
+  .pcount { text-align:center; font-size:19px; font-weight:700; margin-top:5px; }
+  .panel.a .pcount { color:#8a5a2a; }
+  .panel.b .pcount { color:#3f7d5f; }
+
+  .stage { flex:1; margin-top:14px; display:grid; grid-template-columns:1fr 250px; gap:0 16px; align-items:start; }
+  .panel.b .stage { grid-template-columns:1fr 250px; }
+
+  .page { background:#fff; border:2px solid #d6dde7; border-radius:10px; overflow:hidden; }
+  .row {
+    height:52px; display:flex; align-items:center; padding:0 16px;
+    font-size:19px; font-weight:700; color:#41506a; border-bottom:1px solid #e7ecf3;
+  }
+  .row:last-child { border-bottom:none; }
+  .row.nav { background:#eef2f8; color:#68758c; font-size:17px; }
+  .row.hero { background:#f6f8fc; }
+  .row.cv { background:#2fae6b; color:#fff; justify-content:center; font-size:21px; }
+  .row.cv.a { background:#e8762a; }
+
+  .outs { display:flex; flex-direction:column; gap:7px; padding-top:4px; }
+  .out {
+    display:flex; align-items:center; gap:8px;
+    font-size:17px; font-weight:700; color:#a3520f;
+    background:#fdece0; border:2px solid #f0b788; border-radius:999px;
+    padding:6px 12px; line-height:1.2;
+  }
+  .out .ar { color:#e8762a; font-size:17px; }
+  .out.only {
+    color:#1f7a4a; background:#dff3e8; border-color:#8bd3ac; font-size:19px;
+    padding:11px 14px;
+  }
+  .out.only .ar { color:#2fae6b; }
+  .outs.lp { padding-top:320px; }
+  .outnote { font-size:16px; color:#8a94a6; line-height:1.5; margin-top:10px; }
+
+  .pfoot { margin-top:14px; font-size:19px; line-height:1.5; font-weight:700; text-align:center; }
+  .panel.a .pfoot { color:#a3520f; }
+  .panel.b .pfoot { color:#1f7a4a; }
+
+  .foot {
+    margin-top:22px; background:#f5f7fb; border-radius:10px; padding:15px 24px;
+    font-size:18px; line-height:1.6; color:#5b6577;
+  }
+  .foot b { color:#1f2430; }
+</style>
+
+<h1>商品ページは比較して選ばせる LPは出口を購入だけに絞る</h1>
+<p class="sub">同じ商品でも読者の状態が違うため 役割を分けて別のページにする</p>
+
+<div class="cols">
+
+  <div class="panel a">
+    <div class="ptitle">商品ページ</div>
+    <div class="pcount">ページ外へ出られるリンク 多数</div>
+    <div class="stage">
+      <div class="page">
+        <div class="row nav">ヘッダー・カテゴリメニュー</div>
+        <div class="row hero">商品画像</div>
+        <div class="row">商品名・価格</div>
+        <div class="row cv a">カートに入れる</div>
+        <div class="row">レビュー一覧</div>
+        <div class="row">関連商品・あわせ買い</div>
+        <div class="row nav">フッター（特商法表記・会社概要）</div>
+      </div>
+      <div class="outs">
+        <div class="out"><span class="ar">&#8594;</span>カテゴリ一覧へ</div>
+        <div class="out"><span class="ar">&#8594;</span>サイト内検索へ</div>
+        <div class="out"><span class="ar">&#8594;</span>他の商品ページへ</div>
+        <div class="out"><span class="ar">&#8594;</span>レビュー一覧へ</div>
+        <div class="out"><span class="ar">&#8594;</span>会社概要・送料案内へ</div>
+        <div class="outnote">迷っている人が比較しながら<br>選べる構造になっている</div>
+      </div>
+    </div>
+    <div class="pfoot">「どれを買うか」を決めてもらう場所</div>
+  </div>
+
+  <div class="panel b">
+    <div class="ptitle">通販LP</div>
+    <div class="pcount">ページ外へ出られるリンク 1つ</div>
+    <div class="stage">
+      <div class="page">
+        <div class="row hero">&#9312; ファーストビュー</div>
+        <div class="row">&#9313; 問題提起</div>
+        <div class="row">&#9314; 商品説明</div>
+        <div class="row">&#9315; 根拠</div>
+        <div class="row">&#9316; オファー（価格・定期条件）</div>
+        <div class="row">&#9317; 入力フォーム</div>
+        <div class="row cv">申し込む</div>
+      </div>
+      <div class="outs lp">
+        <div class="out only"><span class="ar">&#8594;</span>注文の確認画面へ</div>
+        <div class="outnote">ヘッダーのナビも関連商品も<br>置かない 読み進めた人が<br>取れる行動は1つだけ</div>
+      </div>
+    </div>
+    <div class="pfoot">「この商品を買うかどうか」を決めてもらう場所</div>
+  </div>
+
+</div>
+
+<div class="foot">
+  <b>LPを作るのは 売上が1商品に集中していて広告から流入させる場合</b>——品数が多く価格や在庫で比較されて選ばれているショップは LPより先に商品ページと検索流入を整えるほうが早く数字が動く
+</div>
