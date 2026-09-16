@@ -1,0 +1,271 @@
+{
+  "measured_at": "2026-09-16",
+  "gsc_period_after": "2026-08-16 ~ 2026-09-13",
+  "ga4_period_after": "2026-08-18 ~ 2026-09-15",
+  "items": [
+    {
+      "n": 1,
+      "post_id": 2766,
+      "path": "/advanced/2766/",
+      "published": "2026-07-27",
+      "before": {
+        "impressions": 3136,
+        "clicks": 2,
+        "position": 10.3,
+        "queries": 227,
+        "pageviews": 20,
+        "bounce_rate": 52.6,
+        "avg_session_duration": 40.8
+      },
+      "after": {
+        "impressions": 4148,
+        "clicks": 11,
+        "position": 9.2,
+        "queries": 309,
+        "pageviews": 54,
+        "bounce_rate": 51.8,
+        "avg_session_duration": 41.8
+      }
+    },
+    {
+      "n": 2,
+      "post_id": 3012,
+      "path": "/beginner/3012/",
+      "published": "2026-07-31",
+      "before": {
+        "impressions": 1141,
+        "clicks": 0,
+        "position": 10.8,
+        "queries": null,
+        "pageviews": 10,
+        "bounce_rate": 60.0,
+        "avg_session_duration": 61.6
+      },
+      "after": {
+        "impressions": 1052,
+        "clicks": 0,
+        "position": 11.6,
+        "queries": 32,
+        "pageviews": 14,
+        "bounce_rate": 35.7,
+        "avg_session_duration": 32.8
+      }
+    },
+    {
+      "n": 3,
+      "post_id": 866,
+      "path": "/advanced/866/",
+      "published": "2026-08-05",
+      "before": {
+        "impressions": 1007,
+        "clicks": 1,
+        "position": 47.5,
+        "queries": 51,
+        "pageviews": 3,
+        "bounce_rate": 33.3,
+        "avg_session_duration": 13.1
+      },
+      "after": {
+        "impressions": 764,
+        "clicks": 0,
+        "position": 24.1,
+        "queries": 32,
+        "pageviews": 4,
+        "bounce_rate": 25.0,
+        "avg_session_duration": 3.2
+      }
+    },
+    {
+      "n": 4,
+      "post_id": 328,
+      "path": "/beginner/328/",
+      "published": "2026-08-17",
+      "before": {
+        "impressions": 222,
+        "clicks": 0,
+        "position": 20.4,
+        "queries": null,
+        "pageviews": 0,
+        "bounce_rate": null,
+        "avg_session_duration": null
+      },
+      "after": {
+        "impressions": 470,
+        "clicks": 0,
+        "position": 8.4,
+        "queries": 96,
+        "pageviews": 12,
+        "bounce_rate": 50.0,
+        "avg_session_duration": 94.9
+      }
+    },
+    {
+      "n": 5,
+      "post_id": 1055,
+      "path": "/beginner/1055/",
+      "published": "2026-08-17",
+      "before": {
+        "impressions": 138,
+        "clicks": 0,
+        "position": 26.5,
+        "queries": null,
+        "pageviews": 1,
+        "bounce_rate": 0.0,
+        "avg_session_duration": 52.6
+      },
+      "after": {
+        "impressions": 449,
+        "clicks": 0,
+        "position": 43.0,
+        "queries": 56,
+        "pageviews": 8,
+        "bounce_rate": 66.7,
+        "avg_session_duration": 5.6
+      }
+    },
+    {
+      "n": 6,
+      "post_id": 803,
+      "path": "/beginner/803/",
+      "published": "2026-08-19",
+      "before": {
+        "impressions": 730,
+        "clicks": 1,
+        "position": 29.9,
+        "queries": null,
+        "pageviews": 10,
+        "bounce_rate": 30.0,
+        "avg_session_duration": 33.0
+      },
+      "after": {
+        "impressions": 839,
+        "clicks": 2,
+        "position": 29.6,
+        "queries": 50,
+        "pageviews": 26,
+        "bounce_rate": 45.0,
+        "avg_session_duration": 145.5
+      }
+    },
+    {
+      "n": 7,
+      "post_id": 911,
+      "path": "/advanced/911/",
+      "published": "2026-08-26",
+      "before": {
+        "impressions": 38,
+        "clicks": 0,
+        "position": 15.1,
+        "queries": null,
+        "pageviews": 11,
+        "bounce_rate": 100.0,
+        "avg_session_duration": 1.3
+      },
+      "after": {
+        "impressions": 56,
+        "clicks": 0,
+        "position": 12.8,
+        "queries": 7,
+        "pageviews": 1,
+        "bounce_rate": 0.0,
+        "avg_session_duration": 229.0
+      }
+    },
+    {
+      "n": 8,
+      "post_id": 2687,
+      "path": "/beginner/2687/",
+      "published": "2026-08-26",
+      "before": {
+        "impressions": 1098,
+        "clicks": 0,
+        "position": 36.2,
+        "queries": 64,
+        "pageviews": null,
+        "bounce_rate": null,
+        "avg_session_duration": null
+      },
+      "after": {
+        "impressions": 1569,
+        "clicks": 0,
+        "position": 35.3,
+        "queries": 121,
+        "pageviews": 2,
+        "bounce_rate": 50.0,
+        "avg_session_duration": 11.7
+      }
+    },
+    {
+      "n": 9,
+      "post_id": 1059,
+      "path": "/beginner/1059/",
+      "published": "2026-09-03",
+      "before": {
+        "impressions": 924,
+        "clicks": 2,
+        "position": 44.1,
+        "queries": 53,
+        "pageviews": 5,
+        "bounce_rate": 60.0,
+        "avg_session_duration": 332.8
+      },
+      "after": {
+        "impressions": 685,
+        "clicks": 2,
+        "position": 48.6,
+        "queries": 43,
+        "pageviews": 2,
+        "bounce_rate": 0.0,
+        "avg_session_duration": 105.6
+      }
+    },
+    {
+      "n": 10,
+      "post_id": 797,
+      "path": "/beginner/797/",
+      "published": "2026-09-04",
+      "before": {
+        "impressions": 777,
+        "clicks": 0,
+        "position": 42.2,
+        "queries": 41,
+        "pageviews": 0,
+        "bounce_rate": 0,
+        "avg_session_duration": 0
+      },
+      "after": {
+        "impressions": 621,
+        "clicks": 0,
+        "position": 40.5,
+        "queries": 35,
+        "pageviews": 1,
+        "bounce_rate": 0.0,
+        "avg_session_duration": 2.2
+      }
+    },
+    {
+      "n": 11,
+      "post_id": 2735,
+      "path": "/advanced/2735/",
+      "published": "2026-09-14",
+      "before": {
+        "impressions": 397,
+        "clicks": 0,
+        "position": 36.5,
+        "queries": 24,
+        "pageviews": 1,
+        "bounce_rate": 100.0,
+        "avg_session_duration": 0.0
+      },
+      "after": {
+        "impressions": 644,
+        "clicks": 0,
+        "position": 31.8,
+        "queries": 26,
+        "pageviews": 2,
+        "bounce_rate": 100.0,
+        "avg_session_duration": 0.0
+      }
+    }
+  ]
+}
