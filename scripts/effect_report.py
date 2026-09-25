@@ -39,6 +39,7 @@ ROSTER = [
     (11, 2735, "/advanced/2735/", "2026-09-14", "baseline_2735_20260904.json"),
     (12, 1088, "/beginner/1088/", "2026-09-25", "baseline_1088_20260914.json"),
     (13, 258, "/beginner/258/", "2026-09-25", "baseline_258_20260914.json"),
+    (14, 3030, "/beginner/3030/", None, "baseline_3030_20260925.json"),
 ]
 
 
@@ -132,9 +133,13 @@ def ga4_metrics(ga4: dict, path: str) -> dict:
     }
 
 
-def previous_after() -> tuple:
-    """直近のサマリから {post_id: after} と測定日を返す。"""
-    files = sorted(REPORTS.glob("effect_summary_*.json"))
+def previous_after(exclude: Path) -> tuple:
+    """直近のサマリから {post_id: after} と測定日を返す。
+
+    同じ日に2回走らせると自分が書いたファイルを「前回」として読んでしまうため、
+    これから書き出すファイルは候補から外す。
+    """
+    files = [f for f in sorted(REPORTS.glob("effect_summary_*.json")) if f != exclude]
     if not files:
         return {}, None
     d = json.loads(files[-1].read_text(encoding="utf-8"))
@@ -155,23 +160,27 @@ def main():
     ga4_file = Path(args.ga4) if args.ga4 else latest(ROOT / "data" / "ga4", "ga4_*.json")
     gsc = json.loads(gsc_file.read_text(encoding="utf-8"))
     ga4 = json.loads(ga4_file.read_text(encoding="utf-8"))
-    prev, prev_date = previous_after()
     measured_at = datetime.now().strftime("%Y-%m-%d")
+    out_file = REPORTS / f"effect_summary_{datetime.now().strftime('%Y%m%d')}.json"
+    prev, prev_date = previous_after(exclude=out_file)
 
     items = []
     for n, post_id, path, published, bfile in ROSTER:
         before = read_baseline(bfile, path)
         after = {**gsc_metrics(gsc, path), **ga4_metrics(ga4, path)}
-        # 公開直後は GSC の集計期間が旧内容を含むため、後の数値を効果として読めない
-        weeks = (datetime.strptime(measured_at, "%Y-%m-%d")
-                 - datetime.strptime(published, "%Y-%m-%d")).days / 7
+        # 公開直後は GSC の集計期間が旧内容を含むため、後の数値を効果として読めない。
+        # published が None のものは下書き段階でまだ本番反映していない。
+        weeks = None
+        if published:
+            weeks = round((datetime.strptime(measured_at, "%Y-%m-%d")
+                           - datetime.strptime(published, "%Y-%m-%d")).days / 7, 1)
         items.append({
             "n": n,
             "post_id": post_id,
             "path": path,
             "published": published,
-            "weeks_since_publish": round(weeks, 1),
-            "measurable": weeks >= 4,
+            "weeks_since_publish": weeks,
+            "measurable": weeks is not None and weeks >= 4,
             "before": {k: v for k, v in before.items() if k != "recorded_at"},
             "baseline_recorded_at": before["recorded_at"],
             "prev": prev.get(post_id),
@@ -185,7 +194,6 @@ def main():
         "prev_measured_at": prev_date,
         "items": items,
     }
-    out_file = REPORTS / f"effect_summary_{datetime.now().strftime('%Y%m%d')}.json"
     out_file.write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
 
     print(f"saved: {out_file}")
@@ -200,8 +208,12 @@ def main():
         clk = f"{fmt(b['clicks'])}→{fmt(p.get('clicks'))}→{fmt(a['clicks'])}"
         pos = f"{fmt(b['position'])}→{fmt(p.get('position'))}→{fmt(a['position'])}"
         pv = f"{fmt(b['pageviews'])}→{fmt(p.get('pageviews'))}→{fmt(a['pageviews'])}"
-        mark = "" if i["measurable"] else " ※期間不足"
-        print(f"{i['n']:>2} {i['post_id']:>5} {i['weeks_since_publish']:>4}週"
+        if i["published"] is None:
+            mark, weeks = " ※未反映", "   -"
+        else:
+            mark = "" if i["measurable"] else " ※期間不足"
+            weeks = f"{i['weeks_since_publish']:>4}"
+        print(f"{i['n']:>2} {i['post_id']:>5} {weeks}週"
               f"  {imp:<22} {clk:<11} {pos:<22} {pv:<11}{mark}")
 
 

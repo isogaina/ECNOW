@@ -494,6 +494,37 @@
         "bounce_rate": null,
         "avg_session_duration": null
       }
+    },
+    {
+      "n": 14,
+      "post_id": 3030,
+      "path": "/beginner/3030/",
+      "published": null,
+      "weeks_since_publish": null,
+      "measurable": false,
+      "before": {
+        "impressions": 473,
+        "clicks": 0,
+        "ctr_pct": 0.0,
+        "position": 7.5,
+        "queries": 19,
+        "pageviews": 51,
+        "bounce_rate": 47.5,
+        "avg_session_duration": 95.1
+      },
+      "baseline_recorded_at": "2026-09-25",
+      "prev": null,
+      "after": {
+        "impressions": 473,
+        "clicks": 0,
+        "ctr_pct": 0.0,
+        "position": 7.5,
+        "queries": 19,
+        "pageviews": 51,
+        "users": 47,
+        "bounce_rate": 47.5,
+        "avg_session_duration": 95.1
+      }
     }
   ]
 }

@@ -1,0 +1,1001 @@
+<!-- wp:paragraph -->
+<p>楽天市場の商品登録は、RMSの商品登録画面から行います。1点ずつ入れる<strong>個別登録</strong>と、CSVファイルでまとめて入れる<strong>一括登録</strong>の2通りがあり、一括登録の方は月額11,000円（税込）の有料オプションです。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>手順そのものは画面の順に進めれば終わります。つまずくのは、<strong>SKU移行日から180日を過ぎるとカタログIDなしのままでは商品を更新できなくなる</strong>点と、<strong>商品名に入れてよい文言と キャッチコピー欄に回す文言が分かれている</strong>点の2つです。どちらも楽天のガイドラインに書かれていますが、商品登録の解説記事では省かれていることが多い箇所です。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>この記事は、楽天が出店検討者向けに公開している規約・ガイドラインと、取引透明化法にもとづく検索順位の開示をもとに書いています。取扱禁止商材・禁止行為ガイドラインは2026年9月14日、商品画像登録ガイドラインは2023年4月3日が最終改定です。RMSにログインしないと読めない店舗運営Naviの内容は含めず、公開情報で確認できる範囲を扱います。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:block {"ref":1998} /-->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">楽天の商品登録はRMSの商品登録画面から行う</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">RMSは楽天が出店者に提供する店舗運営システム</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>RMS（Rakuten Merchant Server）は、楽天市場に出店すると使えるようになる管理システムです。商品登録のほか、受注処理、顧客へのメール配信、アクセス解析、広告の入稿までここで行います。楽天市場で商品を売るには、この画面を通す以外の方法がありません。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>ログインは「R-Login」から、共通ID・パスワードと楽天市場のユーザーID・パスワードの2段階で行います。アカウントは追加発行でき、権限も分けられるため、商品登録だけを外部に任せる場合も売上データを見せずに作業を頼めます。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>出店前の方は、プランや初期費用の方が先に必要になります。手順と必要書類は<a href="https://ecnow.jp/beginner/2687/">楽天でネットショップを開設する方法</a>にまとめています。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">登録方法は個別登録とCSV一括登録の2つ</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>どちらを使うかは、登録する点数と更新の頻度で決まります。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>個別登録</strong>：新商品を数点追加する、1商品の説明文を直すといった場面。画面で入力するため確認しながら進められる</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>CSV一括登録</strong>：数十点以上をまとめて登録する、セールで全商品の価格を入れ替えるといった場面。事前にオプション契約が必要</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>目安としては、<strong>同じ作業を10商品以上に繰り返すならCSVに切り替えた方が速い</strong>です。個別登録は1商品あたりの入力項目が多く、点数が増えると入力漏れも増えます。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">CSV商品一括編集は月額11,000円の有料オプション</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>CSVでの一括登録には「CSV商品一括編集」という有料オプションが必要です。月額11,000円（税込）で、RMSの「店舗様向け情報・サービス」から申し込みます。標準機能ではないため、申し込む前にCSVフォーマットをダウンロードしようとしても項目が出てきません。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>申し込むと、楽天が提供する商品管理ツール「itemRobot」も使えるようになります。CSVを直接編集するより画面で操作したい場合は、こちらを試してから判断しても構いません。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">個別登録で入力する項目とつまずきやすい順番</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>画面の場所は「店舗設定 → 商品管理 → 商品一覧・登録 → 新規商品登録」です。SKU移行済みの店舗では、最初に商品ページタイプを選びます。サイズやカラーの違いがない商品は「通常商品」、違いがある商品は「通常商品（バリエーションあり）」です。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>以下は入力順ではなく、<strong>後から直せない項目と 間違えると点数が付く項目</strong>を先に並べています。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">商品管理番号はURLに使われるため後から変更できない</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>商品管理番号は店舗内で商品を区別するキーで、そのまま商品ページのURLに入ります。URLが変わると困るため、<strong>一度登録すると変更できません</strong>。付け直したい場合は新しい商品として登録し直すことになり、レビューとアクセスは引き継げません。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>使えるのは半角英数字とハイフン・アンダースコアで、店舗内での重複は不可です。他のモールや自社サイトでも在庫を持つなら、そちらのコードと揃えておくと在庫連動の設定が楽になります。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>避けたい例：<code>item001</code>（何の商品か分からず 数が増えると管理できない）</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>使いやすい例：<code>bag-leather-black</code>（商品の種類と色が番号から分かる）</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">商品名の先頭の【】は注意文言を入れる枠</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>商品名は全角127文字まで入ります。ここで多くの店舗が間違えるのが、<strong>先頭の【】に何を入れるか</strong>です。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>楽天の商品名登録ガイドラインでは、商品名の先頭の【】は<strong>誤購入を避けるための注意文言を入れる枠</strong>と定められています。入れるのは商品の状態や販売形態で、販促の文言ではありません。ガイドラインが挙げている登録例は次のとおりです。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>アサヒ スーパードライ 350ml 缶 12本</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>【中古】坊っちゃん 筑摩書房 夏目漱石</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>【第1類医薬品】ロキソニンS 12錠</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>【並行輸入品】【訳あり】Casio G-SHOCK G-100-2B ネイビー</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>注意文言として使うのは<strong>【中古】【並行輸入品】【訳あり】【再生品】【展示品】【バーゲン本】</strong>や医薬品の区分などで、該当する商品属性の入力も合わせて必要です。複数ある場合はそれぞれを【】で囲みます。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>よく見かける<strong>「【送料無料】」「【あす楽】」「【SALE】」は販促の文言</strong>で、ガイドラインが想定している注意文言ではありません。商品名の枠ではなくキャッチコピー欄に回します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>なお商品名登録ガイドラインには「本ガイドラインの内容に沿わない場合でも、違反点数制度の対象にはなりません」と明記されています。<strong>商品名の書き方で点数が付くことはありません</strong>。ただし同じガイドラインに「本ガイドラインに合わせた形で検索結果、ランキング、リコメンデーションなどロジックの最適化を行っていきます」とあり、遵守した商品の方が露出が上がる可能性があると書かれています。点数ではなく露出で差が付く項目です。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">検索用のキーワードは商品名ではなくキャッチコピー欄に入れる</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>「商品名にキーワードを詰める」という対策をよく見かけますが、楽天のガイドラインは逆のことを書いています。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>販促文言（購買促進のために書く商品内容以外の情報）と、検索ヒット用の関連キーワード（同じ意味の表現違いや使い方など）は、<strong>商品名に入力せずキャッチコピー欄に入力してください</strong>と指定されています。ガイドラインが挙げているキャッチコピー欄向けの例は次のとおりです。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>雑誌掲載商品 ／ ○○賞受賞</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>スマホケース スマホカバー スマートフォンケース スマートフォンカバー</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>UV対策 UVケア 紫外線対策 紫外線カット</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>表記揺れをまとめて拾いたい場合の置き場所がキャッチコピー欄だということです。商品名は商品を正確に表す文にして、揺れはキャッチコピーで補う形が、ガイドラインに沿った分担になります。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>キャッチコピーはPC用とモバイル用で入力上限が違います。RMSの入力欄に残り文字数が出るので、そこで確認してください。売上の大半がスマートフォン経由になっている店舗では、モバイル用に何を残すかを先に決めた方が早く済みます。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">カタログIDは2026年時点では実質的に必須</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>カタログIDは、同じ製品を楽天市場全体で結び付けるためのIDです。入力欄には「カタログIDなしの理由」を選ぶ逃げ道がありますが、SKU移行後の店舗ではこの逃げ道に期限が付いています。詳細は次の章にまとめます。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>JANコードがある商品は素直に入力してください。入れておくと、商品が楽天の製品ページに紐づいて比較の対象に入ります。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">全商品ディレクトリIDは最も深い階層まで選ぶ</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>全商品ディレクトリIDは楽天市場全体でのカテゴリ分類で、必須項目です。店舗内のカテゴリ（表示先カテゴリ）とは別物なので、両方の設定が必要になります。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>選ぶときは、該当する範囲で<strong>いちばん深い階層まで降りる</strong>のが基本です。浅い階層で止めると、絞り込み検索で商品が出てこなくなります。迷ったら、同じ商品を売っている他店の商品ページでどのカテゴリに入っているかを見ると早いです。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">表示価格を入れるなら根拠の掲載が必要（違反点数20点）</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>販売価格とは別に表示価格を入れると「メーカー希望小売価格○○円 → 当店価格○○円」の形で見せられます。効果はありますが、ここは違反点数が付く項目です。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>楽天の取扱禁止商材・禁止行為ガイドラインでは、<strong>二重価格・割引表示に関するガイドライン違反で20点</strong>、<strong>メーカー希望小売価格の掲載マニュアル違反で20点</strong>が定められています。マニュアルでは、商品ページに載せる証明資料の種類と掲載方法まで指定されています。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>根拠として用意できるものがない場合は、表示価格を空欄にしておいてください。景品表示法の有利誤認にあたる可能性もあり、<a href="https://www.caa.go.jp/policies/policy/representation/fair_labeling/pdf/fair_labeling_180516_0003.pdf" target="_blank" rel="noopener">消費者庁 不当な価格表示についての景品表示法上の考え方（PDF）</a>で基準を確認できます。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">ポイント変倍は商品単位でも設定できる</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>ポイントの倍率は店舗全体で設定しますが、商品ごとに変えることもできます。売りたい商品だけ倍率を上げる使い方ができる項目です。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>前提として、楽天市場では全店舗がポイントの原資を負担します。楽天の開示には「全店舗様にポイント原資（1商品ごと100円（税抜）につき1ポイント（＝1円））を負担していただき」と書かれています。<strong>倍率を上げた分はそのまま自店の負担</strong>になるため、粗利から逆算して決めてください。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">CSV一括登録は5つの工程に分かれる</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>CSVでの登録は、画像を先に上げてから商品データを送る順番になります。逆にすると画像のパスが通らずエラーになります。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">商品画像はR-Cabinetに先に上げておく</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>R-Cabinetは楽天が用意している画像の保管場所です。「店舗設定 → 画像・動画登録 → R-Cabinet」から、ドラッグ＆ドロップでまとめて上げられます。CSVには、ここに上げた画像のファイル名を書きます。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>1枚あたりの容量と縦横のピクセル数、フォルダごとの枚数には上限があります。プランによって総容量も違うため、<strong>数値は登録画面に表示される上限に従ってください</strong>。書き出し設定を一度決めてしまえば、以降は同じ設定で書き出すだけになります。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">CSVは商品 商品オプション SKUの3レベルで構成される</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>SKU移行後のCSVは、1つの商品を3種類の行で表します。ここを取り違えると、エラーの原因が分からないまま止まります。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>商品レベル</strong>：商品全体に関わる情報。商品管理番号、商品名、全商品ディレクトリID</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>商品オプションレベル</strong>：バリエーションの軸の定義。横軸項目名、縦軸項目名</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>SKUレベル</strong>：1つ1つの在庫単位の情報。SKU管理番号、価格、在庫数</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>原則は<strong>商品レベルの行にSKUレベルの項目を書かない（逆も同じ）</strong>ことです。同じ列に見えても、行のレベルによって使う列が変わります。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">文字コードはShift_JISでUTF-8は通らない</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>CSVの文字コードはShift_JISです。UTF-8で保存すると、日本語が化けるかエラーで弾かれます。Excelの「CSV UTF-8」形式を選ばないよう注意してください。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>そのほか、実務で引っかかりやすいのは次の3点です。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>ファイル名は指定された形式のまま変えない（例：<code>normal-item.csv</code>）</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>空欄と「0」は意味が違う。空欄は「変更しない」で0は「0を入れる」になる列がある</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Excelが商品管理番号を数値と判断して先頭の0を落とすことがある。列を文字列に指定しておく</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">SFTPで送って処理結果を確認する</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>編集したCSVは、SFTPに対応したソフトで楽天のサーバーの <code>/ritem/batch/</code> に置きます。アップロードした時点では反映されず、楽天側の処理を待ちます。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>処理が終わったらRMSの「CSV処理結果」を開いて、エラー件数を確認してください。<strong>アップロードして終わりにすると、一部の行だけ落ちていることに気付けません</strong>。エラーは行番号と項目名で出るので、該当行だけ直して再送します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>ここまでの手順は、CSVの構造を一度理解すれば自社で回せます。判断が要るのは<strong>どこまで自社でやってどこから任せるか</strong>で、商品点数と更新頻度で線引きが変わります。自社の商品数で現実的かどうかから相談したい場合は、<a href="https://ecnow.jp/ec-consulting/">ECNOWを運営するJPholicのEC相談窓口</a>で商品構成を見たうえでの判断だけでも承っています。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">SKU移行後は「移行日から180日」が実務上の期限</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>SKUプロジェクトは、商品登録の単位を商品（アイテム）単位からSKU単位に変えるものです。2023年4月から順次進められ、<strong>2026年時点では移行はほぼ終わっています</strong>。今の論点は移行するかどうかではなく、移行後の期限に間に合っているかどうかです。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">180日を過ぎるとカタログIDなしのままでは更新できなくなる</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>楽天のカタログID登録に関するガイドラインには、次のように書かれています。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p>カタログIDなしの理由のうち、「項目選択肢別在庫」については、店舗様のSKU移行日から180日を過ぎますと、カタログIDなしの理由に「項目選択肢在庫商品」を選択することによる商品の更新ができなくなります。それまでの間に、カタログIDの入力をお願いします。180日以降の商品登録・更新にはカタログIDの入力をお願いします。</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:paragraph -->
+<p>読み替えると、<strong>カタログIDを入れずに「項目選択肢在庫商品だから」で通してきた商品は、移行日から180日を過ぎると価格や在庫の更新ができなくなる</strong>ということです。商品ページが消えるわけではなく、そのままの状態では売れ続けます。更新だけができません。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>気付くきっかけは、たいていセール前の価格変更が通らないときです。<strong>期限は店舗ごとの移行日から数えるため、自店の移行日を確認しておくのが先</strong>になります。移行日はRMSの通知で届いています。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">楽天がカタログIDを付与すると店舗側で変更できなくなる</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>同じガイドラインには、カタログIDが登録されていない商品や不適切なIDが登録されている商品について、<strong>楽天側で補正・付与する</strong>と書かれています。全ジャンルが対象です。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>そして「楽天がカタログIDを補正/付与した場合、以降は店舗様による同項目への変更ができなくなります」と続きます。間違ったIDが付いた状態で確定されると、店舗側では直せません。<strong>放置して付与されるのを待つより、自分で入れておいた方が安全</strong>な項目です。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>関連がないカタログIDの登録も禁止されています。互換インクの商品ページにメーカー純正インクのIDを付ける、後継商品のページに旧型番のIDを付ける、並行輸入品のページに日本正規品のIDを付けるといった例が挙げられています。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">中古 訳あり 並行輸入は商品属性で登録する</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>SKU移行に伴い、以前の7桁のタグIDで表していた「商品の特徴」は<strong>商品属性</strong>としての登録に変わりました。商品の状態や売り方は、商品名の注意文言と商品属性の両方に入れます。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>中古品</strong>：商品属性の「状態」「中古状態」を入力し 商品名の先頭に【中古】</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>訳あり品</strong>：商品属性の「販売形態（訳あり）」を入力。規格外品 傷や汚れがある商品 返品された商品 展示品 バーゲン本 期限間近の商品が該当する</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>並行輸入品</strong>：商品属性の「販売形態（並行輸入）」を入力し 商品名の先頭に【並行輸入品】</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>「訳あり」の範囲が思っているより広いことに注意してください。返品された商品やメーカー再生品、展示品も訳あり品として属性を入れる対象です。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">レンタルや回線セットは非製品属性タグで登録する</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>販売方法そのものが通常と違う商品は、商品属性ではなく非製品属性タグで表します。ガイドラインに載っているタグIDは次の3つです。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>レンタル品</strong>：タグID 5002023</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>回線セット品</strong>：タグID 5002026</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>販売条件あり商品</strong>：タグID 5002024（一定金額以上の購入や下取りが条件になる商品）</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>スマートフォン本体の回線セット販売や、「他商品と同時購入で○円」の商品が該当します。付け忘れると、条件付きの価格が条件なしの価格として並ぶことになります。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">SKUまとめは分散していたレビューと実績を1ページに集める作業</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>SKU移行では、これまで色やサイズごとに別ページで売っていた商品を1つの商品ページにまとめられます。これを「SKUまとめ」と呼び、移行に必須の作業ではありませんが、<strong>複数ページに分かれていたレビューとアクセスの実績を1ページに集められる</strong>のが利点です。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>進め方は、統合する商品を洗い出し、どのページを残すかを決め、残すページに寄せる流れです。残すページは<strong>売上とレビュー数が最も多いもの</strong>を選びます。実績のないページに寄せると、集めたはずの評価が減ります。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>全商品ディレクトリIDが違う商品同士はまとめられません。また、まとめる場合は第1商品画像について「SKUのまとめ方に関するガイドライン」で別の遵守事項が定められています。レビューの引き継ぎには申請と期日があるため、着手前にRMSの案内を確認してください。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">第1商品画像とSKU画像だけに専用のガイドラインがある</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>商品画像のうち、検索結果やランキングに出る画像には別のルールが用意されています。2018年1月に制定された商品画像登録ガイドラインで、直近の改定は2023年4月です。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">対象は第1商品画像とSKU画像で説明文の画像は対象外</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>ガイドラインの対象は<strong>第1商品画像とSKU画像</strong>の2つです（SKU移行前の店舗は第1商品画像のみ）。この2つをガイドラインでは「ガイドライン対象画像」と呼びます。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>言い換えると、<strong>2枚目以降のサブ画像と 商品説明文・販売説明文に入れる画像はこのルールの対象外</strong>です。サイズ表や素材のアップ、使用シーン、比較表といった情報量の多い画像はここに置きます。第1商品画像に情報を詰めようとして違反になるのが一番もったいないパターンです。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">テキスト要素の占有率は20%以下</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>対象画像に入れるテキスト要素は、画像の面積の20%以下にします。ガイドラインがテキスト要素として挙げているのは次のものです。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>ロゴ（商品・ブランド・企業）</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>商品名</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>商品のスペック情報や特徴</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>販売促進文言やキャッチコピー</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>ブランドロゴも占有率に入る点に注意してください。ロゴを大きく置く構図にすると、それだけで20%に近づきます。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">枠線は4辺 L字 帯状のすべてが不可</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>枠線は使えません。ガイドラインは枠線を3つの形に分けて定義しており、<strong>辺の太さは問わない</strong>と明記されています。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>4辺</strong>：画像の4つの辺を囲む線</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>L字</strong>：上下左右のうち2辺を組み合わせたもの</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>帯状</strong>：幅のある1辺。上下左右どこにあっても帯状とみなされ 中に文字が入っていなくても不可</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>「上部の帯だけなら大丈夫」という判断は通りません。長方形のオブジェクトを置く場合も、枠線に近い装飾と判断されることがあると注記されています。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">背景は#FFFFFFの単色白か写真背景のどちらか</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>背景に使えるのは2種類だけです。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>単色白背景</strong>：カラーコード #FFFFFF（R255 G255 B255）</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>写真背景</strong>：商品と背景が一緒に撮影されている画像 または そう見える自然な合成画像</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>ここで見落とされやすいのが、<strong>単色白の定義が「白基調」ではなく #FFFFFF そのもの</strong>だという点です。薄いグレーやわずかに色の付いた白は単色白背景に当たりません。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>合成は一律禁止ではなく、次の3つは適合として例示されています。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>色違いや別カット 別角度の商品を示す画像（商品だけを切り抜いて使う）</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>商品を使っているイメージ写真（ワンピースを着たモデルの背景との合成など）</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>商品によって作り出されたものの写真（炊飯器と 炊いたご飯の合成など）</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>禁止されているのは<strong>白以外の背景色のベタ塗り</strong>と<strong>グラデーションなどのグラフィック表現</strong>です。写真背景でも、赤一色の壁の前で撮ってベタ塗りと区別が付かない場合は非適合とみなされる例が挙げられています。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">アニメーションGIFは対象画像にだけ使えない</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>ガイドライン対象画像にアニメーションGIFは登録できません。一部だけが動くシネマグラフも含まれ、同じ画像を複数枚並べて動きがない場合もアニメーションGIFとみなされます。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>一方で<strong>商品説明文や販売説明文に入れる画像にはこの制限がありません</strong>。動きで見せたい内容は説明文側に置けます。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">違反すると違反点数5点が加算される</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>商品画像登録ガイドラインに反した場合、取扱禁止商材・禁止行為ガイドラインの「Ⅱ-(9)-35 商品画像登録ガイドラインに反する行為」として<strong>違反点数5点</strong>が加算される場合があります。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>5点は、後述する点数表の中では軽い方です。ただし累積する制度なので、全商品の第1画像に同じ枠線が入っていれば、それだけ積み上がる可能性があります。テンプレートを作って全商品に展開している店舗ほど影響が大きい項目です。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">判定は楽天のロジックで行われ形式的な遵守では足りない</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>ガイドラインには「当社所定のロジックにより判定いたします」「形式的にはガイドラインを遵守している場合であっても、非遵守と判定する場合がございます」と書かれています。数値を満たしていても通らないことがあるという前提です。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>RMSには登録前に判定できる機能があり、結果は○（適合）△（基準に近いが一部未達）×（不適合）で出ます。<strong>△は違反点数の対象ではありません</strong>が、基準が変わると×に回る位置なので、○に寄せておく方が手戻りが少なくなります。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>ガイドラインの本文と非適合画像の例は、<a href="https://www.rakuten.co.jp/ec/open/attention/" target="_blank" rel="noopener">楽天市場出店 出店審査や規約 取扱商材の注意事項</a>から「03. 店舗運営に関するガイドライン」のPDFで読めます。画像付きの事例はRMSの店舗運営Naviにあります。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">検索順位を決める4つの軸は楽天が公式に開示している</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>楽天は特定デジタルプラットフォームの透明性・公平性の向上に関する法律にもとづき、検索順位の決め方を公開しています。推測ではなく、<a href="https://www.rakuten.co.jp/ec/digitalplatform/" target="_blank" rel="noopener">楽天市場 プラットフォームの透明性及び公平性の向上に関する取り組みについて</a>で読める内容です。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>開示では、評価要素を大きく4つの軸に分類しています。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">商品情報の品質は店舗が自力で動かせる軸</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>商品名、キャッチコピー、商品説明文、商品画像、属性情報が対象です。開示では「店舗様が積極的に取り組むことができる重要なSEO施策」と位置づけられています。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>4つの軸のうち、実績や楽天側の施策に左右されず<strong>登録作業だけで上げられるのはここだけ</strong>です。商品登録を丁寧にやる意味はこの軸にあります。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">実績は検索ワードごとにクリック率と転換率で見られる</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>開示には「検索ワードごとに、商品クリック率や転換率等が評価され、これらのデータが検索結果に反映されます」とあります。店舗全体の実績ではなく<strong>キーワード単位</strong>で見られるという点が重要です。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>合わないキーワードで表示を増やしても、クリックされなければそのキーワードでの評価は下がります。関係の薄い語を商品名に詰めない方がよい理由がここにあります。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>加えて、レビュー情報、問い合わせ対応、配送品質も実績として評価されると書かれています。商品ページの外側の運用も入ってきます。なお不正な手段で高評価レビューを得る行為はガイドライン違反です。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">カスタム指標は条件を満たした商品への一時的な優遇</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>「ビジネス戦略に応じて、条件を満たした商品が一時的に検索順位で優遇されることがあります」という軸です。例として挙げられているのは<strong>迅速な配送が可能な商品の優遇</strong>で、最強配送がこれに当たります。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>常時ではなく特定のタイミングや条件に合わせた施策だと明記されています。配送のリードタイムを詰められるかどうかは在庫の置き方で決まるため、<a href="https://ecnow.jp/beginner/328/">ネットショップの配送方法まとめ</a>で各社の条件を比べてから判断してください。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">違反点数が一定を超えると検索順位が下がる</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>4つ目は規約・ガイドラインの軸で、違反点数制度そのものです。開示には「違反点数が一定の基準を超えると該当商品の検索順位が下がり、改善が見られない場合には検索結果から除外される可能性があります」とあります。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>同時に「適切な対応をおこなうことで、検索順位の回復や検索結果への再表示が可能となります」とも書かれています。下がったまま戻らない仕組みではありません。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">広告を出しても検索順位は上がらない</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>同じ開示に、次の一文があります。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p>これら広告などOptionalサービスの利用有無が検索順位やその他サービスの利用に影響を与えることはありません。</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:paragraph -->
+<p>RPP広告や有料オプションを使っても、それ自体で検索順位が上がることはないと明言されています。<strong>広告は露出を買うもので 順位対策の代わりにはならない</strong>という切り分けです。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>ただし広告経由でクリックと購入が増えれば、実績の軸を通じて順位に効く可能性はあります。順位を直接買えないという話であって、広告が無意味という話ではありません。どこに予算を置くかの考え方は<a href="https://ecnow.jp/advanced/2735/">ECマーケティング戦略の立て方</a>で整理しています。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:html -->
+<style>
+/* SWELL の .post_content p（詳細度 0,1,1）に負けて余白が流れるため、
+   要素セレクタを足して 0,2,1 以上で書いている */
+.ecl-inline{
+  --ecl-accent:#2f6fed; --ecl-accent-2:#1f57cc;
+  background:#eef3fe; border-radius:8px;
+  padding:clamp(22px,3.4vw,32px) clamp(18px,3vw,30px);
+  margin:2.6em 0; text-align:center;
+}
+.ecl-inline p.ecl-inline__lead{
+  font-size:clamp(15px,1.3vw,17px); font-weight:700; line-height:1.8;
+  margin:0 auto 1.2em; max-width:640px; color:#1f3b5f;
+}
+.ecl-inline a.ecl-inline__btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:min(320px,100%); padding:.95em 2em;
+  border:3px solid var(--ecl-accent); border-radius:999px;
+  background:var(--ecl-accent); color:#fff;
+  font-weight:700; font-size:clamp(15px,1.2vw,16px); text-decoration:none;
+  transition:background .2s,border-color .2s;
+}
+.ecl-inline a.ecl-inline__btn:hover{background:var(--ecl-accent-2); border-color:var(--ecl-accent-2); color:#fff;}
+.ecl-inline p.ecl-inline__note{
+  font-size:12.5px; color:#8a94a6; margin:1.1em auto 0;
+  max-width:100%; line-height:1.7;
+}
+@media (min-width:768px){
+  .ecl-inline p.ecl-inline__note{white-space:nowrap;}
+}
+</style>
+<div class="ecl-inline">
+  <p class="ecl-inline__lead">商品登録を直しても順位が動かないとき<br>原因が登録内容か実績かを切り分けます</p>
+  <a class="ecl-inline__btn" href="https://ecnow.jp/ec-consulting/">無料で相談する &#x25b6;</a>
+  <p class="ecl-inline__note">ECNOWを運営するJPholicが対応します。ご相談・お見積りは無料です。</p>
+</div>
+<!-- /wp:html -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">違反点数は毎年1月1日にリセットされる</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>違反点数制度は2016年9月に始まった仕組みで、違反の内容に応じて点数が付き、累計点数に応じて制限や違約金の措置が取られます。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">記録期間は1年間で毎年1月1日にリセットされる</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>ガイドラインでは、違反点数の記録期間は<strong>1月1日から12月31日までの1年間</strong>で、毎年1月1日に累積点数がリセットされると定められています。前年に付いた点数が翌年まで残ることはありません。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>加点猶予期間が設けられている違反行為については、その期間中は加点されないとも書かれています。新しいガイドラインが出たときの移行期間がこれに当たります。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">累計100点に達すると原則として契約解除</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>「期間内に累計違反点数が100点に到達した場合、原則その時点で契約解除措置を実施」と定められています。所定の点数に達するたびに段階的な措置が追加され、100点が上限です。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>この100点は、1件で届く違反があります。銃刀法違反商品、麻薬全般、人体・臓器・細胞・血液は<strong>1件で100点</strong>です。禁止商材は「気を付ける」対象ではなく「絶対に触らない」対象だと分かる設計です。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">レベルⅠとⅡの制限は講習の受講で免除される</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>累積点数が一定に達すると違反レベルごとの措置に入りますが、ガイドラインには「レベルⅠ、Ⅱの各種制限は講習を受講した場合、免除されます」と書かれています。軽い段階で気付いて対応すれば、制限を受けずに済みます。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>また、違反の内容や程度に応じて個別に加重・減軽・免除を行う場合があるとも記載されています。表の点数がそのまま適用されるとは限りません。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">商品登録で関わりやすい違反と点数</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>取扱禁止商材・禁止行為ガイドラインから、商品登録の作業で関わる可能性が高いものを抜き出します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>商品画像登録ガイドラインに反する行為：<strong>5点</strong></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>二重価格・割引表示に関するガイドライン違反：<strong>20点</strong></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>メーカー希望小売価格の掲載マニュアル違反：<strong>20点</strong></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>ステルスマーケティングに関するガイドラインに反する行為：<strong>55点</strong></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>おとり広告に該当する表示：<strong>80点</strong></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>銃刀法違反商品 麻薬全般 人体・臓器・細胞・血液：<strong>各100点</strong></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>点数の重さの順番を見ると、画像の体裁より<strong>価格と広告表現の方が重い</strong>ことが分かります。在庫がないのに掲載を続ける、条件を満たせないセール価格を出すといった対応の方が、枠線の有無より優先度が高い項目です。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>ステマ規制は2023年10月に景品表示法の指定告示として施行されたもので、55点が付きます。基準は<a href="https://www.caa.go.jp/policies/policy/representation/fair_labeling/stealth_marketing/" target="_blank" rel="noopener">消費者庁 ステルスマーケティングは景品表示法違反です</a>で確認できます。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>最新の点数表は<a href="https://www.rakuten.co.jp/ec/open/attention/" target="_blank" rel="noopener">楽天市場出店 出店審査や規約 取扱商材の注意事項</a>の「02. 安心・安全なショッピング環境をつくるためのガイドライン」に載っています。このガイドラインは2026年9月14日が最終改定です。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">審査が必要な商材は登録前に申請する</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>禁止商材とは別に、販売に許認可が必要な商材には出品審査があります。酒類、古物（中古品）、医薬品などが対象で、許認可の証明や取り扱いの業歴、仕入れ先を確認されます。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>審査商材を審査なしで登録すると、その時点で違反になります。<strong>商品を作る前に自社の商材が審査対象かどうかを確認する</strong>順番が正しく、対象商材の一覧は<a href="https://event.rakuten.co.jp/anshin/product/" target="_blank" rel="noopener">楽天市場 不適切商品 不当表示排除の取り組み</a>と各ジャンルのガイドラインで確認できます。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">商品登録を外注するかどうかは商品点数と更新頻度で決まる</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>商品登録は、覚えれば自社でできる作業です。それでも外注が使われるのは、点数が多い場合と、登録以外の業務が回らなくなる場合の2つに絞られます。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">自社で回せるのは点数が少なく更新が読める場合</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>商品数が数十点で、新商品の追加が月に数点、セールの価格変更が月1回程度なら、CSVのフォーマットを一度作ってしまえば自社で足ります。むしろ自社でやった方が、属性やカテゴリの判断を商品知識のある人が決められます。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>初回の立ち上げだけが重く、その後は軽い作業になるのが商品登録です。最初の山を越える体制さえあれば、外注しない選択で問題ありません。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">外注が向くのは初回の大量登録とモール横断の展開</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>数百点から数千点を一度に登録する場面、紙のカタログや型番表からデータを作る場面、楽天と同時にAmazonやYahoo!ショッピングにも展開する場面は、外注した方が早く終わります。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>複数モールに同じ商品を出すなら、モールごとの登録単位の違いを先に押さえておく必要があります。Amazonは1つの商品ページを複数の出品者で共有する仕組みで、楽天とは商品ページの考え方が違います。違いは<a href="https://ecnow.jp/beginner/258/">Amazon出店の費用と手順</a>にまとめています。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">代行を選ぶときに確認する5項目</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>見積りの前に揃えておくと比較できる項目です。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>対応モール</strong>：楽天以外にも出すなら 複数対応かどうかでデータの作り直しが変わる</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>料金の単位</strong>：1商品あたりか 作業時間あたりか。バリエーションの多い商品は単位の違いで金額が大きく変わる</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>属性とカテゴリの判断をどちらが行うか</strong>：ここを任せられるかで自社の工数が決まる</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>画像のガイドライン対応の範囲</strong>：第1商品画像の作成まで含むのか 支給した画像を置くだけか</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>納品後の修正対応</strong>：エラー行の修正と再アップロードが何回まで含まれるか</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>3つ目の「属性とカテゴリの判断」が実際にはいちばん差が出ます。ここを自社で全部決める前提だと、外注しても工数が半分しか減りません。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">よくある質問</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">必須項目は商品名 販売価格 全商品ディレクトリID カタログID</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>システム上の必須項目はこの4つです（カタログIDは「なしの理由」の選択でも進めますが、SKU移行後は180日の期限が付きます）。ただし画像と説明文が空でも登録は通るため、必須項目だけ埋めた状態のページが残りやすい点に注意してください。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">商品管理番号は登録後に変更できない</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>商品ページのURLに使われるため変更できません。付け替えたい場合は新規登録になり、レビューとアクセスの実績は引き継げません。命名ルールは最初に決めてください。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">CSV一括登録は無料では使えない</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>「CSV商品一括編集」は月額11,000円（税込）の有料オプションです。RMSの「店舗様向け情報・サービス」から申し込みます。単発の大量登録のためだけに契約して、終わったら解約する使い方もできます。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">SKU移行は2026年時点でほぼ完了している</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>2023年4月から順次進められ、移行するかどうかを選ぶ段階は終わっています。今確認すべきなのは、<strong>自店の移行日から180日を過ぎていないか</strong>と、カタログIDが入っているかです。過ぎている場合、カタログIDなしの商品は価格や在庫の更新ができません。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">画像の△判定は違反点数の対象にはならない</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>△は「基準に近いが一部条件が未達」の状態で、違反点数が付くのは×の側です。ただし判定は楽天所定のロジックで行われ、形式的に満たしていても非遵守とされる場合があるとガイドラインに書かれています。○に寄せておく方が安全です。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">検索用キーワードは商品名ではなくキャッチコピー欄に入れる</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>商品名登録ガイドラインで、検索ヒット用の関連キーワードと販促文言はキャッチコピー欄に入力するよう指定されています。商品名は全角127文字まで入りますが、枠が余っているからといって表記揺れを並べる場所ではありません。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">登録直後に検索結果へ出ないのは反映待ちか設定漏れ</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>登録から検索結果への反映には時間がかかります。数日待っても出ない場合は、全商品ディレクトリIDが商品と合っていないか、倉庫指定で非公開になっているかのどちらかを確認してください。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">まとめ</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>楽天の商品登録で押さえる点を並べ直します。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>登録方法は個別登録とCSV一括登録。CSVは月額11,000円（税込）の有料オプション</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>商品管理番号はURLに使われるため後から変更できない。命名ルールを先に決める</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>商品名の先頭の【】は注意文言の枠。【送料無料】のような販促文言はキャッチコピー欄に回す</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>検索ヒット用の関連キーワードもキャッチコピー欄が公式の置き場所</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>SKU移行日から180日を過ぎると カタログIDなしの商品は価格と在庫を更新できない</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>第1商品画像とSKU画像だけに専用ガイドラインがある。テキスト20%以下 枠線なし 背景は#FFFFFFか写真背景</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>画像ガイドライン違反は5点。価格表示は20点でステマは55点と 価格と広告表現の方が重い</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>検索順位の4軸は公式に開示されている。登録作業で動かせるのは商品情報の品質の軸</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>広告を出しても検索順位そのものは上がらないと楽天が明言している</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>すでに出店している場合、最初に手を付けるのは<strong>自店のSKU移行日を確認してカタログIDの入力状況を見ること</strong>です。ここが詰まっていると、他の改善をしても価格変更が通りません。次に第1商品画像の枠線と背景を確認します。テンプレートを使い回している店舗ほど、1回の修正で直る範囲が広くなります。</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:html -->
+<div class="ecl-inline">
+  <p class="ecl-inline__lead">商品点数が多くて登録の直しが終わらないとき<br>どこから手を付けるかを一緒に決めます</p>
+  <a class="ecl-inline__btn" href="https://ecnow.jp/ec-consulting/">無料で相談してみる &#x25b6;</a>
+  <p class="ecl-inline__note">ECNOWを運営するJPholicは、30社を超えるECコンサルティング実績と自社EC運営の経験があります。</p>
+</div>
+<!-- /wp:html -->
