@@ -5,6 +5,7 @@
 #   wp_post.sh list [count]           - List recent posts
 #   wp_post.sh create <title> <file>  - Create draft from file
 #   wp_post.sh update <post_id> <file> - Update post content from file
+#   wp_post.sh set-title <post_id> <file> - Set post_title from the file's 1st line
 #   wp_post.sh publish <post_id>      - Publish a draft
 #   wp_post.sh search <keyword>       - Search posts
 
@@ -105,6 +106,16 @@ case "${1:-help}" in
         content_file="$(stage_file "$3")"
         wp_cmd post update "$post_id" "$content_file" --porcelain
         ;;
+    set-title)
+        # 本番のタイトルは post_title から出力される（AIOSEO のタイトル欄は空でフォールバック）。
+        # 引数の取り違えで別記事を書き換えないよう、更新後のタイトルを表示して終わる。
+        post_id="$2"
+        title_file="$3"
+        [ -f "$title_file" ] || { echo "Error: file not found: $title_file" >&2; exit 1; }
+        new_title="$(head -1 "$title_file")"
+        wp_cmd post update "$post_id" --post_title="$new_title" --porcelain >/dev/null
+        wp_cmd post get "$post_id" --field=post_title
+        ;;
     publish)
         post_id="$2"
         wp_cmd post update "$post_id" --post_status=publish --porcelain
@@ -168,6 +179,6 @@ PHPEOF
         rm -f "$php_local"
         ;;
     help|*)
-        echo "Usage: wp_post.sh {get|list|create|update|publish|search|get-content|get-meta|media|media-url|set-desc} [args]"
+        echo "Usage: wp_post.sh {get|list|create|update|publish|search|get-content|get-meta|media|media-url|set-title|set-desc} [args]"
         ;;
 esac
