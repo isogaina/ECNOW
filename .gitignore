@@ -6,4 +6,9 @@ __pycache__/
 *.pyc
 
 # SSH接続先が書かれているため除外（wp-cli.yml.example を参照）
-wp-cli.yml
+# .disabled などに改名してもすり抜けないようワイルドカードにする
+wp-cli.yml*
+!wp-cli.yml.example
+
+# ローカル検証用のWordPress一式（本番のwp-config.phpとDBダンプを含むため絶対にコミットしない）
+local/

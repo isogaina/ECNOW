@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ECNOW トップページ デザイン案（PC）</title>
+<style>
+:root{color-scheme:light}
+html,body{margin:0;padding:0}
+img{max-width:100%}
+</style>
+</head>
+<body>
+<style>
+/* ===== 資料まわりの枠（ビューアのテーマに追随） ===== */
+:root{
+  --chrome-bg:#E9EDF2;
+  --chrome-ink:#141E29;
+  --chrome-muted:#5C6B7A;
+  --chrome-line:#CBD5E1;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --chrome-bg:#0F151C;
+    --chrome-ink:#E4EAF0;
+    --chrome-muted:#8B9AAA;
+    --chrome-line:#2C3845;
+  }
+}
+:root[data-theme="dark"]{
+  --chrome-bg:#0F151C;
+  --chrome-ink:#E4EAF0;
+  --chrome-muted:#8B9AAA;
+  --chrome-line:#2C3845;
+}
+:root[data-theme="light"]{
+  --chrome-bg:#E9EDF2;
+  --chrome-ink:#141E29;
+  --chrome-muted:#5C6B7A;
+  --chrome-line:#CBD5E1;
+}
+
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  background:var(--chrome-bg);
+  color:var(--chrome-ink);
+  font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
+}
+
+.sheet{
+  max-width:1360px;
+  margin:0 auto;
+  padding:26px 20px 60px;
+}
+
+.sheet-head{
+  display:flex;flex-wrap:wrap;gap:10px 18px;align-items:baseline;
+  padding-bottom:14px;margin-bottom:18px;
+  border-bottom:1px solid var(--chrome-line);
+}
+.sheet-head h1{
+  font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",serif;
+  font-weight:600;font-size:21px;line-height:1.4;margin:0;letter-spacing:.01em;
+}
+.sheet-head .meta{
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:11.5px;letter-spacing:.1em;color:var(--chrome-muted);
+}
+.sheet-note{
+  margin:0 0 22px;font-size:13px;line-height:1.85;color:var(--chrome-muted);max-width:74ch;
+}
+
+/* 横幅1180px未満のビューアではこの枠の中だけが横スクロールする */
+.canvas{
+  overflow-x:auto;
+  border:1px solid var(--chrome-line);
+  border-radius:10px;
+  background:#FFFFFF;
+}
+
+/* ===================================================================
+   ここから下がトップページのデザイン本体
+   ライト固定（実際のサイトの見え方をそのまま出すため）
+   =================================================================== */
+.site{
+  --navy:#1B3350;
+  --navy-deep:#132741;
+  --teal:#18AEBA;
+  --teal-deep:#0E8A95;
+  --cta:#2F6FED;
+  --cta-deep:#215BCB;
+  --ink:#141E29;
+  --body:#41505F;
+  --muted:#6B7A89;
+  --line:#E2E8EF;
+  --line-soft:#EDF1F6;
+  --ground:#F5F7FA;
+
+  --serif:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",serif;
+  --sans:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+
+  min-width:1180px;
+  background:#FFFFFF;
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+}
+.site a{color:inherit;text-decoration:none;}
+.site a:focus-visible{outline:2px solid var(--cta);outline-offset:3px;border-radius:3px;}
+.site p{margin:0;}
+.site ul{margin:0;padding:0;list-style:none;}
+
+.wrap{max-width:1200px;margin:0 auto;padding:0 40px;}
+
+/* ---------- ヘッダー ---------- */
+.hd{
+  border-bottom:1px solid var(--line);
+  background:#FFFFFF;
+}
+.hd-in{
+  display:flex;align-items:center;gap:40px;
+  height:76px;
+}
+.logo{display:flex;flex-direction:column;gap:2px;line-height:1.25;}
+.logo .lm{
+  font-family:var(--serif);font-weight:600;font-size:25px;letter-spacing:.1em;
+  color:var(--navy);
+}
+.logo .ls{font-size:10.5px;letter-spacing:.08em;color:var(--teal-deep);font-weight:700;}
+
+.gnav{display:flex;gap:30px;font-size:14.5px;font-weight:600;color:var(--body);}
+.gnav a{padding:6px 0;border-bottom:2px solid transparent;}
+.gnav a:hover{color:var(--teal-deep);border-bottom-color:var(--teal);}
+
+.hd-cta{
+  margin-left:auto;
+  background:var(--cta);color:#FFFFFF;font-weight:700;font-size:14.5px;
+  padding:12px 26px;border-radius:999px;white-space:nowrap;
+  box-shadow:0 1px 2px rgba(20,30,41,.18);
+}
+.hd-cta:hover{background:var(--cta-deep);}
+
+/* ---------- ヒーロー ---------- */
+.hero{padding:66px 0 54px;}
+.hero-in{display:grid;grid-template-columns:1.08fr .92fr;gap:56px;align-items:center;}
+.hero h2{
+  font-family:var(--serif);font-weight:600;
+  font-size:40px;line-height:1.48;letter-spacing:.005em;
+  margin:0 0 22px;text-wrap:balance;
+}
+.hero h2 em{font-style:normal;color:var(--teal-deep);}
+.hero .lead{font-size:15px;line-height:2.05;color:var(--body);margin-bottom:30px;max-width:40ch;}
+.hero .lead b{color:var(--ink);font-weight:700;}
+.hero-btns{display:flex;gap:12px;}
+.btn{
+  display:inline-block;font-weight:700;font-size:14.5px;
+  padding:13px 30px;border-radius:999px;white-space:nowrap;
+}
+.btn-primary{background:var(--cta);color:#FFFFFF;box-shadow:0 1px 2px rgba(20,30,41,.18);}
+.btn-primary:hover{background:var(--cta-deep);}
+.btn-ghost{border:1.5px solid var(--ink);color:var(--ink);}
+.btn-ghost:hover{background:var(--ink);color:#FFFFFF;}
+
+/* ヒーロー右：最新記事1本 */
+.feat{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#FFFFFF;}
+.feat:hover{border-color:var(--teal);}
+.thumb{
+  position:relative;
+  background:
+    linear-gradient(115deg,var(--navy) 0 44%,var(--teal) 44% 100%);
+  color:#FFFFFF;
+}
+.thumb::after{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 78% 30%,rgba(255,255,255,.22) 0 26%,transparent 26%),
+    linear-gradient(transparent 0 100%);
+}
+.feat .thumb{height:196px;display:flex;align-items:center;justify-content:center;padding:26px;}
+.feat .thumb span{
+  position:relative;z-index:1;font-family:var(--serif);font-weight:600;
+  font-size:21px;line-height:1.6;text-align:center;letter-spacing:.02em;
+}
+.feat-body{padding:20px 22px 22px;}
+.feat .date{
+  font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.08em;
+  color:var(--teal-deep);font-variant-numeric:tabular-nums;
+}
+.feat h3{font-size:17px;font-weight:700;line-height:1.7;margin:7px 0 8px;}
+.feat .ex{font-size:13.5px;line-height:1.85;color:var(--muted);}
+
+/* ---------- 信用の数字バー ---------- */
+.trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.trust ul{display:grid;grid-template-columns:repeat(4,1fr);}
+.trust li{padding:26px 10px;text-align:center;position:relative;}
+.trust li + li::before{
+  content:"";position:absolute;left:0;top:26px;bottom:26px;width:1px;background:var(--line);
+}
+.trust .tn{
+  display:block;font-family:var(--mono);font-size:30px;font-weight:700;line-height:1.2;
+  color:var(--navy);font-variant-numeric:tabular-nums;letter-spacing:-.01em;
+}
+.trust .tn small{font-size:21px;font-weight:700;margin-left:3px;}
+.trust .tl{display:block;font-size:12.5px;color:var(--muted);margin-top:6px;letter-spacing:.04em;}
+
+/* ---------- セクション共通 ---------- */
+.sec{padding:60px 0 0;}
+.sec-hd{display:flex;align-items:baseline;gap:16px;margin-bottom:26px;}
+.sec-hd h2{
+  font-family:var(--serif);font-weight:600;font-size:25px;line-height:1.5;margin:0;
+  letter-spacing:.01em;
+}
+.sec-hd .en{
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--teal-deep);
+  font-weight:700;padding-bottom:2px;
+}
+.sec-hd .more{
+  margin-left:auto;font-size:13.5px;font-weight:700;color:var(--body);
+}
+.sec-hd .more:hover{color:var(--teal-deep);}
+
+/* ---------- 最新記事4本 ---------- */
+.latest{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.card{border:1px solid var(--line);border-radius:7px;overflow:hidden;background:#FFFFFF;}
+.card:hover{border-color:var(--teal);}
+.card .thumb{height:118px;}
+.card-body{padding:14px 15px 16px;}
+.card .date{
+  font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.07em;
+  color:var(--teal-deep);font-variant-numeric:tabular-nums;
+}
+.card h3{font-size:14.5px;font-weight:700;line-height:1.7;margin:6px 0 0;}
+.card .cat{
+  display:inline-block;margin-top:10px;font-size:11px;letter-spacing:.04em;
+  color:var(--teal-deep);border:1px solid var(--teal);border-radius:999px;padding:1px 10px;
+}
+
+/* ---------- 人気記事 6カラム ---------- */
+.pop{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;}
+.rank{border:1px solid var(--line);border-radius:7px;overflow:hidden;position:relative;background:#FFFFFF;}
+.rank:hover{border-color:var(--teal);}
+.rank .thumb{height:78px;}
+.rank .no{
+  position:absolute;top:0;left:0;z-index:2;
+  width:30px;height:30px;display:flex;align-items:center;justify-content:center;
+  background:var(--navy);color:#FFFFFF;
+  font-family:var(--mono);font-size:14px;font-weight:700;font-variant-numeric:tabular-nums;
+  border-radius:0 0 7px 0;
+}
+.rank:first-child .no{background:var(--teal-deep);}
+.rank-body{padding:11px 12px 13px;}
+.rank .cat{
+  font-size:10.5px;letter-spacing:.03em;color:var(--teal-deep);font-weight:700;
+  display:block;margin-bottom:5px;
+}
+.rank h3{
+  font-size:12.5px;font-weight:700;line-height:1.65;margin:0;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+.pop-note{
+  margin-top:14px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;
+  color:var(--muted);font-variant-numeric:tabular-nums;
+}
+
+/* ---------- カテゴリ ---------- */
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.cat-card{
+  border:1px solid var(--line);border-radius:7px;padding:22px 22px 20px;background:#FFFFFF;
+  display:flex;align-items:baseline;gap:12px;
+}
+.cat-card:hover{border-color:var(--teal);}
+.cat-card .cname{font-family:var(--serif);font-size:16.5px;font-weight:600;letter-spacing:0;white-space:nowrap;}
+.cat-card .cnum{
+  margin-left:auto;font-family:var(--mono);font-size:22px;font-weight:700;
+  color:var(--teal-deep);font-variant-numeric:tabular-nums;line-height:1;
+}
+.cat-card .cunit{font-size:11.5px;color:var(--muted);margin-left:-6px;}
+
+/* ---------- 記事ゾーンの終わり ---------- */
+.zone-break{margin-top:74px;border-top:1px solid var(--line);background:var(--ground);}
+.zone-label{
+  text-align:center;padding:20px 0 0;
+  font-family:var(--mono);font-size:11px;letter-spacing:.24em;color:var(--muted);
+}
+
+/* ---------- ABOUT EC NOW ---------- */
+.about{padding:34px 0 0;}
+.about-box{
+  background:#FFFFFF;border:1px solid var(--line);border-radius:9px;
+  padding:38px 40px;display:grid;grid-template-columns:1.25fr .75fr;gap:44px;
+}
+.about .en{
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--teal-deep);font-weight:700;
+}
+.about h2{
+  font-family:var(--serif);font-weight:600;font-size:25px;line-height:1.5;
+  margin:8px 0 18px;letter-spacing:.01em;
+}
+.about .co{
+  font-size:12.5px;color:var(--muted);letter-spacing:.04em;margin-bottom:10px;
+}
+.about .co b{color:var(--navy);font-weight:700;font-size:13.5px;}
+.about .desc{font-size:14.5px;line-height:2.05;color:var(--body);}
+.about .desc b{color:var(--ink);font-weight:700;}
+.about-side{border-left:1px solid var(--line);padding-left:36px;}
+.about-side .st{font-size:13.5px;font-weight:700;margin-bottom:12px;}
+.about-side ul{display:flex;flex-direction:column;gap:9px;}
+.about-side li{
+  font-size:13.5px;line-height:1.7;color:var(--body);
+  padding-left:17px;position:relative;
+}
+.about-side li::before{
+  content:"";position:absolute;left:0;top:.66em;
+  width:7px;height:7px;border-radius:50%;background:var(--teal);
+}
+.about-side .ab{
+  display:inline-block;margin-top:20px;
+  border:1.5px solid var(--navy);color:var(--navy);
+  font-weight:700;font-size:13.5px;padding:10px 24px;border-radius:999px;
+}
+.about-side .ab:hover{background:var(--navy);color:#FFFFFF;}
+
+/* ---------- 運営についての帯 ---------- */
+.ops{margin-top:26px;background:var(--navy);color:#FFFFFF;border-radius:9px;padding:32px 40px;}
+.ops-in{display:grid;grid-template-columns:1fr auto;gap:36px;align-items:center;}
+.ops h2{
+  font-family:var(--serif);font-weight:600;font-size:22px;line-height:1.55;margin:0 0 12px;
+  letter-spacing:.01em;
+}
+.ops p{font-size:14px;line-height:2;color:rgba(255,255,255,.86);max-width:62ch;}
+.ops .figs{display:flex;gap:26px;margin-top:16px;}
+.ops .fig{font-family:var(--mono);font-size:13px;font-variant-numeric:tabular-nums;letter-spacing:.03em;}
+.ops .fig b{display:block;font-size:19px;font-weight:700;color:#FFFFFF;line-height:1.4;}
+.ops .fig span{color:rgba(255,255,255,.68);font-size:11.5px;}
+.ops .ob{
+  border:1.5px solid rgba(255,255,255,.7);color:#FFFFFF;
+  font-weight:700;font-size:13.5px;padding:11px 26px;border-radius:999px;white-space:nowrap;
+}
+.ops .ob:hover{background:#FFFFFF;color:var(--navy);}
+
+/* ---------- サービス ---------- */
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.svc-card{
+  background:#FFFFFF;border:1px solid var(--line);border-radius:9px;
+  padding:28px 26px 24px;display:flex;flex-direction:column;
+}
+.svc-card:hover{border-color:var(--teal);}
+.svc-card .sn{
+  font-family:var(--serif);font-size:21px;font-weight:600;letter-spacing:.02em;margin-bottom:12px;
+}
+.svc-card .sw{font-size:12px;color:var(--teal-deep);font-weight:700;letter-spacing:.04em;margin-bottom:6px;}
+.svc-card .sd{font-size:13.5px;line-height:1.95;color:var(--body);margin-bottom:20px;}
+.svc-card .sp{
+  margin-top:auto;font-size:13.5px;font-weight:700;color:var(--cta);
+  padding-top:16px;border-top:1px solid var(--line-soft);
+}
+
+/* ---------- 事例 ---------- */
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.work{
+  background:#FFFFFF;border:1px solid var(--line);border-radius:9px;overflow:hidden;
+}
+.work:hover{border-color:var(--teal);}
+.work .wt{height:8px;background:linear-gradient(90deg,var(--navy) 0 45%,var(--teal) 45% 100%);}
+.work-body{padding:24px 26px 26px;}
+.work .wn{font-size:13px;color:var(--muted);letter-spacing:.03em;}
+.work .wf{
+  font-family:var(--mono);font-size:34px;font-weight:700;line-height:1.25;
+  color:var(--teal-deep);font-variant-numeric:tabular-nums;letter-spacing:-.01em;
+  margin:8px 0 10px;
+}
+.work .wf small{font-size:17px;letter-spacing:.02em;margin-left:3px;}
+.work .wd{font-size:13.5px;line-height:1.9;color:var(--body);}
+
+/* ---------- 最終CTA ---------- */
+.cta{
+  margin-top:60px;background:#FFFFFF;border:1px solid var(--line);border-radius:9px;
+  padding:42px 48px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;
+}
+.cta h2{
+  font-family:var(--serif);font-weight:600;font-size:26px;line-height:1.5;margin:0 0 12px;
+  letter-spacing:.01em;
+}
+.cta .cmeta{
+  display:flex;gap:10px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);
+}
+.cta .cmeta span{
+  border:1px solid var(--line);border-radius:999px;padding:3px 14px;background:var(--ground);
+}
+.cta .btn{font-size:15.5px;padding:16px 42px;}
+
+/* ---------- フッター ---------- */
+.ft{margin-top:56px;background:var(--navy-deep);color:rgba(255,255,255,.78);}
+.ft-in{display:flex;align-items:center;gap:36px;padding:32px 0;}
+.ft .fl{font-family:var(--serif);font-size:20px;letter-spacing:.1em;color:#FFFFFF;font-weight:600;}
+.ft nav{display:flex;gap:26px;font-size:13px;}
+.ft nav a:hover{color:#FFFFFF;}
+.ft .cp{
+  margin-left:auto;font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+  color:rgba(255,255,255,.5);
+}
+
+@media (prefers-reduced-motion:reduce){
+  .site *{transition:none !important;}
+}
+</style>
+
+<div class="sheet">
+
+  <header class="sheet-head">
+    <h1>ECNOW トップページ デザイン案</h1>
+    <span class="meta">PC 1440px 想定 ／ 2026-09-28</span>
+  </header>
+  <p class="sheet-note">実際の表示サイズで描画しています。記事名・PV・実績の数字はすべて実データです。サムネイルは現行アイキャッチの配色を再現したもので 実際には記事タイトルの文字が入ります。</p>
+
+  <div class="canvas">
+  <div class="site">
+
+    <!-- ============ ヘッダー ============ -->
+    <header class="hd">
+      <div class="wrap hd-in">
+        <a class="logo" href="#">
+          <span class="lm">ECNOW</span>
+          <span class="ls">EC運営の実務メディア</span>
+        </a>
+        <nav class="gnav">
+          <a href="#">記事</a>
+          <a href="#">サービス</a>
+          <a href="#">事例</a>
+          <a href="#">運営について</a>
+        </nav>
+        <a class="hd-cta" href="#">ECの相談をする</a>
+      </div>
+    </header>
+
+    <!-- ============ ヒーロー ============ -->
+    <section class="hero">
+      <div class="wrap hero-in">
+        <div>
+          <h2>ECの実務を<em>一次情報にあたって</em>書くメディア</h2>
+          <p class="lead">
+            運営は<b>JPholic株式会社</b>。自社でもECを運営しています。
+            官公庁とプラットフォームの公開資料で裏を取ってから書いています。
+          </p>
+          <div class="hero-btns">
+            <a class="btn btn-ghost" href="#">記事を読む</a>
+            <a class="btn btn-primary" href="#">ECの相談をする</a>
+          </div>
+        </div>
+        <article class="feat">
+          <div class="thumb"><span>楽天市場の<br>商品登録</span></div>
+          <div class="feat-body">
+            <span class="date">2026.09.25 更新</span>
+            <h3>楽天市場の商品登録｜RMSでの個別登録とCSV一括登録の手順</h3>
+            <p class="ex">SKU移行日から180日を過ぎると価格と在庫が更新できなくなります</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ 信用の数字 ============ -->
+    <section class="trust">
+      <div class="wrap">
+        <ul>
+          <li><span class="tn">117</span><span class="tl">公開記事</span></li>
+          <li><span class="tn">週<small>1</small></span><span class="tl">リライトで更新</span></li>
+          <li><span class="tn">30<small>社</small></span><span class="tl">EC支援実績</span></li>
+          <li><span class="tn">自社EC</span><span class="tl">運営あり</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 最新の記事 ============ -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-hd">
+          <h2>最新の記事</h2>
+          <span class="en">LATEST</span>
+          <a class="more" href="#">記事一覧を見る →</a>
+        </div>
+        <div class="latest">
+          <article class="card">
+            <div class="thumb"></div>
+            <div class="card-body">
+              <span class="date">2026.09.25</span>
+              <h3>楽天市場の商品登録｜RMSでの個別登録とCSV一括登録</h3>
+              <span class="cat">ECを今からはじめる</span>
+            </div>
+          </article>
+          <article class="card">
+            <div class="thumb"></div>
+            <div class="card-body">
+              <span class="date">2026.09.25</span>
+              <h3>Amazon出店の費用と手順｜大口と小口の分かれ目</h3>
+              <span class="cat">ECを今からはじめる</span>
+            </div>
+          </article>
+          <article class="card">
+            <div class="thumb"></div>
+            <div class="card-body">
+              <span class="date">2026.09.25</span>
+              <h3>通販LPの作り方｜構成要素と改善の優先順位</h3>
+              <span class="cat">ECを今よりもっと</span>
+            </div>
+          </article>
+          <article class="card">
+            <div class="thumb"></div>
+            <div class="card-body">
+              <span class="date">2026.09.14</span>
+              <h3>ECマーケティング戦略の立て方｜集客と再購入の設計</h3>
+              <span class="cat">ECを今よりもっと</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 人気記事 ============ -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-hd">
+          <h2>よく読まれている記事</h2>
+          <span class="en">POPULAR</span>
+        </div>
+        <div class="pop">
+          <article class="rank">
+            <span class="no">1</span><div class="thumb"></div>
+            <div class="rank-body">
+              <span class="cat">ECの今をこえる</span>
+              <h3>月額0円LINE CRMの衝撃</h3>
+            </div>
+          </article>
+          <article class="rank">
+            <span class="no">2</span><div class="thumb"></div>
+            <div class="rank-body">
+              <span class="cat">ECを今よりもっと</span>
+              <h3>代引きとは？着払い・コレクトとの違いと手数料一覧</h3>
+            </div>
+          </article>
+          <article class="rank">
+            <span class="no">3</span><div class="thumb"></div>
+            <div class="rank-body">
+              <span class="cat">ECを今からはじめる</span>
+              <h3>楽天市場の商品登録｜RMSでの個別登録とCSV一括登録</h3>
+            </div>
+          </article>
+          <article class="rank">
+            <span class="no">4</span><div class="thumb"></div>
+            <div class="rank-body">
+              <span class="cat">ECの今をこえる</span>
+              <h3>EC事業者もClaude Codeを使うといいかもよって話</h3>
+            </div>
+          </article>
+          <article class="rank">
+            <span class="no">5</span><div class="thumb"></div>
+            <div class="rank-body">
+              <span class="cat">ECを今からはじめる</span>
+              <h3>ネットショップの開業・運営に役立つおすすめ本7選</h3>
+            </div>
+          </article>
+          <article class="rank">
+            <span class="no">6</span><div class="thumb"></div>
+            <div class="rank-body">
+              <span class="cat">ECを今からはじめる</span>
+              <h3>商品登録とは？EC・ネットショップの必須8項目</h3>
+            </div>
+          </article>
+        </div>
+        <p class="pop-note">実測PV順（直近4週間）　144 ／ 66 ／ 51 ／ 27 ／ 26 ／ 18</p>
+      </div>
+    </section>
+
+    <!-- ============ カテゴリ ============ -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-hd">
+          <h2>カテゴリから探す</h2>
+          <span class="en">CATEGORY</span>
+        </div>
+        <div class="cats">
+          <a class="cat-card" href="#">
+            <span class="cname">ECを今からはじめる</span>
+            <span class="cnum">60</span><span class="cunit">本</span>
+          </a>
+          <a class="cat-card" href="#">
+            <span class="cname">ECを今よりもっと</span>
+            <span class="cnum">31</span><span class="cunit">本</span>
+          </a>
+          <a class="cat-card" href="#">
+            <span class="cname">ECの今をこえる</span>
+            <span class="cnum">12</span><span class="cunit">本</span>
+          </a>
+          <a class="cat-card" href="#">
+            <span class="cname">ECの今</span>
+            <span class="cnum">14</span><span class="cunit">本</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ここから会社ゾーン ============ -->
+    <div class="zone-break">
+      <p class="zone-label">ここから運営会社について</p>
+
+      <!-- ABOUT EC NOW -->
+      <section class="about">
+        <div class="wrap">
+          <div class="about-box">
+            <div>
+              <span class="en">ABOUT EC NOW</span>
+              <h2>EC・ネットショップの「いま」を届ける</h2>
+              <p class="co">運営会社：<b>JPholic株式会社</b>（東京・佐賀）</p>
+              <p class="desc">
+                30社をこえるECコンサルティングの実績があります。自社でも<b>ロブスターのEC</b>を運営しているため
+                事業者として詰まる場所を知っています。
+              </p>
+            </div>
+            <div class="about-side">
+              <p class="st">こんな方に読まれています</p>
+              <ul>
+                <li>これからネットショップを始めたい方</li>
+                <li>EC事業の売上を伸ばしたい担当者</li>
+                <li>最新のEC業界動向を知りたい方</li>
+              </ul>
+              <a class="ab" href="#">運営会社について</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 運営の実態 -->
+      <section class="wrap">
+        <div class="ops">
+          <div class="ops-in">
+            <div>
+              <h2>更新した記事も新着として出します</h2>
+              <p>
+                毎週1本のリライトを続けています。公開前の数値を記録し 4〜8週間後に同じ指標で効果を測っています。
+                代引きの記事は次のとおり伸びました。
+              </p>
+              <div class="figs">
+                <span class="fig"><b>3,136 → 4,496</b><span>表示回数</span></span>
+                <span class="fig"><b>2 → 11</b><span>クリック</span></span>
+                <span class="fig"><b>20 → 66</b><span>PV</span></span>
+              </div>
+            </div>
+            <a class="ob" href="#">運営について</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- サービス -->
+      <section class="sec">
+        <div class="wrap">
+          <div class="sec-hd">
+            <h2>ECの構築と運営を引き受けます</h2>
+            <span class="en">SERVICE</span>
+            <a class="more" href="#">サービス一覧 →</a>
+          </div>
+          <div class="svc">
+            <a class="svc-card" href="#">
+              <span class="sw">サイトがない</span>
+              <span class="sn">EC構築</span>
+              <span class="sd">何もない状態から立ち上げます。モール出店と自社サイトのどちらが向くかの判断から入ります。</span>
+              <span class="sp">費用の目安を見る →</span>
+            </a>
+            <a class="svc-card" href="#">
+              <span class="sw">あるが売れない</span>
+              <span class="sn">改善コンサル</span>
+              <span class="sd">商品ページ・広告・集客のどこで止まっているかを切り分けて 手をつける順番を決めます。</span>
+              <span class="sp">費用の目安を見る →</span>
+            </a>
+            <a class="svc-card" href="#">
+              <span class="sw">運用が回らない</span>
+              <span class="sn">運用代行</span>
+              <span class="sd">商品登録・受注処理・広告運用を引き受けます。人手が足りない期間だけの利用もできます。</span>
+              <span class="sp">費用の目安を見る →</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 事例 -->
+      <section class="sec">
+        <div class="wrap">
+          <div class="sec-hd">
+            <h2>支援した事例</h2>
+            <span class="en">WORKS</span>
+            <a class="more" href="#">事例一覧 →</a>
+          </div>
+          <div class="works">
+            <a class="work" href="#">
+              <div class="wt"></div>
+              <div class="work-body">
+                <p class="wn">呼子朝市様</p>
+                <p class="wf">6.8<small>倍</small></p>
+                <p class="wd">新規構築から1年で売上が前年比6.8倍になりました</p>
+              </div>
+            </a>
+            <a class="work" href="#">
+              <div class="wt"></div>
+              <div class="work-body">
+                <p class="wn">佐賀マルシェ様</p>
+                <p class="wf">ROAS 2<small>倍</small></p>
+                <p class="wd">楽天市場の広告運用を見直しROASを約2倍に改善しました</p>
+              </div>
+            </a>
+            <a class="work" href="#">
+              <div class="wt"></div>
+              <div class="work-body">
+                <p class="wn">Garage 1st様</p>
+                <p class="wf">500<small>万円</small></p>
+                <p class="wd">月商500万円を達成しました</p>
+              </div>
+            </a>
+          </div>
+
+          <!-- 最終CTA -->
+          <div class="cta">
+            <div>
+              <h2>まだ何も決まっていない段階でもご連絡ください</h2>
+              <div class="cmeta">
+                <span>ご相談・お見積りは無料</span>
+                <span>支援30社</span>
+                <span>自社でもECを運営しています</span>
+              </div>
+            </div>
+            <a class="btn btn-primary" href="#">ECの相談をする</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- フッター -->
+      <footer class="ft">
+        <div class="wrap ft-in">
+          <span class="fl">ECNOW</span>
+          <nav>
+            <a href="#">記事一覧</a>
+            <a href="#">サービス</a>
+            <a href="#">事例</a>
+            <a href="#">運営について</a>
+            <a href="#">お問い合わせ</a>
+            <a href="#">プライバシーポリシー</a>
+          </nav>
+          <span class="cp">© JPholic Inc.</span>
+        </div>
+      </footer>
+
+    </div><!-- /zone-break -->
+
+  </div><!-- /site -->
+  </div><!-- /canvas -->
+
+</div>
+</body>
+</html>

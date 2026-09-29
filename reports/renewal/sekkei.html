@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ECNOW リニューアル 情報設計</title>
+<style>
+:root{
+  --ground:#EDF0F4;
+  --surface:#FFFFFF;
+  --surface-2:#F5F7FA;
+  --line:#CFD8E3;
+  --line-soft:#E2E8EF;
+  --ink:#141E29;
+  --muted:#5C6B7A;
+  --accent:#2F6FED;
+  --accent-soft:#E7EEFD;
+  --warn:#B4472E;
+  --warn-soft:#FAEBE6;
+  --ok:#1B7A68;
+  --ok-soft:#E4F2EF;
+  --teal:#0E8A95;
+
+  --serif:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",serif;
+  --sans:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Courier New",monospace;
+  --measure:64ch;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--ground);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:15.5px;
+  line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;}
+
+.page{max-width:1000px;margin:0 auto;padding:clamp(28px,5vw,60px) clamp(18px,4vw,40px) 88px;}
+
+/* ---------- 見出し ---------- */
+.masthead{border-bottom:2px solid var(--ink);padding-bottom:20px;margin-bottom:12px;}
+.eyebrow{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);margin:0 0 12px;
+}
+.masthead h1{
+  font-family:var(--serif);font-weight:600;
+  font-size:clamp(27px,4.2vw,40px);line-height:1.34;letter-spacing:.01em;
+  margin:0;text-wrap:balance;
+}
+
+section{margin-top:56px;}
+section>h2{
+  font-family:var(--serif);font-weight:600;
+  font-size:clamp(20px,2.5vw,26px);line-height:1.45;
+  margin:0 0 18px;padding-bottom:11px;border-bottom:1px solid var(--line);
+  text-wrap:balance;
+}
+p{margin:0 0 14px;max-width:var(--measure);}
+p:last-child{margin-bottom:0;}
+.lede{color:var(--muted);margin-bottom:20px;}
+code{
+  font-family:var(--mono);font-size:.875em;background:var(--surface-2);
+  border:1px solid var(--line-soft);border-radius:3px;padding:.1em .38em;
+}
+strong{font-weight:700;}
+
+/* ---------- 目的 ---------- */
+.goals{list-style:none;padding:0;margin:0;display:grid;gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+@media (min-width:820px){.goals{grid-template-columns:repeat(3,1fr);}}
+.goals li{background:var(--surface);padding:20px 22px;}
+.goals .gn{
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+  color:var(--accent);display:block;margin-bottom:9px;
+}
+.goals .gt{font-weight:700;font-size:15.5px;line-height:1.65;display:block;}
+.goals .gd{margin:9px 0 0;font-size:13px;color:var(--muted);line-height:1.75;max-width:none;}
+
+/* ---------- 数字 ---------- */
+.metrics{display:grid;gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-bottom:22px;}
+@media (min-width:640px){.metrics{grid-template-columns:repeat(2,1fr);}}
+@media (min-width:920px){.metrics{grid-template-columns:repeat(4,1fr);}}
+.metric{background:var(--surface);padding:18px 20px;}
+.metric .n{
+  font-family:var(--mono);font-size:27px;font-weight:600;line-height:1.15;
+  font-variant-numeric:tabular-nums;display:block;margin-bottom:5px;letter-spacing:-.01em;
+}
+.metric.bad .n{color:var(--warn);}
+.metric.good .n{color:var(--ok);}
+.metric .l{font-size:12.5px;line-height:1.7;color:var(--muted);}
+
+/* ---------- 4層 ---------- */
+.layers{display:grid;gap:12px;margin-bottom:20px;}
+@media (min-width:820px){.layers{grid-template-columns:repeat(4,1fr);}}
+.layer{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:17px 18px;}
+.layer .step{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--muted);
+  display:block;margin-bottom:7px;}
+.layer .name{font-family:var(--serif);font-size:19px;font-weight:600;display:block;margin-bottom:7px;}
+.layer .desc{font-size:13px;color:var(--muted);line-height:1.75;margin:0 0 10px;max-width:none;}
+.layer .state{font-family:var(--mono);font-size:11.5px;padding:3px 9px;border-radius:3px;display:inline-block;}
+.layer[data-state="have"] .state{background:var(--ok-soft);color:var(--ok);}
+.layer[data-state="missing"] .state{background:var(--warn-soft);color:var(--warn);}
+.layer[data-state="missing"]{border-color:var(--warn);border-style:dashed;}
+
+/* ---------- 決めたこと ---------- */
+.decisions{list-style:none;padding:0;margin:0;display:grid;gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+@media (min-width:760px){.decisions{grid-template-columns:repeat(2,1fr);}}
+.decisions li{background:var(--surface);padding:18px 20px;}
+.decisions .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+  color:var(--muted);display:block;margin-bottom:7px;}
+.decisions .v{font-weight:700;font-size:15px;line-height:1.6;display:block;}
+.decisions .w{margin:7px 0 0;font-size:13px;color:var(--muted);line-height:1.75;max-width:none;}
+
+/* ---------- 表 ---------- */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface);}
+table{border-collapse:collapse;width:100%;min-width:660px;font-size:13.5px;}
+th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line-soft);vertical-align:top;}
+th{
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);background:var(--surface-2);font-weight:500;white-space:nowrap;
+}
+tr:last-child td{border-bottom:0;}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;}
+td code{background:transparent;border:0;padding:0;font-size:13px;font-weight:600;}
+.chip{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
+  padding:2px 8px;border-radius:3px;white-space:nowrap;display:inline-block;
+}
+.chip-new{background:var(--accent-soft);color:var(--accent);}
+.chip-fix{background:var(--warn-soft);color:var(--warn);}
+.chip-kill{background:var(--surface-2);color:var(--muted);border:1px solid var(--line-soft);}
+
+/* ---------- フェーズ ---------- */
+.phases{display:grid;gap:14px;}
+@media (min-width:860px){.phases{grid-template-columns:repeat(3,1fr);}}
+.phase{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:20px;}
+.phase .pn{font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+  color:var(--accent);display:block;margin-bottom:7px;}
+.phase .pt{font-family:var(--serif);font-size:19px;font-weight:600;display:block;}
+.phase .pw{font-family:var(--mono);font-size:11.5px;color:var(--muted);display:block;margin-bottom:13px;}
+.phase ul{margin:0;padding-left:1.2em;font-size:13.5px;}
+.phase li{margin-bottom:6px;line-height:1.72;}
+
+/* ---------- 注記 ---------- */
+.note{
+  margin-top:22px;padding:18px 22px;background:var(--surface);
+  border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 6px 6px 0;
+}
+.note .nt{font-weight:700;margin:0 0 7px;}
+
+.foot{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);
+  font-size:12.5px;color:var(--muted);line-height:1.9;}
+.foot p{max-width:none;margin:0;}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">ECNOW リニューアル 情報設計 / 2026-09-28</p>
+    <h1>記事は読まれているのに依頼につながらない構造を作り直します</h1>
+  </header>
+
+  <section>
+    <h2>このリニューアルの目的</h2>
+    <ol class="goals">
+      <li>
+        <span class="gn">目的 1</span>
+        <span class="gt">ECの構築や運営 コンサル等の依頼獲得</span>
+        <p class="gd">相談の受け皿をECNOW内に作る。<code>/service/</code>と<code>/works/</code>の新設がここに当たる。</p>
+      </li>
+      <li>
+        <span class="gn">目的 2</span>
+        <span class="gt">ECの知見を持った会社というブランディング</span>
+        <p class="gd">一次情報にあたって書いている編集方針と、自社でもECを運営している事実を出す。</p>
+      </li>
+      <li>
+        <span class="gn">目的 3</span>
+        <span class="gt">メディア運営できる会社というブランディング</span>
+        <p class="gd">記事117本と週1リライトの運用実態を、数字と効果測定の実例で見せる。</p>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>いま起きていること</h2>
+    <p class="lede">直近4週間の実測値です。フォームは機能していて、問題はその手前にあります。</p>
+    <div class="metrics">
+      <div class="metric bad"><span class="n">0件</span><span class="l">検索流入262ユーザーからの問い合わせ</span></div>
+      <div class="metric"><span class="n">7件</span><span class="l">Direct流入からの問い合わせ（営業と紹介）</span></div>
+      <div class="metric bad"><span class="n">0.22%</span><span class="l">サイト全体の検索CTR（27,095表示→59クリック）</span></div>
+      <div class="metric good"><span class="n">20%</span><span class="l"><code>/contact/</code>のフォーム完了率（35人→7件）</span></div>
+    </div>
+    <p>
+      問い合わせ7件は<strong>すべて営業と紹介で既につながっていた人</strong>です。
+      記事から問い合わせに至った人は1人もいません。
+    </p>
+    <p>
+      理由は2つです。ひとつは<strong>来ている読者が発注者ではない</strong>こと。
+      流入の3割は開発者向けの技術記事で、残りも作業手順を調べに来た実務担当者です。
+      もうひとつは<strong>発注意図の検索で上位に入っているのにクリックされていない</strong>こと。
+      「ec 商品ページ 改善 相談 会社」で4.7位ですが、クリックは0です。
+      受け皿が解説記事のため、依頼先として認識されていません。
+    </p>
+  </section>
+
+  <section>
+    <h2>抜けているのは真ん中の2つです</h2>
+    <p class="lede">発注までに読者が通る4段階を、そのままサイトの層にします。今あるのは両端だけです。</p>
+    <div class="layers">
+      <div class="layer" data-state="have">
+        <span class="step">01</span>
+        <span class="name">読む</span>
+        <p class="desc">EC運営の疑問を解決する。検索の入口。</p>
+        <span class="state">ある（記事117本）</span>
+      </div>
+      <div class="layer" data-state="missing">
+        <span class="step">02</span>
+        <span class="name">確かめる</span>
+        <p class="desc">この会社は信用できるかを判断する。実績と運営体制。</p>
+        <span class="state">ない</span>
+      </div>
+      <div class="layer" data-state="missing">
+        <span class="step">03</span>
+        <span class="name">頼む</span>
+        <p class="desc">何をいくらで頼めるかを知る。サービス範囲と費用。</p>
+        <span class="state">1ページのみ</span>
+      </div>
+      <div class="layer" data-state="have">
+        <span class="step">04</span>
+        <span class="name">動く</span>
+        <p class="desc">問い合わせる。完了率20%で機能している。</p>
+        <span class="state">ある</span>
+      </div>
+    </div>
+    <p>
+      いまは「読む」から「動く」へ直接CTAを置いている状態です。
+      読者は<strong>実績を確かめず 費用も分からないまま</strong>フォームに飛ばされるため押しません。
+      Direct流入の7件が通っているのは、その2段階を営業や紹介で既に済ませた人だからです。
+    </p>
+  </section>
+
+  <section>
+    <h2>前提として決めたこと</h2>
+    <ul class="decisions">
+      <li>
+        <span class="k">受注導線</span>
+        <span class="v">ECNOW内で完結させる</span>
+        <p class="w">EC領域の相談はECNOWで受ける。JPholic全体の実績は裏付けとしてリンクするに留める。</p>
+      </li>
+      <li>
+        <span class="k">メディア運営</span>
+        <span class="v">商材化せず信用の裏付けに留める</span>
+        <p class="w">売るのはEC支援だけ。運用実態は<code>/about/</code>に出して証拠に使う。</p>
+      </li>
+      <li>
+        <span class="k">技術系記事</span>
+        <span class="v">技術も分かるEC会社として残す</span>
+        <p class="w"><code>/beyond/</code>のAI・自動化記事は強みとして維持し、EC記事への回遊導線を置く。</p>
+      </li>
+      <li>
+        <span class="k">範囲</span>
+        <span class="v">情報設計とページ追加</span>
+        <p class="w">SWELLの見た目は原則そのまま。構造と不足ページを作り、効果を測ってからデザインを判断する。</p>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>作るページ</h2>
+    <p class="lede">新設は3系統です。あとは既存ページの修正と整理になります。</p>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr><th>区分</th><th>ページ</th><th>役割</th><th>載せるもの</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="chip chip-new">新設</span></td>
+            <td><code>/about/</code></td>
+            <td>目的2と3の中核。02確かめるの層</td>
+            <td>編集方針／週1リライトの運用実態／効果測定の実例</td>
+          </tr>
+          <tr>
+            <td><span class="chip chip-new">新設</span></td>
+            <td><code>/works/</code> ＋ 個別6本</td>
+            <td>商談で1社分のURLを渡せる状態にする</td>
+            <td>社名・課題・打ち手・数字の4点で統一</td>
+          </tr>
+          <tr>
+            <td><span class="chip chip-new">新設</span></td>
+            <td><code>/service/</code> ＋ 3サービス</td>
+            <td>03頼むの層。依頼獲得の本命</td>
+            <td>状況別の分岐（構築／改善／運用代行）と費用の目安</td>
+          </tr>
+          <tr>
+            <td><span class="chip chip-fix">修正</span></td>
+            <td><code>/</code> トップ</td>
+            <td>商談で見せる顔。検索の受け皿ではない</td>
+            <td>別紙のデザイン案のとおり並べ替える</td>
+          </tr>
+          <tr>
+            <td><span class="chip chip-fix">修正</span></td>
+            <td><code>/contact/</code></td>
+            <td>実際のCV入口。完了率をさらに上げる</td>
+            <td>実績と進め方を追加／入力欄14個の必須を絞る</td>
+          </tr>
+          <tr>
+            <td><span class="chip chip-fix">修正</span></td>
+            <td><code>/category/beyond/</code></td>
+            <td>開発者の流入をEC記事へ流す</td>
+            <td>カテゴリの軸を明示し回遊ブロックを置く</td>
+          </tr>
+          <tr>
+            <td><span class="chip chip-fix">統合</span></td>
+            <td><code>/ec-consulting/</code></td>
+            <td>1枚で全部やろうとして焦点がぼけている</td>
+            <td>3サービスに分解し<code>/service/consulting/</code>へ301</td>
+          </tr>
+          <tr>
+            <td><span class="chip chip-kill">整理</span></td>
+            <td>カテゴリ「6」／旧LP</td>
+            <td>記事0本のカテゴリと非公開のまま残ったLP</td>
+            <td>削除する</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>進め方</h2>
+    <p class="lede">先に穴を塞いで、信用の層、最後に受注導線という順です。デザインの判断は数字が出てからにします。</p>
+    <div class="phases">
+      <div class="phase">
+        <span class="pn">Phase 0</span>
+        <span class="pt">欠陥を塞ぐ</span>
+        <span class="pw">1日</span>
+        <ul>
+          <li>トップの<code>&lt;title&gt;</code>が「トップページ」のまま</li>
+          <li><code>/about-us/</code>が404なのに流入している</li>
+          <li>ナビにページタイトルが直貼りされている</li>
+          <li>ヘッダーとスマホに相談導線がない</li>
+          <li>スマホで横にはみ出している</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <span class="pn">Phase 1</span>
+        <span class="pt">信用の層を作る</span>
+        <span class="pw">1〜2週</span>
+        <ul>
+          <li><code>/about/</code>の新設</li>
+          <li><code>/works/</code>と個別事例6本</li>
+          <li><code>/contact/</code>に実績と進め方を追加</li>
+          <li>トップページの並べ替え</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <span class="pn">Phase 2</span>
+        <span class="pt">受注導線を作る</span>
+        <span class="pw">1〜2週</span>
+        <ul>
+          <li><code>/service/</code>ハブと3サービス</li>
+          <li><code>/ec-consulting/</code>を301で統合</li>
+          <li>記事下部の共通パーツ</li>
+          <li>PV0の<code>/downloads/</code>を生かす</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>何で測るか</h2>
+    <p class="lede">目的が3つあるので指標も分けます。PVは主指標にしません。</p>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr><th>目的</th><th>主指標</th><th>現在</th><th>測り方</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1 依頼獲得</td>
+            <td>検索流入からの問い合わせ件数</td>
+            <td class="num">0件 / 4週</td>
+            <td>送信完了ページの到達をチャネル別に見る</td>
+          </tr>
+          <tr>
+            <td>1 依頼獲得</td>
+            <td>発注意図クエリの表示と順位</td>
+            <td class="num">42表示</td>
+            <td>「相談」「会社」「費用」を含むクエリを追う</td>
+          </tr>
+          <tr>
+            <td>2 EC知見</td>
+            <td>リライト記事の順位とクリック</td>
+            <td class="num">14本 測定中</td>
+            <td>既存の効果測定スクリプトをそのまま使う</td>
+          </tr>
+          <tr>
+            <td>3 メディア運営</td>
+            <td>商談でURLを渡した回数と反応</td>
+            <td class="num">未計測</td>
+            <td>営業側で手動記録。サイトの数字では測れない</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <p class="nt">見通しを正直に書きます</p>
+      <p>
+        Phase 0と1は目的2と3に直接効きます。商談で見せられる状態になるのがこの段階です。
+        一方で目的1の依頼獲得は時間がかかります。発注意図の検索が今42回しかないため、
+        受け皿を作っても母数が小さいままです。Phase 2と並行して、その種類のキーワードを取る記事を増やす必要があります。
+      </p>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>数値出典：Google Search Console 2026-08-25〜2026-09-22 ／ GA4 2026-08-27〜2026-09-24</p>
+    <p>現行環境：WordPress ／ SWELL 2.16.0 ＋ 子テーマ ／ 公開記事117本</p>
+  </footer>
+
+</div>
+
+</body>
+</html>

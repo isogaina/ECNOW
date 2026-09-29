@@ -1,0 +1,951 @@
+@charset "UTF-8";
+/*
+    Template: swell
+    Theme Name: SWELL CHILD
+    Theme URI: https://swell-theme.com/
+    Description: SWELLの子テーマ
+    Version: 1.0.0
+    Author: LOOS WEB STUDIO
+    Author URI: https://loos-web-studio.com/
+
+    License: GNU General Public License
+    License URI: http://www.gnu.org/licenses/gpl.html
+*/
+.editor {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  font-family: "Noto Sans JP", sans-serif;
+  line-height: 1.6;
+}
+
+.editor__left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.editor__img img {
+  width: 80px;   /* 64px → 80px に拡大 */
+  height: 80px;
+  border-radius: 50%;
+  object-fit: contain;
+  border: 1px solid #ddd;
+  background: #fafafa;
+}
+
+
+.editor__position {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #666;
+  letter-spacing: 0.05em;
+}
+
+.editor__right {
+  flex: 1;
+  font-size: 14px;
+  color: #333;
+}
+
+/* 名前を強調 */
+.editor__name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+/* 紹介文（SPでも左寄せにする） */
+.editor__description {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.7;
+  text-align: left; /* PC・SPともに左寄せ固定 */
+}
+
+.editor__right a {
+  color: #0073e6;
+  text-decoration: none;
+}
+
+.editor__right a:hover {
+  text-decoration: underline;
+}
+
+/* スマホ対応 */
+@media (max-width: 600px) {
+  .editor {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center; /* 全体はセンター寄せ */
+  }
+/* スマホ時は少し小さめに */
+  .editor__img img {
+    width: 72px;  /* 56px → 72px */
+    height: 72px;
+}
+  .editor__right {
+    text-align: left; /* テキスト部分は左寄せ */
+    width: 100%;
+  }
+  .editor__description {
+    font-size: 13px;
+  }
+}
+/* CTA全体 */
+.content-cta {
+  border: 2px solid #0073e6;
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin: 40px 0;
+  background: #f9fbff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  font-family: "Noto Sans JP", sans-serif;
+  text-align: center;
+}
+
+/* タイトル */
+.content-cta__title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #0073e6;
+}
+
+/* 本文 */
+.content-cta__text {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+/* ボタン */
+.content-cta__button .article_cta {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 6px;
+  background: #0073e6;
+  color: #fff !important;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.content-cta__button .article_cta:hover {
+  background: #005bb5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* スマホ対応 */
+@media (max-width: 600px) {
+  .content-cta {
+    padding: 20px;
+    text-align: left;
+  }
+  .content-cta__title {
+    font-size: 16px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .content-cta__text {
+    font-size: 14px;
+  }
+  .content-cta__button .article_cta {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+}
+.-cap-ctr_button .c-bannerLink__label {
+	border-radius: 12px !important;
+}
+
+
+/* ===== Contact（CF7）だけに色変数を適用 ===== */
+.post_content .wp-block-contact-form-7-contact-form-selector{
+  --ecnow-accent-from:#2563EB; /* Blue */
+  --ecnow-accent-to:#10B981;   /* Green */
+  --ecnow-focus-ring: rgba(37,99,235,.18);
+  --ecnow-text:#111827;
+  --ecnow-muted:#6B7280;
+  --ecnow-bg:#ffffff;
+  --ecnow-field:#F9FAFB;
+  --ecnow-border:#E5E7EB;
+  --ecnow-border-strong:#D1D5DB;
+  --ecnow-danger:#DC2626;
+  --ecnow-success:#059669;
+  --ecnow-radius:12px;
+  --ecnow-radius-sm:8px;
+  --ecnow-shadow:0 6px 20px rgba(0,0,0,.06);
+}
+/* 以降のCF7スタイルは必ずブロック配下に限定 */
+.post_content .wp-block-contact-form-7-contact-form-selector .wpcf7-form{ color:var(--ecnow-text); }
+
+.post_content .wp-block-contact-form-7-contact-form-selector dl.cf7{
+  display:grid; grid-template-columns:260px 1fr; gap:18px 24px; margin:0;
+}
+
+.post_content .wp-block-contact-form-7-contact-form-selector .wpcf7-form-control{
+  width:100%; box-sizing:border-box; padding:14px 16px;
+  background:var(--ecnow-field); border:1px solid var(--ecnow-border);
+  border-radius:var(--ecnow-radius-sm);
+  transition:border-color .2s, box-shadow .2s, background-color .2s, transform .02s;
+  outline:none;
+}
+
+.post_content .wp-block-contact-form-7-contact-form-selector .wpcf7-form-control:focus{
+  background:#fff;
+  border-color: var(--ecnow-accent-to);
+  box-shadow: 0 0 0 4px var(--ecnow-focus-ring);
+}
+
+.post_content .wp-block-contact-form-7-contact-form-selector select.wpcf7-select{
+  appearance:none;
+  background-image:
+    linear-gradient(90deg,var(--ecnow-accent-from),var(--ecnow-accent-to)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-size:0 2px,18px; background-repeat:no-repeat,no-repeat;
+  background-position:0 100%, calc(100% - 12px) 50%;
+  padding-right:42px;
+}
+.post_content .wp-block-contact-form-7-contact-form-selector select.wpcf7-select:focus{
+  background-size:100% 2px,18px;
+}
+
+/* 必須バッジやボタンも同様に“ブロック配下”で限定 */
+.post_content .wp-block-contact-form-7-contact-form-selector .rqd{
+  margin-left:8px; font-size:.75rem; font-weight:700; color:#fff;
+  padding:2px 8px; border-radius:999px;
+  background:linear-gradient(90deg,var(--ecnow-accent-from),var(--ecnow-accent-to));
+}
+.post_content .wp-block-contact-form-7-contact-form-selector .btn_cf7{ grid-column:1 / -1; margin-top:3em; }
+.post_content .wp-block-contact-form-7-contact-form-selector .btn_cf7 input[type="submit"]{
+  width:100%; cursor:pointer; border:0; border-radius:var(--ecnow-radius);
+  padding:16px 22px; font-weight:800; color:#fff;
+  background:linear-gradient(90deg,var(--ecnow-accent-from),var(--ecnow-accent-to));
+  box-shadow:var(--ecnow-shadow);
+}
+/* 記事カードのフォーカスはテーマ標準に戻す（任意） */
+.post_content .wp-block-post-template a:focus,
+.post_content .wp-block-post-template a:focus-visible{
+  box-shadow:none !important;
+  outline:2px solid currentColor;
+  outline-offset:2px;
+}
+/* 記事カード：ホバー時の“色オーバーレイ”を無効化 */
+.wp-block-post-featured-image a::before,
+.wp-block-post-featured-image a::after,
+.p-postList__thumb::before,
+.p-postList__thumb::after,
+.c-postThumb__img::before,
+.c-postThumb__img::after{
+  background: none !important;
+  opacity: 0 !important;
+}
+
+/* 画像にフィルターで色を載せているテーマ対策 */
+.wp-block-post-featured-image a:hover img,
+.p-postList__thumb:hover img,
+.c-postThumb__img:hover img{
+  filter: none !important;
+}
+
+/* アクセシビリティ：キーボード操作のフォーカスは可視に保つ */
+.wp-block-post-template a:focus-visible,
+.wp-block-post-featured-image a:focus-visible{
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  box-shadow: none !important;
+}
+/* Contactブロック内だけに適用 */
+.post_content .wp-block-contact-form-7-contact-form-selector .btn_cf7{
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;   /* 左寄せなら flex-start に */
+}
+.post_content .wp-block-contact-form-7-contact-form-selector .btn_cf7 p{ margin:0; }
+
+.post_content .wp-block-contact-form-7-contact-form-selector .btn_cf7 input[type="submit"]{
+  width: auto;               /* ← これで100%を解除 */
+	min-width:360px;          /* 好みで 220–320px に調整可 */
+  padding: 16px 28px;
+}
+
+/* スマホは全幅 */
+@media (max-width: 768px){
+  .post_content .wp-block-contact-form-7-contact-form-selector .btn_cf7{
+    display:block;
+  }
+  .post_content .wp-block-contact-form-7-contact-form-selector .btn_cf7 input[type="submit"]{
+    width: 100%;
+    min-width: 0;
+  }
+}
+@media (min-width: 960px) {
+  .p-articleThumb__img {
+    max-width: 800px;  /* 好きな幅に調整 */
+    margin: 0 auto;    /* 真ん中寄せ */
+    display: block;    /* margin auto が効くように */
+  }
+}
+.post_content h2:where(:not([class^="swell-block-"]):not(.faq_q):not(.p-postList__title)) {
+    background: linear-gradient(#666, #5a5a5a);
+}
+#media_image-6 {
+  display: flex;
+  justify-content: center;
+}
+
+#media_image-6 img {
+  max-width: 180px !important; /* ← ここでサイズ感を調整 */
+  width: 100%;
+  height: auto;
+}
+.l-footer__foot, .l-footer__widgetArea {
+    padding-bottom: 0.5em;
+    padding-top: .5em;
+}
+/* トップアバウトせくしょん*/
+.ecnow-about {
+  max-width: 1100px !important;
+  margin: 60px auto !important;
+  padding: 0 20px !important;
+  font-family: 'Noto Sans JP', sans-serif !important;
+  line-height: 1.8 !important;
+  box-sizing: border-box !important;
+}
+
+.ecnow-about *,
+.ecnow-about *::before,
+.ecnow-about *::after {
+  box-sizing: border-box !important;
+}
+
+.ecnow-about__inner {
+  background: #fff !important;
+  border-radius: 20px !important;
+  padding: 50px 48px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 40px rgba(0, 0, 0, 0.06) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+}
+
+.ecnow-about__inner::before,
+.ecnow-about__inner::after {
+  display: none !important;
+}
+
+/* --- Header --- */
+.ecnow-about__header {
+  text-align: center !important;
+  margin-bottom: 36px !important;
+  position: relative !important;
+  z-index: 1 !important;
+  background: none !important;
+  padding: 0 !important;
+}
+
+.ecnow-about__label {
+  display: inline-block !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #888 !important;
+  letter-spacing: 0.15em !important;
+  margin-bottom: 14px !important;
+  padding: 6px 14px !important;
+  background: #f5f5f5 !important;
+  border-radius: 4px !important;
+  border: 1px solid #e5e5e5 !important;
+  line-height: 1.5 !important;
+}
+
+.ecnow-about__title {
+	font-size: 26px !important;
+	font-weight: 900 !important;
+	color: #333 !important;
+	background: none !important;
+	-webkit-background-clip: unset !important;
+	-webkit-text-fill-color: unset !important;
+	background-clip: unset !important;
+	margin: 0 0 12px 0 !important;
+	padding: 0 !important;
+	letter-spacing: -0.02em !important;
+	line-height: 1.4 !important;
+	border: none !important;
+}
+
+.ecnow-about__subtitle {
+  font-size: 14px !important;
+  color: #666 !important;
+  font-weight: 400 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: none !important;
+}
+
+/* --- Body --- */
+.ecnow-about__body {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 24px !important;
+  margin-bottom: 36px !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* 運営会社カード */
+.ecnow-about__intro {
+	padding: 28px !important;
+	border-radius: 16px !important;
+	position: relative !important;
+	background: #333 !important;
+	color: #fff !important;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12) !important;
+	transition: all 0.3s ease !important;
+	overflow: hidden !important;
+}
+
+.ecnow-about__intro:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.16) !important;
+}
+
+.ecnow-about__intro::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 50%) !important;
+  border-radius: 16px !important;
+  pointer-events: none !important;
+}
+
+.ecnow-about__intro-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  margin-bottom: 16px !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.ecnow-about__logo {
+	width: 80px !important;height: 80px !important;
+  background: #fff !important;
+  border-radius: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-weight: 900 !important;
+  font-size: 18px !important;
+  color: #1a1a1a !important;
+  box-shadow: none !important;
+  flex-shrink: 0 !important;
+}
+
+.ecnow-about__intro-header h3 {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #fff !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: none !important;
+  border: none !important;
+  line-height: 1.5 !important;
+}
+
+.ecnow-about__intro-header h3 a {
+  color: #fff !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+  transition: border-color 0.3s !important;
+}
+
+.ecnow-about__intro-header h3 a:hover {
+  border-bottom-color: #fff !important;
+}
+
+.ecnow-about__intro > p {
+  font-size: 13px !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  line-height: 1.8 !important;
+  position: relative !important;
+  z-index: 1 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: none !important;
+}
+
+/* 読者イメージカード */
+.ecnow-about__target {
+  padding: 28px !important;
+  border-radius: 16px !important;
+  position: relative !important;
+  background: #fafafa !important;
+  border: 1px solid #eee !important;
+  box-shadow: none !important;
+  transition: all 0.3s ease !important;
+}
+
+.ecnow-about__target:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08) !important;
+}
+
+.ecnow-about__target-title {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #333 !important;
+  margin: 0 0 18px 0 !important;
+  padding: 0 !important;
+  text-align: center !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  background: none !important;
+  border: none !important;
+  line-height: 1.5 !important;
+}
+
+.ecnow-about__target-title::before,
+.ecnow-about__target-title::after {
+  content: "" !important;
+  width: 40px !important;
+  height: 1px !important;
+  background: #ddd !important;
+  border-radius: 0 !important;
+}
+
+.ecnow-about__target-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.ecnow-about__target-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  font-size: 13px !important;
+  color: #333 !important;
+  padding: 12px 16px !important;
+  background: #fff !important;
+  border-radius: 8px !important;
+  transition: all 0.3s ease !important;
+  margin: 0 !important;
+  line-height: 1.5 !important;
+  border: 1px solid #eee !important;
+}
+
+.ecnow-about__target-item:hover {
+  background: #fff !important;
+  border-color: #ccc !important;
+  transform: translateX(4px) !important;
+}
+
+.ecnow-about__target-item::before {
+  content: "" !important;
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  background: #1a1a1a !important;
+  border-radius: 50% !important;
+  flex-shrink: 0 !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E") !important;
+  background-size: 12px !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  box-shadow: none !important;
+}
+
+/* --- CTA --- */
+.ecnow-about__cta {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 20px !important;
+  flex-wrap: wrap !important;
+  position: relative !important;
+  z-index: 1 !important;
+  padding-top: 8px !important;
+  background: none !important;
+}
+
+.ecnow-about__cta-text {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #666 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: none !important;
+}
+
+.ecnow-about__btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  padding: 14px 32px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  font-family: 'Noto Sans JP', sans-serif !important;
+  border-radius: 8px !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+  position: relative !important;
+  overflow: hidden !important;
+  cursor: pointer !important;
+  border: none !important;
+  line-height: 1.5 !important;
+}
+
+.ecnow-about__btn--primary {
+  background: linear-gradient(135deg, #4a9df8 0%, #338df4 50%, #1a7de8 100%) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 15px rgba(51, 141, 244, 0.35) !important;
+}
+
+.ecnow-about__btn--primary::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: -100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent) !important;
+  transition: left 0.5s ease !important;
+  display: block !important;
+}
+
+.ecnow-about__btn--primary:hover {
+  background: linear-gradient(135deg, #5aa8f9 0%, #408ff5 50%, #2585eb 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(51, 141, 244, 0.45) !important;
+  color: #fff !important;
+}
+
+.ecnow-about__btn--primary:hover::before {
+  left: 100% !important;
+}
+
+.ecnow-about__btn--primary svg {
+  width: 16px !important;
+  height: 16px !important;
+  fill: none !important;
+  stroke: #fff !important;
+  stroke-width: 2.5 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  transition: transform 0.3s ease !important;
+}
+
+.ecnow-about__btn--primary:hover svg {
+  transform: translateX(4px) !important;
+}
+
+.ecnow-about__btn--secondary {
+  background: #fff !important;
+  color: #1a1a1a !important;
+  border: 2px solid #1a1a1a !important;
+  padding: 12px 28px !important;
+}
+
+.ecnow-about__btn--secondary:hover {
+  background: #1a1a1a !important;
+  color: #fff !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .ecnow-about {
+    margin: 40px auto !important;
+    padding: 0 16px !important;
+  }
+
+  .ecnow-about__inner {
+    padding: 36px 24px !important;
+    border-radius: 16px !important;
+  }
+
+  .ecnow-about__title {
+    font-size: 22px !important;
+  }
+
+  .ecnow-about__body {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .ecnow-about__intro,
+  .ecnow-about__target {
+    padding: 24px !important;
+  }
+
+  .ecnow-about__cta {
+    flex-direction: column !important;
+    gap: 14px !important;
+  }
+
+  .ecnow-about__cta-text {
+    margin-bottom: 4px !important;
+  }
+
+  .ecnow-about__btn {
+    width: 100% !important;
+    max-width: 280px !important;
+    justify-content: center !important;
+  }
+}
+
+.ecnow-about__title::before,
+.ecnow-about__title::after {
+  content: none !important;
+  display: none !important;
+  border: none !important;
+  background: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  position: static !important;
+}
+.ecnow-about__intro-header h3::before,
+.ecnow-about__intro-header h3::after {
+  content: none !important;
+  display: none !important;
+  border: none !important;
+  background: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  position: static !important;
+  box-shadow: none !important;
+}
+
+.p-authorBox__desc {text-align:justify;}
+
+/* =========================
+   Side CTA (match content-cta)
+========================= */
+
+.cta-side-content {
+    position: sticky;
+    top: 100px;
+    margin: 40px 0;
+    padding: 24px 28px;
+    background: #f9fbff;
+    border: 2px solid #0073e6;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    font-family: "Noto Sans JP", sans-serif;
+    text-align: center;
+}
+
+.cta-side-content h3{
+	font-size:16px;
+	color:#0073e6;
+	margin: 0 0 8px;
+}
+/* Text */
+.cta-side-text {
+    margin: 0 0 8px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #222;
+    font-weight: 500;
+}
+
+/* Button wrapper */
+.cta-side-button {
+    text-align: center;
+}
+
+/* Button (match primary CTA) */
+.cta-side-button .primary-action {
+    display: inline-block;
+    width: 100%;
+    padding: 12px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background: #0073e6;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+/* Hover */
+.cta-side-button .primary-action:hover {
+    background: #005bb5;
+    box-shadow: 0 6px 16px rgba(0, 115, 230, 0.3);
+    transform: translateY(-1px);
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 1024px) {
+    .cta-side-content {
+        position: static;
+        margin: 48px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .cta-side-content {
+        display: none;
+    }
+}
+
+.c-tabList__button{font-size: 1em; font-weight:600;}
+/* ===== 資料DLサンクスページ ===== */
+
+/* ヘッダー部分 */
+.contact_box {
+	max-width: 900px;
+	margin: 60px auto 80px;
+	padding: 0 20px;
+	text-align: center;
+}
+
+.article_title h1 {
+	font-size: 28px;
+	font-weight: 700;
+	font-feature-settings: "palt";
+	line-height: 1.6;
+	margin-bottom: 20px;
+	color: #333;
+}
+
+.contact_box > p {
+	font-size: 15px;
+	line-height: 1.8;
+	color: #555;
+	margin-bottom: 40px;
+}
+
+/* カード一覧 */
+.download-list-tile {
+	display: flex;
+	justify-content: center;
+	gap: 30px;
+	flex-wrap: wrap;
+}
+
+/* 各カード */
+.download-list-tiles {
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 8px;
+	width: 280px;
+	padding: 20px;
+	text-align: center;
+	transition: box-shadow 0.3s ease;
+}
+
+.download-list-tiles:hover {
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* サムネイル画像 */
+.download-list-tiles img {
+	width: 100%;
+	height: auto;
+	border-radius: 4px;
+	margin-bottom: 15px;
+}
+
+/* 資料タイトル */
+.download-list-tiles p {
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.7;
+	color: #333;
+	margin-bottom: 15px;
+	font-feature-settings: "palt";
+}
+
+/* DLボタン（WordPress Download Monitorプラグイン出力想定） */
+.download-list-tiles a {
+	display: inline-block;
+	background: #338df4;
+	color: #fff;
+	font-size: 14px;
+	font-weight: 600;
+	padding: 10px 28px;
+	border-radius: 6px;
+	text-decoration: none;
+	transition: background 0.3s ease;
+}
+
+.download-list-tiles a:hover {
+	background: #1a6fad;
+}
+
+/* ===== レスポンシブ ===== */
+@media screen and (max-width: 768px) {
+	.main {
+		height: auto !important;
+	}
+
+	.contact_box {
+		margin: 40px auto 60px;
+	}
+
+	.article_title h1 {
+		font-size: 22px;
+	}
+
+	.pc-only {
+		display: none;
+	}
+
+	.contact_box > p {
+		font-size: 14px;
+		font-feature-settings: "palt";
+	}
+
+	.download-list-tile {
+		flex-direction: column;
+		align-items: center;
+		gap: 20px;
+	}
+
+	.download-list-tiles {
+		width: 100%;
+		max-width: 320px;
+	}
+}
+.section-heading {
+  text-align: center;
+}
+
+.section-heading__sub {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: #888;
+  margin: 0 0 0.3rem;
+  text-transform: uppercase;
+}
+.section-heading .wp-block-heading {
+  margin-top: 0 !important;
+	margin-bottom: 0 !important;
+}

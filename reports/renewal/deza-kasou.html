@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ECNOW 下層ページ デザイン（共通の型 ＋ サービス）</title>
+<style>
+:root{color-scheme:light;}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+img{max-width:100%;}
+body{
+  background:#E9EDF1;color:#141E29;
+  font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
+}
+
+/* ===== 資料の枠 ===== */
+.sheet{max-width:1560px;margin:0 auto;padding:26px 20px 70px;}
+.sheet-head{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:baseline;
+  padding-bottom:13px;margin-bottom:16px;border-bottom:1px solid #C9D3DD;}
+.sheet-head h1{font-size:20px;font-weight:800;margin:0;letter-spacing:.02em;}
+.sheet-head .meta{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:11.5px;letter-spacing:.1em;color:#5C6B7A;}
+.sheet-note{margin:0 0 30px;font-size:13px;line-height:1.85;color:#5C6B7A;max-width:82ch;}
+.sheet-note b{color:#2B3947;}
+.canvas{overflow-x:auto;border:1px solid #C9D3DD;border-radius:10px;background:#FFFFFF;}
+
+.slab{margin:0 0 14px;padding-top:10px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;}
+.slab .sn{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11.5px;
+  font-weight:700;letter-spacing:.14em;color:#0C7F8A;}
+.slab h2{font-size:17px;font-weight:800;margin:0;letter-spacing:.02em;}
+.slab .sd{font-size:12.5px;color:#5C6B7A;}
+.gap{height:46px;}
+
+/* 共通の型の説明ブロック（資料側） */
+.spec{display:grid;grid-template-columns:330px 1fr;gap:34px;align-items:start;
+  border:1px solid #C9D3DD;border-radius:10px;background:#FFFFFF;padding:30px 32px;}
+.skel{display:flex;flex-direction:column;gap:6px;}
+.skel .r{border:1px solid #C9D3DD;border-radius:3px;background:#F3F6F8;
+  font-size:11.5px;font-weight:700;color:#41505E;padding:9px 12px;letter-spacing:.03em;}
+.skel .r.teal{background:#EAF7F8;border-color:#9FD9DE;color:#0C7F8A;}
+.skel .r.navy{background:#16324F;border-color:#16324F;color:#FFFFFF;}
+.skel .r.tall{padding:22px 12px;}
+.skel .r em{font-style:normal;float:right;font-weight:600;color:#7C8B99;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10.5px;}
+.skel .r.navy em{color:rgba(255,255,255,.6);}
+.skel .r.teal em{color:#4A9AA2;}
+.rules{display:flex;flex-direction:column;gap:0;}
+.rules li{display:grid;grid-template-columns:132px 1fr;gap:20px;padding:13px 0;
+  border-bottom:1px solid #E4E9EE;list-style:none;}
+.rules{margin:0;padding:0;}
+.rules li:first-child{padding-top:0;}
+.rules li:last-child{border-bottom:none;padding-bottom:0;}
+.rules .k{font-size:12.5px;font-weight:800;color:#0C7F8A;letter-spacing:.04em;line-height:1.75;}
+.rules .v{font-size:13px;line-height:1.85;color:#3C4B59;}
+.rules .v code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:12px;background:#F0F4F7;padding:1px 5px;border-radius:2px;color:#22313F;}
+
+/* ===================================================================
+   デザイン本体（トップ案Cと同じトークン）
+   =================================================================== */
+.site{
+  --teal:#18AEBA;
+  --teal-deep:#0C7F8A;
+  --teal-pale:#EAF7F8;
+  --navy:#16324F;
+  --navy-deep:#0E2337;
+  --ink:#101A24;
+  --body:#3C4B59;
+  --muted:#71808E;
+  --rule:#E4E9EE;
+  --rule-strong:#C8D2DB;
+  --ground:#F3F6F8;
+
+  --sans:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
+  --en:"Avenir Next","Futura","Century Gothic","Trebuchet MS",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+
+  min-width:1280px;background:#FFFFFF;color:var(--ink);
+  font-family:var(--sans);font-size:16px;line-height:1.8;-webkit-font-smoothing:antialiased;
+}
+.site a{text-decoration:none;color:inherit;}
+.site a:focus-visible{outline:2.5px solid var(--teal-deep);outline-offset:3px;border-radius:3px;}
+.site p{margin:0;}
+.site ul{margin:0;padding:0;list-style:none;}
+.wrap{max-width:1240px;margin:0 auto;padding:0 44px;}
+.narrow{max-width:1000px;margin:0 auto;padding:0 44px;}
+
+.tag{font-size:11.5px;font-weight:800;color:var(--teal-deep);letter-spacing:.08em;}
+.th{display:block;position:relative;overflow:hidden;
+  background:linear-gradient(108deg,var(--navy) 0 46%,var(--teal) 46% 100%);}
+.th::after{content:"";position:absolute;right:-8%;top:-22%;width:54%;aspect-ratio:1;
+  border-radius:50%;background:rgba(255,255,255,.15);}
+.th b{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);
+  text-align:center;color:#FFFFFF;font-weight:800;line-height:1.55;padding:0 9%;letter-spacing:.02em;}
+.date{font-family:var(--mono);font-size:11.5px;color:var(--muted);
+  font-variant-numeric:tabular-nums;letter-spacing:.05em;}
+
+/* ---------- ヘッダー（トップと共通） ---------- */
+.hd{border-bottom:1px solid var(--rule);}
+.hd-in{display:flex;align-items:center;gap:36px;height:72px;}
+.logo{display:flex;align-items:baseline;gap:12px;}
+.logo .lm{font-family:var(--en);font-weight:800;font-size:26px;letter-spacing:-.01em;color:var(--ink);}
+.logo .lm i{font-style:normal;color:var(--teal-deep);}
+.logo .ls{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.1em;}
+.hd nav{display:flex;gap:28px;margin-left:16px;}
+.hd nav a{font-size:13.5px;font-weight:700;color:var(--body);padding:4px 0;border-bottom:2px solid transparent;}
+.hd nav a:hover{color:var(--teal-deep);border-bottom-color:var(--teal);}
+.hd nav a.on{color:var(--ink);border-bottom-color:var(--teal);}
+.hd .right{margin-left:auto;display:flex;align-items:center;gap:20px;}
+.site .hd-btn{background:var(--teal-deep);color:#FFFFFF;font-weight:800;font-size:13.5px;
+  padding:11px 24px;border-radius:2px;white-space:nowrap;letter-spacing:.03em;}
+.site .hd-btn:hover{background:#0A6B75;}
+
+/* ---------- パンくず ---------- */
+.bc{border-bottom:1px solid var(--rule);}
+.bc ol{display:flex;align-items:center;gap:10px;margin:0;padding:13px 0;list-style:none;
+  font-size:12px;color:var(--muted);letter-spacing:.03em;}
+.bc a{color:var(--teal-deep);font-weight:700;}
+.bc a:hover{text-decoration:underline;}
+.bc .sep{color:var(--rule-strong);font-size:11px;}
+.bc [aria-current]{font-weight:700;color:var(--body);}
+
+/* ---------- ページヘッダー ---------- */
+.ph{padding:62px 0 0;}
+.ph-in{display:grid;grid-template-columns:1fr;gap:0;padding-bottom:40px;
+  border-bottom:2px solid var(--ink);}
+.ph.two .ph-in{grid-template-columns:1.25fr .75fr;gap:56px;align-items:end;}
+.ph-en{font-family:var(--en);font-size:11.5px;font-weight:800;letter-spacing:.24em;
+  color:var(--teal-deep);text-transform:uppercase;display:block;margin-bottom:12px;}
+.ph h1{font-size:38px;font-weight:800;line-height:1.42;margin:0;letter-spacing:.02em;}
+.ph .lede{margin-top:20px;font-size:15px;line-height:2.05;color:var(--body);max-width:62ch;}
+
+/* ページヘッダー右の要約（個別ページ用） */
+.sum{border-left:1px solid var(--rule-strong);padding-left:34px;}
+.sum li{display:grid;grid-template-columns:86px 1fr;gap:14px;align-items:baseline;padding:11px 0;}
+.sum li+li{border-top:1px solid var(--rule);}
+.sum .sl{font-size:12px;font-weight:800;color:var(--muted);letter-spacing:.06em;}
+.sum .sv{font-size:14.5px;font-weight:700;color:var(--ink);line-height:1.7;}
+.sum .sv b{font-family:var(--mono);font-size:19px;font-variant-numeric:tabular-nums;letter-spacing:.01em;}
+
+/* ---------- 下層のセクション ---------- */
+.b{padding:104px 0;}
+.b.gray{background:var(--ground);}
+.b.tight{padding:80px 0;}
+.sh{margin-bottom:38px;}
+.sh-en{font-family:var(--en);font-size:11.5px;font-weight:800;letter-spacing:.24em;
+  color:var(--teal-deep);text-transform:uppercase;display:block;margin-bottom:6px;}
+.sh h2{font-size:26px;font-weight:800;line-height:1.4;margin:0;letter-spacing:.02em;}
+.sh .note{margin-top:14px;font-size:14px;line-height:2;color:var(--body);max-width:64ch;}
+.sec-foot{display:flex;justify-content:flex-end;margin-top:48px;}
+.site .more-btn{display:inline-flex;align-items:center;gap:18px;
+  border:1.5px solid var(--ink);color:var(--ink);background:transparent;
+  font-size:14px;font-weight:800;letter-spacing:.04em;padding:17px 34px;border-radius:2px;
+  transition:background .18s ease,color .18s ease;}
+.site .more-btn::after{content:"";width:26px;height:1.5px;background:var(--ink);flex:none;
+  transition:background .18s ease,width .18s ease;}
+.site .more-btn:hover{background:var(--ink);color:#FFFFFF;}
+.site .more-btn:hover::after{background:#FFFFFF;width:34px;}
+
+/* ---------- 状況別の分岐（3列・縦罫） ---------- */
+.pick{display:grid;grid-template-columns:repeat(3,1fr);}
+.pick a{padding:0 34px;display:flex;flex-direction:column;}
+.pick a:first-child{padding-left:0;}
+.pick a:last-child{padding-right:0;}
+.pick a+a{border-left:1px solid var(--rule-strong);}
+.pick .pw{font-size:11.5px;font-weight:800;color:var(--teal-deep);letter-spacing:.1em;}
+.pick .pn{font-size:25px;font-weight:800;margin:12px 0 14px;letter-spacing:.02em;}
+.pick .pd{font-size:13.5px;line-height:2;color:var(--body);}
+.pick .pc{margin:20px 0 0;padding:18px 0 0;border-top:1px solid var(--rule);}
+.pick .pc li{position:relative;padding-left:20px;font-size:13px;line-height:1.95;color:var(--body);}
+.pick .pc li+li{margin-top:5px;}
+.pick .pc li::before{content:"";position:absolute;left:0;top:11px;width:9px;height:9px;
+  border:2px solid var(--teal);border-radius:1px;}
+.pick .pp{margin-top:20px;padding-top:16px;border-top:1px solid var(--rule);
+  display:flex;align-items:baseline;gap:10px;}
+.pick .pp .pl{font-size:11.5px;font-weight:800;color:var(--muted);letter-spacing:.06em;}
+.pick .go{margin-top:22px;font-size:13.5px;font-weight:800;color:var(--ink);
+  border-bottom:2px solid var(--teal);align-self:flex-start;padding-bottom:3px;}
+.pick a:hover .go{color:var(--teal-deep);}
+.pick a:hover .pn{color:var(--teal-deep);}
+
+/* 金額未定のプレースホルダー */
+.tbd{display:inline-block;font-family:var(--mono);font-size:12px;font-weight:700;
+  color:#9A6B12;background:#FFF8E8;border:1px dashed #D8B25E;border-radius:2px;
+  padding:2px 9px;letter-spacing:.05em;}
+.yen{font-family:var(--mono);font-size:19px;font-weight:700;color:var(--ink);
+  font-variant-numeric:tabular-nums;letter-spacing:.01em;}
+.yen small{font-size:12.5px;font-weight:700;color:var(--muted);margin-left:3px;letter-spacing:.04em;}
+
+/* ---------- 費用の表（罫線のみ） ---------- */
+.tb{width:100%;border-collapse:collapse;}
+.tb th,.tb td{text-align:left;padding:20px 20px;border-bottom:1px solid var(--rule);
+  font-size:14px;line-height:1.85;vertical-align:top;}
+.tb thead th{border-bottom:2px solid var(--ink);font-size:12.5px;font-weight:800;
+  color:var(--muted);letter-spacing:.08em;padding-bottom:13px;padding-top:0;}
+.tb tbody th{font-size:16px;font-weight:800;color:var(--ink);width:210px;letter-spacing:.02em;}
+.tb td:first-of-type{width:200px;}
+.tb .sub{display:block;margin-top:5px;font-size:12.5px;color:var(--muted);line-height:1.8;}
+.tb tr:last-child th,.tb tr:last-child td{border-bottom:2px solid var(--ink);}
+.tb-note{margin-top:18px;font-size:12.5px;line-height:1.95;color:var(--muted);}
+
+/* ---------- 工程（番号つき・罫線グリッド） ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--rule-strong);}
+.steps li{padding:28px 30px 30px;border-bottom:1px solid var(--rule-strong);}
+.steps li:not(:nth-child(3n+1)){border-left:1px solid var(--rule);}
+.steps .no{font-family:var(--en);font-weight:800;font-size:13px;letter-spacing:.14em;
+  color:var(--teal-deep);font-variant-numeric:tabular-nums;}
+.steps h3{font-size:17px;font-weight:800;margin:8px 0 10px;letter-spacing:.02em;line-height:1.55;}
+.steps p{font-size:13.5px;line-height:1.95;color:var(--body);}
+
+/* ---------- 対応カート ---------- */
+.carts{display:flex;flex-wrap:wrap;border-top:1px solid var(--rule-strong);
+  border-bottom:1px solid var(--rule-strong);}
+.carts li{flex:1 1 0;min-width:150px;padding:24px 8px;text-align:center;
+  font-size:16px;font-weight:800;letter-spacing:.02em;}
+.carts li+li{border-left:1px solid var(--rule);}
+.carts li span{display:block;margin-top:5px;font-size:11.5px;font-weight:700;
+  color:var(--muted);letter-spacing:.06em;}
+
+/* ---------- 進め方（4ステップ・横並び） ---------- */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--ink);}
+.flow li{padding:26px 26px 28px;}
+.flow li+li{border-left:1px solid var(--rule);}
+.flow .fn{font-family:var(--en);font-weight:800;font-size:30px;line-height:1;
+  color:var(--rule-strong);font-variant-numeric:tabular-nums;letter-spacing:-.02em;}
+.flow li:first-child .fn{color:var(--teal);}
+.flow h3{font-size:16px;font-weight:800;margin:12px 0 9px;letter-spacing:.02em;}
+.flow p{font-size:13px;line-height:1.95;color:var(--body);}
+.flow .free{display:inline-block;margin-top:10px;font-size:11px;font-weight:800;
+  color:var(--teal-deep);background:var(--teal-pale);padding:3px 9px;letter-spacing:.06em;}
+
+/* ---------- 事例（数字が主役・トップと共通） ---------- */
+.works{display:grid;grid-template-columns:repeat(3,1fr);}
+.works a{padding:0 36px;}
+.works a:first-child{padding-left:0;}
+.works a:last-child{padding-right:0;}
+.works a+a{border-left:1px solid var(--rule-strong);}
+.works .wn{font-size:13px;font-weight:800;color:var(--muted);letter-spacing:.06em;}
+.works .wq{font-size:12px;font-weight:800;color:var(--teal-deep);letter-spacing:.1em;margin-top:14px;}
+.works .wf{font-family:var(--en);font-weight:800;font-size:58px;line-height:1.1;
+  color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-.03em;margin:10px 0 14px;}
+.works .wf small{font-size:21px;margin-left:4px;letter-spacing:0;color:var(--teal-deep);}
+.works .wd{font-size:13.5px;line-height:1.95;color:var(--body);}
+.works a:hover .wf{color:var(--teal-deep);}
+
+/* ---------- お客様の声 ---------- */
+.voice{display:grid;grid-template-columns:repeat(2,1fr);gap:0 56px;}
+.voice li{padding:26px 0;border-top:1px solid var(--rule-strong);}
+.voice li:nth-child(3),.voice li:nth-child(4){border-bottom:1px solid var(--rule-strong);}
+.voice p{font-size:13.5px;line-height:2;color:var(--body);}
+.voice .vn{margin-top:14px;font-size:12.5px;font-weight:800;color:var(--muted);letter-spacing:.04em;}
+
+/* ---------- FAQ ---------- */
+.faq{border-top:1px solid var(--rule-strong);}
+.faq li{padding:24px 0;border-bottom:1px solid var(--rule-strong);
+  display:grid;grid-template-columns:1fr 1.35fr;gap:44px;}
+.faq h3{font-size:16px;font-weight:800;margin:0;line-height:1.7;letter-spacing:.01em;}
+.faq p{font-size:13.5px;line-height:2;color:var(--body);}
+
+/* ---------- 本文中のテキストCTA ---------- */
+.tcta{border-left:3px solid var(--teal);padding:4px 0 4px 22px;margin-top:44px;max-width:72ch;}
+.tcta p{font-size:14px;line-height:2.05;color:var(--body);}
+.tcta a{font-weight:800;color:var(--teal-deep);border-bottom:1.5px solid var(--teal);}
+.tcta a:hover{background:var(--teal-pale);}
+
+/* ---------- 関連記事 ---------- */
+.rel{display:grid;grid-template-columns:repeat(3,1fr);gap:0 30px;}
+.rel a{display:block;}
+.rel .th{aspect-ratio:16/10;}
+.rel .th b{font-size:15px;}
+.rel .m{display:flex;align-items:center;gap:12px;margin:14px 0 7px;}
+.rel h3{font-size:15px;font-weight:700;line-height:1.7;margin:0;}
+.rel a:hover h3{color:var(--teal-deep);}
+
+/* ---------- 隣のサービス（個別ページ末尾） ---------- */
+.sib{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--rule-strong);}
+.sib a{padding:26px 30px;display:block;}
+.sib a+a{border-left:1px solid var(--rule);}
+.sib .sw{font-size:11.5px;font-weight:800;color:var(--teal-deep);letter-spacing:.1em;}
+.sib .sn{font-size:20px;font-weight:800;margin:8px 0 8px;letter-spacing:.02em;display:block;}
+.sib p{font-size:13px;line-height:1.9;color:var(--body);}
+.sib a:hover{background:var(--teal-pale);}
+
+/* ---------- CTA（トップと共通） ---------- */
+.cta{background:var(--navy);color:#FFFFFF;}
+.cta-in{display:grid;grid-template-columns:1fr auto;gap:56px;align-items:center;padding:96px 0;}
+.cta .ce{font-family:var(--en);font-size:11.5px;font-weight:800;letter-spacing:.24em;
+  color:var(--teal);margin-bottom:14px;}
+.cta h2{font-size:33px;font-weight:800;line-height:1.5;margin:0 0 14px;letter-spacing:.02em;}
+.cta .cs{font-size:14px;color:rgba(255,255,255,.72);}
+.cta-btns{display:flex;flex-direction:column;gap:13px;}
+.site .cta-main{background:var(--teal);color:#0B2130;font-weight:800;font-size:16px;
+  padding:19px 44px;border-radius:2px;text-align:center;letter-spacing:.03em;white-space:nowrap;}
+.site .cta-main:hover{background:#2BC3CF;}
+.site .cta-sub{border:1.5px solid rgba(255,255,255,.45);color:#FFFFFF;font-weight:700;
+  font-size:14px;padding:15px 44px;border-radius:2px;text-align:center;white-space:nowrap;}
+.site .cta-sub:hover{border-color:#FFFFFF;}
+
+/* ---------- フッター（トップと共通） ---------- */
+.ft{background:var(--navy-deep);color:rgba(255,255,255,.6);font-size:13px;padding:62px 0 30px;}
+.ft .logo .lm{color:#FFFFFF;font-size:24px;}
+.ft .logo .lm i{color:var(--teal);}
+.ft .logo .ls{color:rgba(255,255,255,.5);}
+.ft-in{display:grid;grid-template-columns:1fr repeat(3,auto);gap:60px;
+  padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.14);}
+.ft-brand p{margin-top:16px;line-height:1.95;max-width:30ch;font-size:12.5px;}
+.ft-col .ch{font-family:var(--en);font-size:11px;font-weight:800;letter-spacing:.2em;
+  color:#FFFFFF;margin-bottom:16px;}
+.ft-col ul{display:flex;flex-direction:column;gap:11px;}
+.ft-col a{font-size:13px;font-weight:600;}
+.ft-col a:hover{color:#FFFFFF;}
+.ft-btm{display:flex;align-items:baseline;gap:26px;padding-top:24px;}
+.ft-btm .cp{margin-left:auto;font-family:var(--mono);font-size:11px;
+  color:rgba(255,255,255,.35);letter-spacing:.05em;}
+.ft-btm a{font-size:12px;}
+.ft-btm a:hover{color:#FFFFFF;}
+
+@media (prefers-reduced-motion:reduce){.site *{transition:none !important;}}
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <header class="sheet-head">
+    <h1>ECNOW 下層ページ デザイン（共通の型 ＋ サービス）</h1>
+    <span class="meta">PC 1440px 想定 ／ 2026-09-29</span>
+  </header>
+  <p class="sheet-note">
+    トップのデザイン案Cで決めたルール（ティール1色・罫線と余白で区切る・見出しは日本語主役＋小さい英字ラベル・誘導ボタンは右下）を下層に展開したものです。
+    ヘッダーとフッターはトップと同じものを使います。<b>記事詳細ページは現行SWELLのまま触りません。</b>この型が効くのは新設する
+    <code>/service/</code> <code>/works/</code> <code>/about/</code> <code>/contact/</code> の4系統です。
+    <b>費用の目安の金額はまだ決まっていないため、入る場所だけを枠で示しています。</b>文章と数字はそれ以外すべて現行
+    <code>/ec-consulting/</code> の実データです。スマホ版は別紙にします。
+  </p>
+
+  <!-- ===================== ① 共通の型 ===================== -->
+  <div class="slab">
+    <span class="sn">01</span>
+    <h2>下層ページ共通の型</h2>
+    <span class="sd">この骨格を4系統すべてで使い回します</span>
+  </div>
+
+  <div class="spec">
+    <div class="skel">
+      <div class="r">ヘッダー<em>トップと共通 72px</em></div>
+      <div class="r teal">パンくず<em>下層だけに付く</em></div>
+      <div class="r tall">ページヘッダー<em>英字ラベル＋h1＋リード</em></div>
+      <div class="r tall">セクション<em>上下104px</em></div>
+      <div class="r tall">セクション（グレー地）<em>交互に敷く</em></div>
+      <div class="r">本文中テキストCTA<em>売り込まない1本</em></div>
+      <div class="r tall">セクション<em>末尾に誘導ボタン（右下）</em></div>
+      <div class="r navy">CTA帯<em>紺地 96px</em></div>
+      <div class="r navy">フッター<em>トップと共通</em></div>
+    </div>
+
+    <ul class="rules">
+      <li>
+        <span class="k">パンくず</span>
+        <span class="v">ヘッダーの直下に1行。下層にだけ付けてトップには置きません。現在地は太字の黒、親階層はティールのリンクにします。</span>
+      </li>
+      <li>
+        <span class="k">ページヘッダー</span>
+        <span class="v">画像は使わず文字だけで組みます。<code>Service</code> のような小さい英字ラベル、日本語の <code>h1</code>（38px）、リード2〜3行。下に2pxの黒罫を引いて本文と切ります。トップのヒーローと張り合わせないためにビジュアルを入れません。</span>
+      </li>
+      <li>
+        <span class="k">セクション</span>
+        <span class="v">上下の余白は104px（トップの156pxより詰める）。下層は読ませるページなので密度を上げます。見出しは <code>h2</code> 26px（トップは29px）で、英字ラベルを上に小さく置きます。</span>
+      </li>
+      <li>
+        <span class="k">区切り</span>
+        <span class="v">カードの箱は作りません。縦罫・横罫・余白だけで区切ります。背景のグレー地（<code>#F3F6F8</code>）をセクションごとに交互に敷いてリズムを作ります。</span>
+      </li>
+      <li>
+        <span class="k">本文幅</span>
+        <span class="v">最大1240px。表・FAQ・工程のように読ませる要素は1000pxに絞ります（1行が長いと読めないため）。</span>
+      </li>
+      <li>
+        <span class="k">誘導ボタン</span>
+        <span class="v">セクション末尾の右下に置きます。視線がZ型に動いた着地点にあたる位置です。トップと同じ黒枠のボタンを使います。</span>
+      </li>
+      <li>
+        <span class="k">CTA</span>
+        <span class="v">1ページ3本まで。ヘッダーの相談ボタン／本文中のテキストリンク1本／ページ末尾の紺帯、の3つで固定します。同じ訴求を繰り返さず、本文中のものは売り込まずに窓口があると知らせるだけにします。</span>
+      </li>
+      <li>
+        <span class="k">数字の見せ方</span>
+        <span class="v">実績の数字は英字フォントで大きく出します。等幅数字（<code>tabular-nums</code>）を指定して桁を揃えます。出典と取得時期を必ず添えます。</span>
+      </li>
+      <li>
+        <span class="k">色</span>
+        <span class="v">ティール1色。紺はCTA帯とフッターの地色だけに使います。金額未定の箇所は黄色の破線枠で示していますが、これは検討用の印で本番には出しません。</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="gap"></div>
+
+  <!-- ===================== ② /service/ ===================== -->
+  <div class="slab">
+    <span class="sn">02</span>
+    <h2>サービス一覧 <code style="font-family:ui-monospace,monospace;font-size:13px;font-weight:600;color:#5C6B7A;">/service/</code></h2>
+    <span class="sd">現行 /ec-consulting/ を3サービスに分解し、状況から選ばせる構成にします</span>
+  </div>
+
+  <div class="canvas">
+  <div class="site">
+
+    <header class="hd">
+      <div class="wrap hd-in">
+        <a class="logo" href="#">
+          <span class="lm">EC<i>NOW</i></span>
+          <span class="ls">EC運営の実務メディア</span>
+        </a>
+        <nav>
+          <a href="#">記事</a>
+          <a class="on" href="#">サービス</a>
+          <a href="#">事例</a>
+          <a href="#">運営について</a>
+        </nav>
+        <div class="right">
+          <a class="hd-btn" href="#">ECの相談をする</a>
+        </div>
+      </div>
+    </header>
+
+    <nav class="bc">
+      <div class="wrap">
+        <ol>
+          <li><a href="#">ホーム</a></li>
+          <li class="sep">／</li>
+          <li aria-current="page">サービス</li>
+        </ol>
+      </div>
+    </nav>
+
+    <section class="ph">
+      <div class="wrap ph-in">
+        <div>
+          <span class="ph-en">Service</span>
+          <h1>ECの構築と運営を引き受けます</h1>
+          <p class="lede">
+            ECNOWを運営するJPholic株式会社が、ECサイトの構築・改善・運用代行を行っています。
+            30社をこえるECコンサルティングの実績があり、自社でもロブスターのECを運営しています。
+            相談とお見積りは無料です。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 状況別の分岐 -->
+    <section class="b">
+      <div class="wrap">
+        <div class="sh">
+          <span class="sh-en">Choose</span>
+          <h2>いまの状況から選んでください</h2>
+          <p class="note">ECの困りごとはひとつの施策では解決しません。商材と社内体制によって先に手をつけるところが変わるため、状況ごとに入口を分けています。</p>
+        </div>
+
+        <div class="pick">
+          <a href="#">
+            <span class="pw">サイトがない</span>
+            <span class="pn">EC構築</span>
+            <span class="pd">何もない状態から立ち上げます。モール出店と自社サイトのどちらが向くかの判断から入ります。</span>
+            <ul class="pc">
+              <li>カートの選定で迷って先に進めていない</li>
+              <li>社内にECを分かる人がいない</li>
+              <li>実店舗の商品をネットでも売りたい</li>
+            </ul>
+            <span class="pp"><span class="pl">費用の目安</span><span class="tbd">金額未定</span></span>
+            <span class="go">EC構築をみる</span>
+          </a>
+          <a href="#">
+            <span class="pw">あるが売れない</span>
+            <span class="pn">改善コンサル</span>
+            <span class="pd">商品ページ・広告・集客のどこで止まっているかを切り分けて 手をつける順番を決めます。</span>
+            <ul class="pc">
+              <li>作ったが効果的な売り方が分からない</li>
+              <li>広告を止めると注文が止まる</li>
+              <li>費用対効果を数字で社内に説明できない</li>
+            </ul>
+            <span class="pp"><span class="pl">費用の目安</span><span class="tbd">金額未定</span></span>
+            <span class="go">改善コンサルをみる</span>
+          </a>
+          <a href="#">
+            <span class="pw">運用が回らない</span>
+            <span class="pn">運用代行</span>
+            <span class="pd">商品登録・受注処理・広告運用を引き受けます。人手が足りない期間だけの利用もできます。</span>
+            <ul class="pc">
+              <li>既存業務が忙しくECまで手が回らない</li>
+              <li>モールの運用まで見きれない</li>
+              <li>公開後に何もしてもらえず止まっている</li>
+            </ul>
+            <span class="pp"><span class="pl">費用の目安</span><span class="tbd">金額未定</span></span>
+            <span class="go">運用代行をみる</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 費用の目安 -->
+    <section class="b gray">
+      <div class="narrow">
+        <div class="sh">
+          <span class="sh-en">Price</span>
+          <h2>費用の目安</h2>
+          <p class="note">正式なお見積りは内容をうかがったうえでお出しします。ここに出しているのは過去のご依頼の中央値です。</p>
+        </div>
+
+        <table class="tb">
+          <thead>
+            <tr>
+              <th>サービス</th>
+              <th>初期費用</th>
+              <th>月額</th>
+              <th>期間の目安</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>EC構築<span class="sub">要件定義から公開まで</span></th>
+              <td><span class="tbd">金額未定</span></td>
+              <td><span class="tbd">金額未定</span></td>
+              <td>3〜6か月</td>
+            </tr>
+            <tr>
+              <th>改善コンサル<span class="sub">分析と施策の優先順位づけ</span></th>
+              <td><span class="tbd">金額未定</span></td>
+              <td><span class="tbd">金額未定</span></td>
+              <td>6か月〜</td>
+            </tr>
+            <tr>
+              <th>運用代行<span class="sub">商品登録・受注・広告運用</span></th>
+              <td><span class="tbd">金額未定</span></td>
+              <td><span class="tbd">金額未定</span></td>
+              <td>3か月〜（スポット可）</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="tb-note">
+          必要な工程だけのご依頼もできます。「サイトはあるので集客だけ」「カートの初期設定だけ手伝ってほしい」といった形でも構いません。<br>
+          整理した結果「いまはやらなくていい」とお伝えすることもあります。
+        </p>
+
+        <div class="tcta">
+          <p>
+            社内のリソースでできる範囲なら、外注しないほうが早いこともあります。
+            どこまで自社でやれてどこから頼むべきかの線引きも、<a href="#">無料のヒアリング</a>でご一緒に整理しています。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 対応できる工程 -->
+    <section class="b">
+      <div class="wrap">
+        <div class="sh">
+          <span class="sh-en">Scope</span>
+          <h2>対応できるのは戦略設計から集客支援までの6工程</h2>
+          <p class="note">ECに関わる工程を自社で担当できる体制があります。必要な工程だけを切り出してのご依頼も可能です。</p>
+        </div>
+
+        <ul class="steps">
+          <li>
+            <span class="no">01</span>
+            <h3>目的の確認と戦略設計</h3>
+            <p>制作の目的と達成したい目標をうかがい、そのKPIに基づいてECサイトの戦略を設計します。</p>
+          </li>
+          <li>
+            <span class="no">02</span>
+            <h3>ディレクション</h3>
+            <p>目標達成のためのサイト企画・構成を行います。サイトマップとワイヤーフレームをご提出します。</p>
+          </li>
+          <li>
+            <span class="no">03</span>
+            <h3>デザイン・コーディング</h3>
+            <p>購入までの導線を設計したうえで、オーダーメイドのECサイトを制作します。</p>
+          </li>
+          <li>
+            <span class="no">04</span>
+            <h3>カートの初期設定</h3>
+            <p>分かりづらいASPカートの初期設定（特商法表記、利用規約、送料設定など）も代行します。</p>
+          </li>
+          <li>
+            <span class="no">05</span>
+            <h3>アクセス分析支援</h3>
+            <p>GA4、サーチコンソール、Microsoft Clarityなど外部ツールとの連携を標準サービスで提供します。</p>
+          </li>
+          <li>
+            <span class="no">06</span>
+            <h3>集客支援</h3>
+            <p>オウンドメディアの立ち上げ、SEO、SNS広告まで、集客の実行支援まで担当します。</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 対応カート -->
+    <section class="b tight gray">
+      <div class="wrap">
+        <div class="sh">
+          <span class="sh-en">Cart</span>
+          <h2>主要なASPカートに対応しています</h2>
+        </div>
+        <ul class="carts">
+          <li>Shopify<span>構築・運用</span></li>
+          <li>makeshop<span>構築・運用</span></li>
+          <li>futureshop<span>構築・運用</span></li>
+          <li>BASE<span>構築・運用</span></li>
+          <li>カラーミーショップ<span>構築・運用</span></li>
+          <li>楽天市場 ／ Amazon<span>出店・運用代行</span></li>
+        </ul>
+        <p class="tb-note">
+          これから選ぶ段階であれば、商材と社内体制に合ったカートの選定からご相談ください。
+          カートごとの違いは <a href="#" style="color:#0C7F8A;font-weight:700;border-bottom:1px solid #18AEBA;">【比較】代表的なASPカート6選</a> に、
+          用意すべきページは <a href="#" style="color:#0C7F8A;font-weight:700;border-bottom:1px solid #18AEBA;">ECサイトに必要なページ完全ガイド</a> にまとめています。
+        </p>
+      </div>
+    </section>
+
+    <!-- 事例 -->
+    <section class="b">
+      <div class="wrap">
+        <div class="sh">
+          <span class="sh-en">Works</span>
+          <h2>支援した事例</h2>
+          <p class="note">数字はいずれも支援期間中に実際に動いたものです。</p>
+        </div>
+        <div class="works">
+          <a href="#">
+            <p class="wn">呼子朝市様（唐津市）</p>
+            <p class="wq">売上 前年比</p>
+            <p class="wf">6.8<small>倍</small></p>
+            <p class="wd">Shopifyでの新規構築から継続運用まで担当し 1年で売上が前年比6.8倍 セッション数が約6倍に伸びました</p>
+          </a>
+          <a href="#">
+            <p class="wn">佐賀マルシェ様（佐賀市）</p>
+            <p class="wq">広告ROAS</p>
+            <p class="wf">2<small>倍</small></p>
+            <p class="wd">楽天市場店とYahoo!ショッピング店の運用代行です 商品ページの整備と広告運用でROASを約2倍にしました</p>
+          </a>
+          <a href="#">
+            <p class="wn">Garage 1st様</p>
+            <p class="wq">月商</p>
+            <p class="wf">500<small>万円</small></p>
+            <p class="wd">SNSとSEOを組み合わせた集客強化と商品ページの最適化で月商500万円に到達しています</p>
+          </a>
+        </div>
+        <div class="sec-foot"><a class="more-btn" href="#">事例をすべてみる</a></div>
+      </div>
+    </section>
+
+    <!-- お客様の声 -->
+    <section class="b gray">
+      <div class="narrow">
+        <div class="sh">
+          <span class="sh-en">Voice</span>
+          <h2>お客様からいただいた声</h2>
+        </div>
+        <ul class="voice">
+          <li>
+            <p>急なお願いが多いにも関わらず、いつもすぐに対応していただけるのが一番助かっています。作業後は必ず報告があり、結果だけでなく「どこを見て判断すればよいか」という視点まで伝えてもらえるのがありがたいです。</p>
+            <p class="vn">株式会社佐賀玉屋 高森様（ECサイト）</p>
+          </li>
+          <li>
+            <p>ECサイトの運営が人手不足で手付かずの状態でした。担当者が同じ県内にいるので相談しやすく、運営をお願いしてから社内の作業効率が上がり、売上アップの成果も出ています。</p>
+            <p class="vn">木屋 山下様（ECサイト）</p>
+          </li>
+          <li>
+            <p>更新や注文管理をマメにできるか不安がありましたが、何かあったときの対応が早く安心です。開設してすぐ、思っていたより早く注文をいただけて反応の良さを感じました。</p>
+            <p class="vn">とまと屋ファームえじま 江島様（ホームページ）</p>
+          </li>
+          <li>
+            <p>カート、検索ボックス、トップページのUIを見直したうえで、お中元・お歳暮のページを拡充してもらいました。売上向上につながっています。</p>
+            <p class="vn">株式会社佐賀玉屋様（自社EC UI改善）</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 進め方 -->
+    <section class="b">
+      <div class="wrap">
+        <div class="sh">
+          <span class="sh-en">Flow</span>
+          <h2>ご相談は4ステップで進みます（見積りまでは無料）</h2>
+          <p class="note">ヒアリングからご提案までは通常1〜2週間です。制作期間は要件によって変わるため、お見積りとあわせてご案内します。</p>
+        </div>
+        <ul class="flow">
+          <li>
+            <span class="fn">01</span>
+            <h3>お問い合わせ</h3>
+            <p>フォームからご連絡ください。決まっていないことだらけの状態でも大丈夫です。</p>
+          </li>
+          <li>
+            <span class="fn">02</span>
+            <h3>ヒアリング</h3>
+            <p>商材、現在の課題、目標とする数字などをうかがいます。オンラインでも実施できます。</p>
+            <span class="free">無料</span>
+          </li>
+          <li>
+            <span class="fn">03</span>
+            <h3>ご提案とお見積り</h3>
+            <p>うかがった内容をもとに、進め方と費用をご提案します。内訳もあわせてお出しします。</p>
+            <span class="free">無料</span>
+          </li>
+          <li>
+            <span class="fn">04</span>
+            <h3>制作・運用開始</h3>
+            <p>ご納得いただけたら着手します。公開後も分析と改善を継続して担当します。</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="b gray">
+      <div class="narrow">
+        <div class="sh">
+          <span class="sh-en">FAQ</span>
+          <h2>よくあるご質問</h2>
+        </div>
+        <ul class="faq">
+          <li>
+            <h3>まだ何も決まっていないのですが相談してもいいですか</h3>
+            <p>もちろんです。「何から手をつけるべきか」を整理するところから始めるケースがいちばん多いです。商材と現状をうかがったうえで優先順位をご提案します。</p>
+          </li>
+          <li>
+            <h3>相談や見積りに費用はかかりますか</h3>
+            <p>かかりません。ヒアリングとお見積りまでは無料です。見積りのみのご利用も歓迎しています。</p>
+          </li>
+          <li>
+            <h3>すでにECサイトがあるのですが改善だけの依頼もできますか</h3>
+            <p>可能です。既存サイトの分析、商品ページの改善、SEO、オウンドメディアの立ち上げなど、必要な工程だけをお引き受けしています。</p>
+          </li>
+          <li>
+            <h3>使っているカートが決まっているのですが対応できますか</h3>
+            <p>Shopify、makeshop、futureshop、BASE、カラーミーショップなど主要なASPカートに対応しています。これから選ぶ段階であれば、商材と体制に合ったカートの選定からご相談ください。</p>
+          </li>
+          <li>
+            <h3>公開したあとのサポートはありますか</h3>
+            <p>あります。アクセス分析、SEO、コンテンツ制作、ABテストによる購入率改善まで継続してご支援できます。</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap cta-in">
+        <div>
+          <p class="ce">Contact</p>
+          <h2>まだ何も決まっていない段階でもご連絡ください</h2>
+          <p class="cs">ご相談・お見積りは無料です ／ 支援30社 ／ 自社でもECを運営しています</p>
+        </div>
+        <div class="cta-btns">
+          <a class="cta-main" href="#">ECの相談をする</a>
+          <a class="cta-sub" href="#">先に資料をダウンロードする</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="ft">
+      <div class="wrap">
+        <div class="ft-in">
+          <div class="ft-brand">
+            <a class="logo" href="#">
+              <span class="lm">EC<i>NOW</i></span>
+              <span class="ls">EC運営の実務メディア</span>
+            </a>
+            <p>JPholic株式会社が運営するECの実務メディアです。ECサイトの構築・運営・コンサルティングを行っています。</p>
+          </div>
+          <div class="ft-col">
+            <p class="ch">CATEGORY</p>
+            <ul>
+              <li><a href="#">ECを今からはじめる</a></li>
+              <li><a href="#">ECを今よりもっと</a></li>
+              <li><a href="#">ECの今をこえる</a></li>
+              <li><a href="#">ECの今</a></li>
+            </ul>
+          </div>
+          <div class="ft-col">
+            <p class="ch">SERVICE</p>
+            <ul>
+              <li><a href="#">EC構築</a></li>
+              <li><a href="#">改善コンサル</a></li>
+              <li><a href="#">運用代行</a></li>
+              <li><a href="#">支援事例</a></li>
+            </ul>
+          </div>
+          <div class="ft-col">
+            <p class="ch">INFORMATION</p>
+            <ul>
+              <li><a href="#">運営について</a></li>
+              <li><a href="#">資料ダウンロード</a></li>
+              <li><a href="#">お問い合わせ</a></li>
+              <li><a href="#">プライバシーポリシー</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="ft-btm">
+          <a href="#">JPholic株式会社</a>
+          <a href="#">プライバシーポリシー</a>
+          <span class="cp">© JPholic Inc.</span>
+        </div>
+      </div>
+    </footer>
+
+  </div><!-- /site -->
+  </div><!-- /canvas -->
+
+  <div class="gap"></div>
+
+  <!-- ===================== ③ /service/build/ ===================== -->
+  <div class="slab">
+    <span class="sn">03</span>
+    <h2>サービス個別 <code style="font-family:ui-monospace,monospace;font-size:13px;font-weight:600;color:#5C6B7A;">/service/build/</code></h2>
+    <span class="sd">同じ型で改善コンサルと運用代行も作ります</span>
+  </div>
+
+  <div class="canvas">
+  <div class="site">
+
+    <header class="hd">
+      <div class="wrap hd-in">
+        <a class="logo" href="#">
+          <span class="lm">EC<i>NOW</i></span>
+          <span class="ls">EC運営の実務メディア</span>
+        </a>
+        <nav>
+          <a href="#">記事</a>
+          <a class="on" href="#">サービス</a>
+          <a href="#">事例</a>
+          <a href="#">運営について</a>
+        </nav>
+        <div class="right">
+          <a class="hd-btn" href="#">ECの相談をする</a>
+        </div>
+      </div>
+    </header>
+
+    <nav class="bc">
+      <div class="wrap">
+        <ol>
+          <li><a href="#">ホーム</a></li>
+          <li class="sep">／</li>
+          <li><a href="#">サービス</a></li>
+          <li class="sep">／</li>
+          <li aria-current="page">EC構築</li>
+        </ol>
+      </div>
+    </nav>
+
+    <section class="ph two">
+      <div class="wrap ph-in">
+        <div>
+          <span class="ph-en">Service / Build</span>
+          <h1>サイトがない状態から立ち上げます</h1>
+          <p class="lede">
+            モール出店と自社サイトのどちらが向くかの判断から入ります。
+            公開までではなく、誰が何をどのくらいの頻度で更新するのかまで決めたうえでご提案します。
+          </p>
+        </div>
+        <ul class="sum">
+          <li><span class="sl">費用の目安</span><span class="sv"><span class="tbd">金額未定</span></span></li>
+          <li><span class="sl">期間</span><span class="sv"><b>3〜6</b>か月</span></li>
+          <li><span class="sl">対応カート</span><span class="sv">Shopify ／ makeshop ／ futureshop ／ BASE ／ カラーミー</span></li>
+          <li><span class="sl">モール</span><span class="sv">楽天市場 ／ Amazon ／ Yahoo!ショッピング</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- こんな状況 -->
+    <section class="b">
+      <div class="wrap">
+        <div class="sh">
+          <span class="sh-en">Case</span>
+          <h2>ご依頼でいちばん多いのは何から手をつけるか分からない状態</h2>
+          <p class="note">ECNOWの記事を読んでご連絡いただく方から、実際によくうかがう状況です。当てはまるものがあればそのままお持ちください。</p>
+        </div>
+        <ul class="steps">
+          <li>
+            <span class="no">01</span>
+            <h3>カートの選定で止まっている</h3>
+            <p>ShopifyとmakeshopとBASEを比べたが決められない。商材と社内の人数によって答えが変わるため、そこから一緒に決めます。</p>
+          </li>
+          <li>
+            <span class="no">02</span>
+            <h3>社内にECを分かる人がいない</h3>
+            <p>相談できる相手がいないまま調べ物が続いている状態です。判断に必要な材料だけを絞ってお出しします。</p>
+          </li>
+          <li>
+            <span class="no">03</span>
+            <h3>実店舗の商品をネットでも売りたい</h3>
+            <p>在庫と受注をどう回すかを先に決めないと、公開後に手が止まります。運用の手順まで含めて設計します。</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 進め方 -->
+    <section class="b gray">
+      <div class="narrow">
+        <div class="sh">
+          <span class="sh-en">Process</span>
+          <h2>公開までの6工程</h2>
+          <p class="note">必要な工程だけのご依頼もできます。「カートの初期設定だけ手伝ってほしい」という形でも構いません。</p>
+        </div>
+
+        <table class="tb">
+          <thead>
+            <tr><th>工程</th><th>やること</th><th>お出しするもの</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>01 戦略設計</th>
+              <td>目的と目標をうかがいKPIを決める</td>
+              <td>KPI設計書</td>
+            </tr>
+            <tr>
+              <th>02 ディレクション</th>
+              <td>サイトの企画と構成を組む</td>
+              <td>サイトマップ／ワイヤーフレーム</td>
+            </tr>
+            <tr>
+              <th>03 デザイン</th>
+              <td>購入までの導線を設計して画面を作る</td>
+              <td>デザインカンプ</td>
+            </tr>
+            <tr>
+              <th>04 構築</th>
+              <td>カートの構築と初期設定を行う</td>
+              <td>特商法表記／利用規約／送料設定</td>
+            </tr>
+            <tr>
+              <th>05 計測の設定</th>
+              <td>分析ツールを連携して数字を見られる状態にする</td>
+              <td>GA4／サーチコンソール／Clarity</td>
+            </tr>
+            <tr>
+              <th>06 公開と引き継ぎ</th>
+              <td>更新の担当と頻度を決めて運用に渡す</td>
+              <td>運用マニュアル</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="tcta">
+          <p>
+            工程の一部は社内でも進められます。どこまで自社でやってどこから頼むかの線引きから決めたい場合も、
+            <a href="#">無料のヒアリング</a>で整理しています。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 事例 -->
+    <section class="b">
+      <div class="wrap">
+        <div class="sh">
+          <span class="sh-en">Works</span>
+          <h2>構築を担当した事例</h2>
+        </div>
+        <div class="works">
+          <a href="#">
+            <p class="wn">呼子朝市様（唐津市）</p>
+            <p class="wq">売上 前年比</p>
+            <p class="wf">6.8<small>倍</small></p>
+            <p class="wd">地域物販のECをShopifyで新規構築し そのまま運用まで担当しました 1年でセッション数も約6倍になっています</p>
+          </a>
+          <a href="#">
+            <p class="wn">Garage 1st様</p>
+            <p class="wq">月商</p>
+            <p class="wf">500<small>万円</small></p>
+            <p class="wd">車のカスタムパーツのECです オーダーメイド機能を実装し商品ページの最適化で購入率を上げました</p>
+          </a>
+          <a href="#">
+            <p class="wn">江島とまと様（佐賀）</p>
+            <p class="wq">個人ブランド</p>
+            <p class="wf">Shopify</p>
+            <p class="wd">農産物の個人ブランドECです 生産者の顔が見える販売体制と運用設計まで担当しました</p>
+          </a>
+        </div>
+        <div class="sec-foot"><a class="more-btn" href="#">事例をすべてみる</a></div>
+      </div>
+    </section>
+
+    <!-- 関連記事 -->
+    <section class="b gray">
+      <div class="wrap">
+        <div class="sh">
+          <span class="sh-en">Read</span>
+          <h2>依頼する前に読んでおくと判断が早くなる記事</h2>
+        </div>
+        <div class="rel">
+          <a href="#">
+            <span class="th"><b>ASPカート<br>6選を比較</b></span>
+            <span class="m"><span class="tag">ECを今からはじめる</span><span class="date">2026.07.22</span></span>
+            <h3>【比較】代表的なASPカート6選｜あなたにおすすめなEC構築サービスは？</h3>
+          </a>
+          <a href="#">
+            <span class="th"><b>ECサイトに<br>必要なページ</b></span>
+            <span class="m"><span class="tag">ECを今からはじめる</span><span class="date">2026.06.10</span></span>
+            <h3>ECサイトに必要なページ完全ガイド｜最低限そろえるべき基本ページとは？</h3>
+          </a>
+          <a href="#">
+            <span class="th"><b>商品登録とは</b></span>
+            <span class="m"><span class="tag">ECを今からはじめる</span><span class="date">2026.08.04</span></span>
+            <h3>商品登録とは？EC・ネットショップの必須8項目</h3>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="b tight">
+      <div class="narrow">
+        <div class="sh">
+          <span class="sh-en">FAQ</span>
+          <h2>よくあるご質問</h2>
+        </div>
+        <ul class="faq">
+          <li>
+            <h3>どのくらいの期間で公開できますか</h3>
+            <p>規模によりますが3〜6か月です。ヒアリングからご提案までは通常1〜2週間で、そのあとの制作期間は要件によって変わります。</p>
+          </li>
+          <li>
+            <h3>モール出店と自社サイトのどちらがいいですか</h3>
+            <p>商材と社内の体制で変わります。集客をモールに任せたいのか、顧客情報を自社で持ちたいのかをうかがったうえでご提案します。両方を並行する形もあります。</p>
+          </li>
+          <li>
+            <h3>公開したあとの運用もお願いできますか</h3>
+            <p>できます。運用代行と改善コンサルで引き続き担当します。社内で運用する場合は、更新の手順書をお渡ししたうえで引き継ぎます。</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 隣のサービス -->
+    <section class="b tight gray">
+      <div class="wrap">
+        <div class="sh">
+          <span class="sh-en">Other</span>
+          <h2>ほかのサービス</h2>
+        </div>
+        <div class="sib">
+          <a href="#">
+            <span class="sw">あるが売れない</span>
+            <span class="sn">改善コンサル</span>
+            <p>商品ページ・広告・集客のどこで止まっているかを切り分けて 手をつける順番を決めます。</p>
+          </a>
+          <a href="#">
+            <span class="sw">運用が回らない</span>
+            <span class="sn">運用代行</span>
+            <p>商品登録・受注処理・広告運用を引き受けます。人手が足りない期間だけの利用もできます。</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap cta-in">
+        <div>
+          <p class="ce">Contact</p>
+          <h2>カートが決まっていない段階でもご連絡ください</h2>
+          <p class="cs">ご相談・お見積りは無料です ／ 支援30社 ／ 自社でもECを運営しています</p>
+        </div>
+        <div class="cta-btns">
+          <a class="cta-main" href="#">EC構築を相談する</a>
+          <a class="cta-sub" href="#">先に資料をダウンロードする</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="ft">
+      <div class="wrap">
+        <div class="ft-in">
+          <div class="ft-brand">
+            <a class="logo" href="#">
+              <span class="lm">EC<i>NOW</i></span>
+              <span class="ls">EC運営の実務メディア</span>
+            </a>
+            <p>JPholic株式会社が運営するECの実務メディアです。ECサイトの構築・運営・コンサルティングを行っています。</p>
+          </div>
+          <div class="ft-col">
+            <p class="ch">CATEGORY</p>
+            <ul>
+              <li><a href="#">ECを今からはじめる</a></li>
+              <li><a href="#">ECを今よりもっと</a></li>
+              <li><a href="#">ECの今をこえる</a></li>
+              <li><a href="#">ECの今</a></li>
+            </ul>
+          </div>
+          <div class="ft-col">
+            <p class="ch">SERVICE</p>
+            <ul>
+              <li><a href="#">EC構築</a></li>
+              <li><a href="#">改善コンサル</a></li>
+              <li><a href="#">運用代行</a></li>
+              <li><a href="#">支援事例</a></li>
+            </ul>
+          </div>
+          <div class="ft-col">
+            <p class="ch">INFORMATION</p>
+            <ul>
+              <li><a href="#">運営について</a></li>
+              <li><a href="#">資料ダウンロード</a></li>
+              <li><a href="#">お問い合わせ</a></li>
+              <li><a href="#">プライバシーポリシー</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="ft-btm">
+          <a href="#">JPholic株式会社</a>
+          <a href="#">プライバシーポリシー</a>
+          <span class="cp">© JPholic Inc.</span>
+        </div>
+      </div>
+    </footer>
+
+  </div><!-- /site -->
+  </div><!-- /canvas -->
+
+</div>
+
+</body>
+</html>
