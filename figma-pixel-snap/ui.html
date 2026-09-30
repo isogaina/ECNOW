@@ -1,0 +1,141 @@
+<style>
+  :root {
+    --bg: var(--figma-color-bg, #fff);
+    --text: var(--figma-color-text, #222);
+    --sub: var(--figma-color-text-secondary, #777);
+    --border: var(--figma-color-border, #e5e5e5);
+    --brand: var(--figma-color-bg-brand, #0d99ff);
+    --on-brand: var(--figma-color-text-onbrand, #fff);
+    --hover: var(--figma-color-bg-hover, #f5f5f5);
+    --danger: var(--figma-color-text-danger, #f24822);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 12px; font: 12px/1.5 Inter, system-ui, sans-serif; color: var(--text); background: var(--bg); }
+  h2 { font-size: 11px; font-weight: 600; margin: 12px 0 6px; color: var(--sub); }
+  h2:first-child { margin-top: 0; }
+  label { display: flex; align-items: center; gap: 6px; padding: 3px 0; }
+  .row { display: flex; align-items: center; justify-content: space-between; padding: 3px 0; }
+  select, input[type=number] { width: 72px; padding: 3px 6px; border: 1px solid var(--border); border-radius: 4px; background: var(--bg); color: var(--text); }
+  .hint { color: var(--sub); font-size: 11px; margin: 2px 0 0 22px; }
+  .buttons { display: flex; gap: 8px; margin-top: 12px; }
+  button { flex: 1; padding: 7px; border-radius: 5px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font: inherit; cursor: pointer; }
+  button.primary { background: var(--brand); border-color: var(--brand); color: var(--on-brand); font-weight: 600; }
+  button:disabled { opacity: .4; cursor: default; }
+  #status { margin-top: 10px; color: var(--sub); }
+  #status.error { color: var(--danger); }
+  #list { margin-top: 6px; border-top: 1px solid var(--border); }
+  .item { padding: 6px 4px; border-bottom: 1px solid var(--border); cursor: pointer; }
+  .item:hover { background: var(--hover); }
+  .name { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .change { color: var(--sub); font-variant-numeric: tabular-nums; }
+</style>
+
+<h2>丸め</h2>
+<label><input type="checkbox" id="roundPosition"> 位置（X / Y）</label>
+<div class="row" style="padding-left:22px">
+  <span>位置の丸め単位</span>
+  <select id="unit">
+    <option value="1">1px</option>
+    <option value="2">2px</option>
+    <option value="4">4px</option>
+    <option value="8">8px</option>
+  </select>
+</div>
+<label><input type="checkbox" id="roundSize"> サイズ（W / H）</label>
+<label><input type="checkbox" id="roundLayout"> Auto Layout の余白・間隔</label>
+
+<h2>中央寄せ</h2>
+<label><input type="checkbox" id="centerX"> 左右中央に近いものを中央へ</label>
+<label><input type="checkbox" id="centerY"> 上下中央に近いものを中央へ</label>
+<div class="row" style="padding-left:22px">
+  <span>ズレの許容幅</span>
+  <span><input type="number" id="threshold" min="0" max="50" step="0.5"> px</span>
+</div>
+<div class="hint">親フレームの中央からこの幅以内にあるレイヤーだけ寄せます</div>
+
+<h2>対象</h2>
+<label><input type="checkbox" id="includeChildren"> 選択レイヤーの中身もすべて対象にする</label>
+<label><input type="checkbox" id="skipLocked"> ロック中のレイヤーは除外</label>
+
+<div class="buttons">
+  <button id="check">確認だけ</button>
+  <button id="apply" class="primary">整える</button>
+</div>
+<div id="status"></div>
+<div id="list"></div>
+
+<script>
+  const bools = ['roundPosition', 'roundSize', 'roundLayout', 'centerX', 'centerY', 'includeChildren', 'skipLocked'];
+  const $ = (id) => document.getElementById(id);
+  const status = $('status');
+
+  function readOptions() {
+    const o = { unit: Number($('unit').value), threshold: Number($('threshold').value) };
+    for (const k of bools) o[k] = $(k).checked;
+    return o;
+  }
+
+  function setOptions(o) {
+    for (const k of bools) $(k).checked = !!o[k];
+    $('unit').value = String(o.unit);
+    $('threshold').value = String(o.threshold);
+  }
+
+  function setSelection(count) {
+    $('check').disabled = $('apply').disabled = count === 0;
+    status.className = '';
+    status.textContent = count === 0 ? 'レイヤーかフレームを選択してください' : `${count}個選択中`;
+  }
+
+  function send(apply) {
+    parent.postMessage({ pluginMessage: { type: 'run', apply, options: readOptions() } }, '*');
+  }
+  $('check').onclick = () => send(false);
+  $('apply').onclick = () => send(true);
+
+  function renderResult(msg) {
+    const list = $('list');
+    list.textContent = '';
+    if (msg.error) {
+      status.className = 'error';
+      status.textContent = msg.error;
+      return;
+    }
+    status.className = msg.errors.length ? 'error' : '';
+    const head = msg.apply
+      ? `${msg.scanned}レイヤー中 ${msg.count}個を調整しました（Cmd/Ctrl+Z で戻せます）`
+      : `${msg.scanned}レイヤー中 ${msg.count}個が調整対象です`;
+    status.textContent = msg.errors.length ? `${head}／${msg.errors.length}件は変更できませんでした` : head;
+
+    for (const e of msg.errors) {
+      const div = document.createElement('div');
+      div.className = 'item change';
+      div.textContent = e;
+      list.appendChild(div);
+    }
+    for (const r of msg.rows) {
+      const div = document.createElement('div');
+      div.className = 'item';
+      const name = document.createElement('div');
+      name.className = 'name';
+      name.textContent = r.name;
+      div.appendChild(name);
+      for (const c of r.changes) {
+        const line = document.createElement('div');
+        line.className = 'change';
+        line.textContent = c;
+        div.appendChild(line);
+      }
+      div.onclick = () => parent.postMessage({ pluginMessage: { type: 'focus', id: r.id } }, '*');
+      list.appendChild(div);
+    }
+  }
+
+  onmessage = (event) => {
+    const msg = event.data.pluginMessage;
+    if (!msg) return;
+    if (msg.type === 'init') { setOptions(msg.options); setSelection(msg.selection); }
+    if (msg.type === 'selection') { setSelection(msg.selection); $('list').textContent = ''; }
+    if (msg.type === 'result') renderResult(msg);
+  };
+</script>

@@ -1,0 +1,14 @@
+{
+  "name": "Pixel Snap（端数・中央ズレ補正）",
+  "id": "ecnow-pixel-snap",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": ["figma"],
+  "documentAccess": "dynamic-page",
+  "networkAccess": { "allowedDomains": ["none"] },
+  "menu": [
+    { "name": "設定を開いて実行", "command": "open" },
+    { "name": "前回の設定ですぐ整える", "command": "quick" }
+  ]
+}
